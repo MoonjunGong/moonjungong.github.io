@@ -116,7 +116,7 @@ export default function App() {
                 activeTab === 'cv' ? 'border-blue-700 text-zinc-900' : 'border-transparent text-zinc-500 hover:text-zinc-800'
               }`}
             >
-              CV & Timeline
+              Timeline
             </button>
           </nav>
 

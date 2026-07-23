@@ -85,7 +85,7 @@ export default function AcademicTimeline({
       {/* Timeline Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
         <div>
-          <h2 className="text-lg font-bold tracking-tight text-zinc-900">Academic CV & Timeline</h2>
+          <h2 className="text-lg font-bold tracking-tight text-zinc-900">Academic Timeline</h2>
           <p className="text-xs text-zinc-500">Chronological history of educational milestones, faculty positions, and academic honors</p>
         </div>
 

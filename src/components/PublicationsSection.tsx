@@ -259,8 +259,8 @@ export default function PublicationsSection({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
         <div>
-          <h2 className="text-lg font-bold tracking-tight text-zinc-900">Publications & Bibliography</h2>
-          <p className="text-xs text-zinc-500">Peer-reviewed research manuscripts, conference acts, and preprints</p>
+          <h2 className="text-lg font-bold tracking-tight text-zinc-900">Pblications</h2>
+          <p className="text-xs text-zinc-500">Selected peer-reviewed papers and preprints.</p>
         </div>
         <div className="flex gap-2">
           {isEditing && (
@@ -1145,54 +1145,62 @@ export default function PublicationsSection({
                         </div>
 
                         {/* Expandable Blocks Bar */}
-                        <div className="flex flex-wrap items-center gap-3 mt-3">
-                          {paperLinkToUse !== '#' && (
-                            <a
-                              href={paperLinkToUse}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
-                            >
-                              <FileText className="w-3.5 h-3.5 text-zinc-500" />
-                              <span>Paper</span>
-                            </a>
+                        <div className="mt-3 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
+                          {/* Row 1 for mobile (or aligned inline on desktop) */}
+                          {((paperLinkToUse !== '#') || paper.codeUrl) && (
+                            <div className="flex flex-wrap items-center gap-3">
+                              {paperLinkToUse !== '#' && (
+                                <a
+                                  href={paperLinkToUse}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
+                                >
+                                  <FileText className="w-3.5 h-3.5 text-zinc-500" />
+                                  <span>Paper</span>
+                                </a>
+                              )}
+
+                              {paper.codeUrl && (
+                                <a
+                                  href={paper.codeUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
+                                >
+                                  <Code className="w-3.5 h-3.5 text-zinc-500" />
+                                  <span>Code</span>
+                                </a>
+                              )}
+                            </div>
                           )}
 
-                          {paper.codeUrl && (
-                            <a
-                              href={paper.codeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
+                          {/* Row 2 for mobile (or aligned inline on desktop) */}
+                          <div className="flex items-center gap-3">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
+                                setExpandedBibtexId(null);
+                              }}
+                              className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
                             >
-                              <Code className="w-3.5 h-3.5 text-zinc-500" />
-                              <span>Code</span>
-                            </a>
-                          )}
+                              <span>Abstract</span>
+                              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
+                            </button>
 
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
-                              setExpandedBibtexId(null);
-                            }}
-                            className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer"
-                          >
-                            <span>Abstract</span>
-                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
-                              setExpandedAbstractId(null);
-                            }}
-                            className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer"
-                          >
-                            <span>BibTeX Citation</span>
-                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
-                          </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
+                                setExpandedAbstractId(null);
+                              }}
+                              className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                            >
+                              <span>BibTeX Citation</span>
+                              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
+                            </button>
+                          </div>
                         </div>
                       </div>
 
