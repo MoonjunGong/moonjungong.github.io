@@ -1,0 +1,6 @@
+{
+  "name": "ScholarSpace",
+  "description": "An elegant, highly customizable academic research portfolio featuring publication filtering, BibTeX export, editable profile sections, and visual research analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
