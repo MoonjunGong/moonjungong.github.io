@@ -30,7 +30,7 @@ export default function App() {
     if (IconComponent) {
       return <IconComponent className="w-3.5 h-3.5" />;
     }
-    return <Icons.BookOpen className="w-3.5 h-3.5" />;
+    return <span className="text-sm leading-none flex items-center justify-center font-sans">{iconName}</span>;
   };
 
   // Back to top scroll listener
