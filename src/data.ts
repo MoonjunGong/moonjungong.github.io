@@ -22,7 +22,7 @@ export const INITIAL_PROFILE: Profile = {
   twitter: "https://x.com/MoonjunGong",
   cvUrl: "./data/cv.pdf",
   websiteTitle: "Moonjun Gong",
-  websiteIcon: "Cat"
+  websiteIcon: "Bookopen"
 };
 
 /**

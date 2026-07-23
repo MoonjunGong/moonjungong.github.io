@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, ArrowUp } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import { Profile, Paper, AcademicExperience, ResearchArea } from './types';
 import {
   INITIAL_PROFILE,
@@ -22,6 +22,16 @@ export default function App() {
 
   const [activeTab, setActiveTab] = useState<'about' | 'focus' | 'pubs' | 'cv'>('about');
   const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Helper to dynamically render websiteIcon from Lucide
+  const renderWebsiteIcon = () => {
+    const iconName = profile.websiteIcon || "BookOpen";
+    const IconComponent = (Icons as any)[iconName];
+    if (IconComponent) {
+      return <IconComponent className="w-3.5 h-3.5" />;
+    }
+    return <Icons.BookOpen className="w-3.5 h-3.5" />;
+  };
 
   // Back to top scroll listener
   useEffect(() => {
@@ -66,11 +76,7 @@ export default function App() {
           {/* Logo / Title */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
             <div className="w-7 h-7 rounded bg-zinc-900 flex items-center justify-center text-white shadow-xs text-xs font-bold font-sans">
-              {profile.websiteIcon ? (
-                <span>{profile.websiteIcon}</span>
-              ) : (
-                <BookOpen className="w-3.5 h-3.5" />
-              )}
+              {renderWebsiteIcon()}
             </div>
             <div>
               <span className="font-bold text-sm tracking-tight text-zinc-900 block leading-tight">{profile.websiteTitle || profile.name || "Academic Portfolio"}</span>
@@ -155,7 +161,9 @@ export default function App() {
 
         {/* Subtle bottom details */}
         <footer className="text-center text-zinc-400 text-xs py-6 border-t border-zinc-200/60 max-w-2xl mx-auto space-y-1">
-          <p className="font-medium text-zinc-500 text-[11px]">Last Updated on Jul 2026</p>
+          <p className="font-medium text-zinc-500 text-[11px]">
+            Last Updated on {import.meta.env.VITE_BUILD_DATE || 'Jul 2026'}
+          </p>
           <p className="text-[10px] text-zinc-400">© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
         </footer>
 
@@ -168,7 +176,7 @@ export default function App() {
           className="fixed bottom-6 right-6 z-40 bg-zinc-900 text-white hover:bg-zinc-800 p-2.5 rounded-full shadow-lg cursor-pointer transition-all hover:scale-110 flex items-center justify-center animate-fadeIn group border border-zinc-700"
           title="Back to Top"
         >
-          <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
+          <Icons.ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
         </button>
       )}
     </div>

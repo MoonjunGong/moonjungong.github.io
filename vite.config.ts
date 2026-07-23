@@ -7,6 +7,11 @@ export default defineConfig(() => {
   return {
     base: './',
     plugins: [react(), tailwindcss()],
+    define: {
+      'import.meta.env.VITE_BUILD_DATE': JSON.stringify(
+        new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+      ),
+    },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
