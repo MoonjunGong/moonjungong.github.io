@@ -23,7 +23,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'about' | 'focus' | 'pubs' | 'cv'>('about');
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Dark mode state with localStorage persistence
+  // Dark mode state with localStorage persistence and OS preference detection
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
@@ -42,6 +42,35 @@ export default function App() {
       localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
+
+  // Listen for dynamic OS theme changes (e.g., automatic sunset/sunrise switches)
+  useEffect(() => {
+    if (!window.matchMedia) return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+      // Follow OS changes dynamically if user hasn't manually pinned a theme override
+      const savedTheme = localStorage.getItem('theme');
+      if (!savedTheme) {
+        setIsDarkMode(e.matches);
+      }
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleSystemThemeChange);
+    } else {
+      mediaQuery.addListener(handleSystemThemeChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleSystemThemeChange);
+      } else {
+        mediaQuery.removeListener(handleSystemThemeChange);
+      }
+    };
+  }, []);
 
   const toggleDarkMode = () => {
     setIsDarkMode(prev => !prev);
@@ -276,14 +305,14 @@ export default function App() {
       </main>
 
       {/* Floating Action Buttons Stack (Bottom Right) */}
-      <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col gap-2 sm:gap-2.5 items-center">
+      <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2.5 items-center">
         {showBackToTop && (
           <button
             onClick={(e) => {
               e.currentTarget.blur();
               scrollToTop();
             }}
-            className="bg-zinc-900/90 text-white hover:bg-zinc-800 dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2 sm:p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-zinc-700/80 dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+            className="bg-zinc-900/90 text-white hover:bg-zinc-800 dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-zinc-700/80 dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
             title="Back to Top"
             aria-label="Back to Top"
           >
@@ -296,7 +325,7 @@ export default function App() {
             e.currentTarget.blur();
             toggleDarkMode();
           }}
-          className="bg-white/90 dark:bg-zinc-900/90 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-100 p-2 sm:p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-zinc-200/80 dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+          className="bg-white/90 dark:bg-zinc-900/90 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-zinc-200/80 dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
           title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
