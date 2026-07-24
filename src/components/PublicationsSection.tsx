@@ -1266,25 +1266,27 @@ export default function PublicationsSection({
       {/* Zoomed-in Image Modal (Lightbox) */}
       {selectedZoomImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xs animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-xs animate-fadeIn"
           onClick={() => setSelectedZoomImage(null)}
         >
           <div
-            className="relative max-w-4xl max-h-[85vh] bg-white rounded-lg p-2 shadow-2xl overflow-hidden flex flex-col items-center"
+            className="relative max-w-4xl max-h-[85vh] bg-white dark:bg-zinc-900 rounded-lg p-2 shadow-2xl flex flex-col items-center border border-zinc-200 dark:border-zinc-800 mt-6"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Close button positioned outside of the image container */}
             <button
               type="button"
               onClick={() => setSelectedZoomImage(null)}
-              className="absolute top-3 right-3 z-10 p-2 bg-black/60 text-white rounded-full hover:bg-black/80 transition-colors shadow-md cursor-pointer flex items-center justify-center w-8 h-8"
-              title="Close zoom window"
+              className="absolute -top-11 right-0 p-2 bg-white/90 hover:bg-white text-black rounded-full transition-all shadow-lg cursor-pointer flex items-center justify-center w-9 h-9 border border-zinc-200/80 backdrop-blur-xs hover:scale-105 active:scale-95"
+              title="Close image view"
+              aria-label="Close image view"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5 text-black" />
             </button>
             <img
               src={selectedZoomImage}
               alt="Teaser full preview"
-              className="max-w-full max-h-[80vh] object-contain rounded"
+              className="max-w-full max-h-[78vh] object-contain rounded"
               referrerPolicy="no-referrer"
             />
           </div>
