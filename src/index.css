@@ -51,5 +51,59 @@ html.dark body {
   color: #f4f4f5; /* Zinc 100 */
 }
 
+/* Print Optimization for Academic Formatting */
+@media print {
+  /* Hide navigation bar, floating action buttons, modal dialogs, and interactive buttons */
+  header,
+  nav,
+  .fixed,
+  button,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  /* Reset layout, background colors, and typography for paper print */
+  body,
+  html {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  main {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Maintain clean readable links */
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Prevent awkward page breaks inside cards, publications, and sections */
+  article,
+  section,
+  .break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Remove drop shadows for clean document printing */
+  .shadow-xs,
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl,
+  .shadow-2xl {
+    box-shadow: none !important;
+  }
+}
+
 
 
