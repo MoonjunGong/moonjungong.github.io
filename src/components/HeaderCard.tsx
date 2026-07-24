@@ -81,9 +81,9 @@ export default function HeaderCard({
   };
 
   return (
-    <div id="header-section" className="bg-white border border-zinc-200 rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
+    <div id="header-section" className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
       {/* Visual Accent Banner */}
-      <div className="h-1.5 bg-zinc-900" />
+      <div className="h-1.5 bg-zinc-900 dark:bg-blue-600" />
 
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -94,7 +94,7 @@ export default function HeaderCard({
               <img
                 src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
                 alt={profile.name}
-                className="w-32 md:w-40 h-auto rounded-lg border-2 border-zinc-200 shadow-xs transition-all duration-300"
+                className="w-32 md:w-40 h-auto rounded-lg border-2 border-zinc-200 dark:border-zinc-700 shadow-xs transition-all duration-300"
                 referrerPolicy="no-referrer"
               />
               {isEditing && (
@@ -125,10 +125,10 @@ export default function HeaderCard({
                   href={profile.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 text-zinc-700 rounded text-xs font-semibold transition-all shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
                   title="Google Scholar Citations"
                 >
-                  <GoogleScholarIcon className="w-3.5 h-3.5 text-zinc-500" />
+                  <GoogleScholarIcon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
                   <span>Google Scholar</span>
                 </a>
               )}
@@ -137,17 +137,17 @@ export default function HeaderCard({
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 text-zinc-700 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
                   title="Click to copy email address"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 animate-fadeIn" />
-                      <span className="text-emerald-700">Email Copied!</span>
+                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 animate-fadeIn" />
+                      <span className="text-emerald-700 dark:text-emerald-400">Email Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Mail className="w-3.5 h-3.5 text-zinc-500" />
+                      <Mail className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
                       <span>Copy Email</span>
                     </>
                   )}
@@ -158,10 +158,10 @@ export default function HeaderCard({
                 <a
                   href={profile.cvUrl}
                   download={`${profile.name.replace(/\s+/g, '_')}_CV.pdf`}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 text-zinc-700 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
-                  <FileText className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                  <FileText className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
                   <span>Curriculum Vitae</span>
                 </a>
               )}
@@ -173,10 +173,10 @@ export default function HeaderCard({
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 text-zinc-700 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="LinkedIn Profile"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <Linkedin className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
                   </a>
                 )}
 
@@ -185,10 +185,10 @@ export default function HeaderCard({
                     href={profile.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 hover:bg-zinc-100 border border-zinc-200 hover:border-zinc-300 text-zinc-700 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="Twitter/X Profile"
                   >
-                    <XIcon className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
+                    <XIcon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
                   </a>
                 )}
               </div>
@@ -206,7 +206,7 @@ export default function HeaderCard({
                       type="text"
                       value={profile.name}
                       onChange={(e) => handleChange('name', e.target.value)}
-                      className="text-2xl font-bold tracking-tight text-zinc-900 border-b border-zinc-200 focus:border-blue-600 outline-none w-full py-1"
+                      className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 bg-transparent"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -216,7 +216,7 @@ export default function HeaderCard({
                         type="text"
                         value={profile.title}
                         onChange={(e) => handleChange('title', e.target.value)}
-                        className="text-zinc-700 border-b border-zinc-200 focus:border-blue-600 outline-none w-full py-1 text-sm"
+                        className="text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 text-sm bg-transparent"
                       />
                     </div>
                     <div>
@@ -225,52 +225,52 @@ export default function HeaderCard({
                         type="text"
                         value={profile.affiliation}
                         onChange={(e) => handleChange('affiliation', e.target.value)}
-                        className="text-zinc-700 border-b border-zinc-200 focus:border-blue-600 outline-none w-full py-1 text-sm font-semibold"
+                        className="text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 text-sm font-semibold bg-transparent"
                       />
                     </div>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h1 className="text-2xl md:text-3xl font-bold text-zinc-900 tracking-tight mb-1">
+                  <h1 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-1">
                     {profile.name}
                   </h1>
-                  <p className="text-sm text-zinc-500 font-medium">
-                    {profile.title} • <span className="font-semibold text-zinc-800">{profile.affiliation}</span>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">
+                    {profile.title} • <span className="font-semibold text-zinc-800 dark:text-zinc-200">{profile.affiliation}</span>
                   </p>
                 </>
               )}
             </div>
 
             {/* Academic Bio Text */}
-            <div className="border-t border-zinc-100 pt-4">
-              <h2 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2.5">Biography</h2>
+            <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4">
+              <h2 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2.5">Biography</h2>
               {isEditing ? (
                 <textarea
                   value={profile.bio}
                   onChange={(e) => handleChange('bio', e.target.value)}
                   rows={4}
-                  className="w-full text-zinc-700 text-xs leading-relaxed p-3 bg-zinc-50 border border-zinc-200 rounded-md focus:border-blue-600 outline-none"
+                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none"
                 />
               ) : (
-                <p className="text-zinc-700 text-sm leading-relaxed">
+                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
                   {profile.bio}
                 </p>
               )}
             </div>
 
             {/* Research Interests Text */}
-            <div className="border-t border-zinc-100 pt-4">
-              <h2 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-2.5">Research Interests</h2>
+            <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4">
+              <h2 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2.5">Research Interests</h2>
               {isEditing ? (
                 <textarea
                   value={profile.researchInterests}
                   onChange={(e) => handleChange('researchInterests', e.target.value)}
                   rows={4}
-                  className="w-full text-zinc-700 text-xs leading-relaxed p-3 bg-zinc-50 border border-zinc-200 rounded-md focus:border-blue-600 outline-none"
+                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none"
                 />
               ) : (
-                <p className="text-zinc-700 text-sm leading-relaxed">
+                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
                   {profile.researchInterests}
                 </p>
               )}

@@ -259,8 +259,8 @@ export default function PublicationsSection({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
         <div>
-          <h2 className="text-lg font-bold tracking-tight text-zinc-900">Pblications</h2>
-          <p className="text-xs text-zinc-500">Selected peer-reviewed papers and preprints.</p>
+          <h2 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Publications</h2>
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">Selected peer-reviewed papers and preprints.</p>
         </div>
         <div className="flex gap-2">
           {isEditing && (
@@ -622,7 +622,7 @@ export default function PublicationsSection({
       )}
 
       {/* Filter Toolbar */}
-      <div className="bg-white border border-zinc-200 rounded-lg p-4 shadow-xs mb-4 space-y-3">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 shadow-xs mb-4 space-y-3">
         {/* Search and Category Filters */}
         <div className="flex flex-col md:flex-row gap-3">
           {/* Live Search */}
@@ -633,20 +633,20 @@ export default function PublicationsSection({
               placeholder="Search papers by keywords, titles, co-authors, venues..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs bg-zinc-50 border border-zinc-200 rounded outline-none focus:bg-white focus:border-blue-600 transition-all text-zinc-800"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded outline-none focus:bg-white dark:focus:bg-zinc-900 focus:border-blue-600 transition-all text-zinc-800 dark:text-zinc-100"
             />
           </div>
 
           {/* Category Quick Tabs */}
-          <div className="flex bg-zinc-100 p-0.5 rounded gap-0.5">
+          <div className="flex bg-zinc-100 dark:bg-zinc-800 p-0.5 rounded gap-0.5">
             {(['all', 'journal', 'conference', 'preprint'] as const).map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-2.5 py-1 rounded text-xs font-semibold capitalize transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-white text-zinc-900 shadow-xs'
-                    : 'text-zinc-500 hover:text-zinc-800'
+                    ? 'bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs'
+                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
                 }`}
               >
                 {cat === 'all' ? 'All' : cat + 's'}
@@ -657,8 +657,8 @@ export default function PublicationsSection({
 
         {/* Dynamic Tag Filters Cloud */}
         {allTags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 border-t border-zinc-100 pt-3">
-            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mr-1 flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-1.5 border-t border-zinc-100 dark:border-zinc-800 pt-3">
+            <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mr-1 flex items-center gap-1">
               <Filter className="w-3 h-3" />
               <span>Topic:</span>
             </span>
@@ -666,8 +666,8 @@ export default function PublicationsSection({
               onClick={() => setSelectedTag(null)}
               className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer ${
                 !selectedTag
-                  ? 'bg-blue-50 text-blue-800 border border-blue-100'
-                  : 'bg-zinc-50 hover:bg-zinc-100 text-zinc-600 border border-zinc-200'
+                  ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border border-blue-100 dark:border-blue-900'
+                  : 'bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
               }`}
             >
               All Topics
@@ -678,8 +678,8 @@ export default function PublicationsSection({
                 onClick={() => setSelectedTag(tag)}
                 className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer ${
                   selectedTag === tag
-                    ? 'bg-blue-50 text-blue-800 border border-blue-100'
-                    : 'bg-zinc-50 hover:bg-zinc-100 text-zinc-600 border border-zinc-200'
+                    ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border border-blue-100 dark:border-blue-900'
+                    : 'bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                 }`}
               >
                 {tag}
@@ -692,16 +692,16 @@ export default function PublicationsSection({
       {/* Publications Listing Grid */}
       <div className="space-y-3">
         {filteredPapers.length === 0 ? (
-          <div className="bg-white border border-zinc-200 rounded-lg p-10 text-center shadow-xs">
-            <BookOpen className="w-6 h-6 text-zinc-300 mx-auto mb-2" />
-            <p className="text-zinc-500 text-xs">No publications match your filter criteria.</p>
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-10 text-center shadow-xs">
+            <BookOpen className="w-6 h-6 text-zinc-300 dark:text-zinc-600 mx-auto mb-2" />
+            <p className="text-zinc-500 dark:text-zinc-400 text-xs">No publications match your filter criteria.</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setActiveCategory('all');
                 setSelectedTag(null);
               }}
-              className="mt-2 text-xs font-bold text-blue-700 hover:underline cursor-pointer"
+              className="mt-2 text-xs font-bold text-blue-700 dark:text-blue-400 hover:underline cursor-pointer"
             >
               Clear all filters
             </button>
@@ -774,8 +774,8 @@ export default function PublicationsSection({
 
                 {/* Main Paper Card */}
                 <div
-                  className={`flex-1 bg-white border ${
-                    paper.featured ? 'border-blue-200 bg-blue-50/5' : 'border-zinc-200'
+                  className={`flex-1 bg-white dark:bg-zinc-900 border ${
+                    paper.featured ? 'border-blue-200 dark:border-blue-900 bg-blue-50/5 dark:bg-blue-950/20' : 'border-zinc-200 dark:border-zinc-800'
                   } rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
@@ -1101,18 +1101,18 @@ export default function PublicationsSection({
                             {/* Publication Tag Category Badge */}
                             <div className="flex flex-wrap items-center gap-1.5">
                               <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
-                                paper.category === 'journal' ? 'bg-indigo-50 text-indigo-700 border border-indigo-100' :
-                                paper.category === 'conference' ? 'bg-blue-50 text-blue-700 border border-blue-100' :
-                                paper.category === 'workshop' ? 'bg-amber-50 text-amber-700 border border-amber-100' :
-                                'bg-zinc-100 text-zinc-600 border border-zinc-200'
+                                paper.category === 'journal' ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900' :
+                                paper.category === 'conference' ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-900' :
+                                paper.category === 'workshop' ? 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-100 dark:border-amber-900' :
+                                'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
                               }`}>
                                 {paper.category}
                               </span>
-                              <span className="text-xs text-zinc-900 font-bold">{paper.journal}</span>
+                              <span className="text-xs text-zinc-900 dark:text-zinc-100 font-bold">{paper.journal}</span>
                             </div>
 
                             {/* Paper Title */}
-                            <h3 className="text-sm font-bold text-zinc-900 leading-snug hover:text-blue-700 transition-colors">
+                            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 leading-snug hover:text-blue-700 dark:hover:text-blue-400 transition-colors">
                               {paperLinkToUse !== '#' ? (
                                 <a
                                   href={paperLinkToUse}
@@ -1121,7 +1121,7 @@ export default function PublicationsSection({
                                   className="hover:underline inline-flex items-center gap-1"
                                 >
                                   <span>{paper.title}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline text-zinc-400 shrink-0 align-middle" />
+                                  <ExternalLink className="w-3.5 h-3.5 inline text-zinc-400 dark:text-zinc-500 shrink-0 align-middle" />
                                 </a>
                               ) : (
                                 paper.title
@@ -1129,14 +1129,14 @@ export default function PublicationsSection({
                             </h3>
 
                             {/* Authors List (with Highlight on the Portfolio Owner) */}
-                            <p className="text-zinc-600 text-xs">
+                            <p className="text-zinc-600 dark:text-zinc-400 text-xs">
                               {highlightAuthor(paper.authors, profile.name)}
                             </p>
 
                             {/* Individual tags */}
                             <div className="flex flex-wrap gap-1 pt-1">
                               {(paper.tags || []).map(tag => (
-                                <span key={tag} className="text-[10px] bg-zinc-50 text-zinc-600 px-1.5 py-0.5 rounded border border-zinc-200">
+                                <span key={tag} className="text-[10px] bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">
                                   {tag}
                                 </span>
                               ))}
@@ -1154,9 +1154,9 @@ export default function PublicationsSection({
                                   href={paperLinkToUse}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
-                                  <FileText className="w-3.5 h-3.5 text-zinc-500" />
+                                  <FileText className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
                                   <span>Paper</span>
                                 </a>
                               )}
@@ -1166,9 +1166,9 @@ export default function PublicationsSection({
                                   href={paper.codeUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 bg-white hover:bg-zinc-50 border border-zinc-200 rounded shadow-xs hover:border-zinc-300 transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
-                                  <Code className="w-3.5 h-3.5 text-zinc-500" />
+                                  <Code className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
                                   <span>Code</span>
                                 </a>
                               )}
@@ -1183,7 +1183,7 @@ export default function PublicationsSection({
                                 setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
                                 setExpandedBibtexId(null);
                               }}
-                              className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                              className="text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-blue-700 dark:hover:text-blue-400 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
                             >
                               <span>Abstract</span>
                               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
@@ -1195,7 +1195,7 @@ export default function PublicationsSection({
                                 setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
                                 setExpandedAbstractId(null);
                               }}
-                              className="text-xs font-bold text-zinc-600 hover:text-blue-700 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                              className="text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-blue-700 dark:hover:text-blue-400 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
                             >
                               <span>BibTeX Citation</span>
                               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
@@ -1208,7 +1208,7 @@ export default function PublicationsSection({
                       {paper.teaserImage && (
                         <div className="p-4 sm:pl-0 flex items-center justify-center shrink-0">
                           <div
-                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-zinc-200/80 bg-white flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-zinc-300 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
+                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-zinc-200/80 dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
@@ -1225,8 +1225,8 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-zinc-50 border border-zinc-200 rounded p-3 mt-1 text-xs text-zinc-700 leading-relaxed animate-fadeIn text-justify italic mx-4 mb-4">
-                        <p className="font-bold text-zinc-800 not-italic mb-1 text-[11px]">Abstract Summary:</p>
+                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded p-3 mt-1 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify italic mx-4 mb-4">
+                        <p className="font-bold text-zinc-800 dark:text-zinc-200 not-italic mb-1 text-[11px]">Abstract Summary:</p>
                         {paper.abstract}
                       </div>
                     )}

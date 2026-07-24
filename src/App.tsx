@@ -23,6 +23,30 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'about' | 'focus' | 'pubs' | 'cv'>('about');
   const [showBackToTop, setShowBackToTop] = useState(false);
 
+  // Dark mode state with localStorage persistence
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  // Apply dark mode class to html element and persist preference
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(prev => !prev);
+  };
+
   // Helper to dynamically render websiteIcon from Lucide
   const renderWebsiteIcon = () => {
     const iconName = profile.websiteIcon || "BookOpen";
@@ -33,95 +57,177 @@ export default function App() {
     return <span className="text-sm leading-none flex items-center justify-center font-sans">{iconName}</span>;
   };
 
-  // Back to top scroll listener
+  const isManualScrollingRef = React.useRef(false);
+  const isScrollingToTopRef = React.useRef(false);
+  const manualScrollTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Back to top scroll listener & Active Tab ScrollSpy
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowBackToTop(true);
+      const scrollY = Math.max(
+        window.scrollY || 0,
+        document.documentElement.scrollTop || 0,
+        document.body.scrollTop || 0
+      );
+
+      // Manage Back to Top visibility
+      if (isScrollingToTopRef.current) {
+        if (scrollY <= 50) {
+          isScrollingToTopRef.current = false;
+          setShowBackToTop(false);
+        }
       } else {
-        setShowBackToTop(false);
+        if (scrollY > 300) {
+          setShowBackToTop(true);
+        } else {
+          setShowBackToTop(false);
+        }
+      }
+
+      // Do not auto-update active tab if user manually clicked a tab
+      if (isManualScrollingRef.current) {
+        if (manualScrollTimeoutRef.current) {
+          clearTimeout(manualScrollTimeoutRef.current);
+        }
+        manualScrollTimeoutRef.current = setTimeout(() => {
+          isManualScrollingRef.current = false;
+        }, 150);
+        return;
+      }
+
+      const sectionList: Array<{ id: string; tab: 'about' | 'focus' | 'pubs' | 'cv' }> = [
+        { id: 'header-section', tab: 'about' },
+        { id: 'interests-section', tab: 'focus' },
+        { id: 'publications-section', tab: 'pubs' },
+        { id: 'cv-section', tab: 'cv' },
+      ];
+
+      const isAtBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight - 60;
+      if (isAtBottom) {
+        setActiveTab('cv');
+        return;
+      }
+
+      const targetThreshold = 140;
+      let currentTab: 'about' | 'focus' | 'pubs' | 'cv' = 'about';
+
+      for (const item of sectionList) {
+        const el = document.getElementById(item.id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= targetThreshold) {
+            currentTab = item.tab;
+          }
+        }
+      }
+
+      setActiveTab(currentTab);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (manualScrollTimeoutRef.current) {
+        clearTimeout(manualScrollTimeoutRef.current);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
+    isScrollingToTopRef.current = true;
+    setShowBackToTop(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Helper to scroll smoothly to a specific section element
   const scrollToSection = (id: string, tabName: typeof activeTab) => {
     setActiveTab(tabName);
+    isManualScrollingRef.current = true;
+
+    if (manualScrollTimeoutRef.current) {
+      clearTimeout(manualScrollTimeoutRef.current);
+    }
+
     const element = document.getElementById(id);
     if (element) {
       const navbarHeight = 56;
-      const breathingRoom = 24;
+      const breathingRoom = 20;
       const totalOffset = navbarHeight + breathingRoom;
-      
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
+      const scrollY = Math.max(
+        window.scrollY || 0,
+        document.documentElement.scrollTop || 0,
+        document.body.scrollTop || 0
+      );
+
+      const elementTop = element.getBoundingClientRect().top + scrollY;
+
       window.scrollTo({
-        top: elementTop - totalOffset,
+        top: Math.max(0, elementTop - totalOffset),
         behavior: 'smooth'
       });
     }
+
+    manualScrollTimeoutRef.current = setTimeout(() => {
+      isManualScrollingRef.current = false;
+    }, 1000);
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 text-zinc-900 flex flex-col pb-12 selection:bg-blue-100 selection:text-blue-900">
+    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col pb-12 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-100 transition-colors duration-300">
       
       {/* Sticky Main Scholarly Navigation Bar */}
-      <header className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-zinc-200 z-40 transition-all duration-300">
+      <header className="sticky top-0 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 z-40 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
-          {/* Logo / Title */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
-            <div className="w-7 h-7 rounded bg-zinc-900 flex items-center justify-center text-white shadow-xs text-xs font-bold font-sans">
+          {/* Logo / Title - Hidden on mobile */}
+          <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
+            <div className="w-7 h-7 rounded bg-zinc-900 dark:bg-blue-600 flex items-center justify-center text-white shadow-xs text-xs font-bold font-sans">
               {renderWebsiteIcon()}
             </div>
             <div>
-              <span className="font-bold text-sm tracking-tight text-zinc-900 block leading-tight">{profile.websiteTitle || profile.name || "Academic Portfolio"}</span>
-              <span className="text-[9px] font-mono text-blue-700 font-bold block uppercase tracking-wider">Academic Portfolio</span>
+              <span className="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100 block leading-tight">{profile.websiteTitle || profile.name || "Academic Portfolio"}</span>
+              <span className="text-[9px] font-mono text-blue-700 dark:text-blue-400 font-bold block uppercase tracking-wider">Academic Portfolio</span>
             </div>
           </div>
 
-          {/* Quick Scroll Links */}
-          <nav className="hidden md:flex items-center gap-5 text-[11px] font-bold uppercase tracking-wider">
-            <button
-              onClick={() => scrollToSection('header-section', 'about')}
-              className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                activeTab === 'about' ? 'border-blue-700 text-zinc-900' : 'border-transparent text-zinc-500 hover:text-zinc-800'
-              }`}
-            >
-              Biography
-            </button>
-            <button
-              onClick={() => scrollToSection('interests-section', 'focus')}
-              className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                activeTab === 'focus' ? 'border-blue-700 text-zinc-900' : 'border-transparent text-zinc-500 hover:text-zinc-800'
-              }`}
-            >
-              Research
-            </button>
-            <button
-              onClick={() => scrollToSection('publications-section', 'pubs')}
-              className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                activeTab === 'pubs' ? 'border-blue-700 text-zinc-900' : 'border-transparent text-zinc-500 hover:text-zinc-800'
-              }`}
-            >
-              Publications
-            </button>
-            <button
-              onClick={() => scrollToSection('cv-section', 'cv')}
-              className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                activeTab === 'cv' ? 'border-blue-700 text-zinc-900' : 'border-transparent text-zinc-500 hover:text-zinc-800'
-              }`}
-            >
-              Timeline
-            </button>
-          </nav>
-
-          {/* Dummy element for alignment in flex layout */}
-          <div className="w-14 h-1 md:hidden"></div>
+          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+            {/* Quick Scroll Links */}
+            <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-3 sm:gap-5 text-[11px] font-bold uppercase tracking-wider">
+              <button
+                onClick={() => scrollToSection('header-section', 'about')}
+                className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                  activeTab === 'about' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                }`}
+              >
+                Biography
+              </button>
+              <button
+                onClick={() => scrollToSection('interests-section', 'focus')}
+                className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                  activeTab === 'focus' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                }`}
+              >
+                Research
+              </button>
+              <button
+                onClick={() => scrollToSection('publications-section', 'pubs')}
+                className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                  activeTab === 'pubs' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                }`}
+              >
+                Publications
+              </button>
+              <button
+                onClick={() => scrollToSection('cv-section', 'cv')}
+                className={`pb-1 border-b-2 transition-all cursor-pointer ${
+                  activeTab === 'cv' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                }`}
+              >
+                Timeline
+              </button>
+            </nav>
+          </div>
         </div>
       </header>
 
@@ -169,16 +275,38 @@ export default function App() {
 
       </main>
 
-      {/* Floating Back to Top Button */}
-      {showBackToTop && (
+      {/* Floating Action Buttons Stack (Bottom Right) */}
+      <div className="fixed bottom-3 right-3 sm:bottom-6 sm:right-6 z-40 flex flex-col gap-2 sm:gap-2.5 items-center">
+        {showBackToTop && (
+          <button
+            onClick={(e) => {
+              e.currentTarget.blur();
+              scrollToTop();
+            }}
+            className="bg-zinc-900/90 text-white hover:bg-zinc-800 dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2 sm:p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-zinc-700/80 dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+            title="Back to Top"
+            aria-label="Back to Top"
+          >
+            <Icons.ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5" />
+          </button>
+        )}
+
         <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-40 bg-zinc-900 text-white hover:bg-zinc-800 p-2.5 rounded-full shadow-lg cursor-pointer transition-all hover:scale-110 flex items-center justify-center animate-fadeIn group border border-zinc-700"
-          title="Back to Top"
+          onClick={(e) => {
+            e.currentTarget.blur();
+            toggleDarkMode();
+          }}
+          className="bg-white/90 dark:bg-zinc-900/90 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-100 p-2 sm:p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-zinc-200/80 dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+          title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+          aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
-          <Icons.ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />
+          {isDarkMode ? (
+            <Icons.Sun className="w-4 h-4 text-orange-500 fill-orange-400 transition-transform sm:hover:rotate-45" />
+          ) : (
+            <Icons.Moon className="w-4 h-4 text-indigo-950 fill-indigo-900 transition-transform sm:hover:-rotate-12" />
+          )}
         </button>
-      )}
+      </div>
     </div>
   );
 }
