@@ -27,6 +27,8 @@ export interface Paper {
   abstract: string;
   link: string;
   codeUrl?: string;
+  huggingfaceUrl?: string;
+  huggingface?: string;
   tags: string[];
   category: 'journal' | 'conference' | 'workshop' | 'preprint';
   doi?: string;

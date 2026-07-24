@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, Code, X } from 'lucide-react';
+import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github } from 'lucide-react';
 import { Paper, Profile } from '../types';
 
 interface PublicationsSectionProps {
@@ -68,6 +68,7 @@ export default function PublicationsSection({
     doi: '',
     link: '#',
     codeUrl: '',
+    huggingfaceUrl: '',
     featured: false
   });
 
@@ -176,6 +177,7 @@ export default function PublicationsSection({
       featured: !!newPaper.featured,
       link: newPaper.link || '#',
       codeUrl: newPaper.codeUrl || '',
+      huggingfaceUrl: newPaper.huggingfaceUrl || newPaper.huggingface || '',
       teaserImage: newPaper.teaserImage
     };
 
@@ -195,6 +197,7 @@ export default function PublicationsSection({
       doi: '',
       link: '#',
       codeUrl: '',
+      huggingfaceUrl: '',
       featured: false,
       teaserImage: undefined
     });
@@ -492,6 +495,17 @@ export default function PublicationsSection({
               />
             </div>
 
+            <div>
+              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Hugging Face URL</label>
+              <input
+                type="text"
+                value={newPaper.huggingfaceUrl || newPaper.huggingface || ''}
+                onChange={(e) => setNewPaper({ ...newPaper, huggingfaceUrl: e.target.value })}
+                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                placeholder="https://huggingface.co/..."
+              />
+            </div>
+
             <div className="md:col-span-2">
               <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Abstract</label>
               <textarea
@@ -712,6 +726,7 @@ export default function PublicationsSection({
             const isBibtexExpanded = expandedBibtexId === paper.id;
             const isCopied = copiedId === paper.id;
             const paperLinkToUse = paper.link && paper.link !== '#' ? paper.link : (paper.doi ? `https://doi.org/${paper.doi}` : '#');
+            const hfLink = (paper.huggingfaceUrl || paper.huggingface || '').trim();
 
             return (
               <div
@@ -973,6 +988,16 @@ export default function PublicationsSection({
                           className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
                         />
                       </div>
+                      <div>
+                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Hugging Face URL</label>
+                        <input
+                          type="text"
+                          value={editPaperForm.huggingfaceUrl || editPaperForm.huggingface || ''}
+                          onChange={(e) => setEditPaperForm({ ...editPaperForm, huggingfaceUrl: e.target.value, huggingface: e.target.value })}
+                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          placeholder="https://huggingface.co/..."
+                        />
+                      </div>
                       <div className="md:col-span-2">
                         <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Abstract</label>
                         <textarea
@@ -1147,7 +1172,7 @@ export default function PublicationsSection({
                         {/* Expandable Blocks Bar */}
                         <div className="mt-3 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
                           {/* Row 1 for mobile (or aligned inline on desktop) */}
-                          {((paperLinkToUse !== '#') || paper.codeUrl) && (
+                          {((paperLinkToUse !== '#') || paper.codeUrl || hfLink) && (
                             <div className="flex flex-wrap items-center gap-3">
                               {paperLinkToUse !== '#' && (
                                 <a
@@ -1168,8 +1193,20 @@ export default function PublicationsSection({
                                   rel="noopener noreferrer"
                                   className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
-                                  <Code className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
-                                  <span>Code</span>
+                                  <Github className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+                                  <span>GitHub</span>
+                                </a>
+                              )}
+
+                              {hfLink && (
+                                <a
+                                  href={hfLink}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
+                                >
+                                  <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
+                                  <span>Hugging Face</span>
                                 </a>
                               )}
                             </div>
