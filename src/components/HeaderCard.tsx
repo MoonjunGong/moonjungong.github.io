@@ -21,6 +21,15 @@ const GoogleScholarIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }
   </svg>
 );
 
+const GmailIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+    <path fill="#4285F4" d="M20 18h1.5c.83 0 1.5-.67 1.5-1.5V6c0-.83-.67-1.5-1.5-1.5H20v13.5z" />
+    <path fill="#34A853" d="M4 18H2.5C1.67 18 1 17.33 1 16.5V6c0-.83.67-1.5 1.5-1.5H4v13.5z" />
+    <path fill="#EA4335" d="M20 4.5l-8 6-8-6V18h3V9.5l5 3.75 5-3.75V18h3V4.5z" />
+    <path fill="#C5221F" d="M12 10.5l8-6h-2.5l-5.5 4.125L6.5 4.5H4l8 6z" />
+  </svg>
+);
+
 const XIcon = ({ className = "w-3.5 h-3.5" }: { className?: string }) => (
   <svg
     viewBox="0 0 24 24"
@@ -119,7 +128,7 @@ export default function HeaderCard({
             </div>
 
             {/* Academic Social & Contact Coordinates with descriptive text inside */}
-            <div className="w-full flex flex-col gap-1.5 mt-2 font-sans">
+            <div className="w-full flex flex-col gap-1.5 mt-2.5 md:mt-3.5 font-sans">
               {profile.googleScholar && (
                 <a
                   href={profile.googleScholar}
@@ -128,7 +137,7 @@ export default function HeaderCard({
                   className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
                   title="Google Scholar Citations"
                 >
-                  <GoogleScholarIcon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+                  <GoogleScholarIcon className="w-3.5 h-3.5 text-[#4285F4]" />
                   <span>Google Scholar</span>
                 </a>
               )}
@@ -147,7 +156,7 @@ export default function HeaderCard({
                     </>
                   ) : (
                     <>
-                      <Mail className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+                      <GmailIcon className="w-3.5 h-3.5 shrink-0" />
                       <span>Copy Email</span>
                     </>
                   )}
@@ -161,7 +170,7 @@ export default function HeaderCard({
                   className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
-                  <FileText className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
+                  <FileText className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400 shrink-0" />
                   <span>Curriculum Vitae</span>
                 </a>
               )}
@@ -176,7 +185,7 @@ export default function HeaderCard({
                     className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="LinkedIn Profile"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
+                    <Linkedin className="w-3.5 h-3.5 text-[#0A66C2] dark:text-[#388ee7] shrink-0" />
                   </a>
                 )}
 
@@ -188,7 +197,7 @@ export default function HeaderCard({
                     className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="Twitter/X Profile"
                   >
-                    <XIcon className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400 shrink-0" />
+                    <XIcon className="w-3.5 h-3.5 text-black dark:text-white shrink-0" />
                   </a>
                 )}
               </div>
