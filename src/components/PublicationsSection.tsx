@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download } from 'lucide-react';
+import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, ChevronUp, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download } from 'lucide-react';
 import { Paper, Profile } from '../types';
 
 interface PublicationsSectionProps {
@@ -1282,9 +1282,8 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded p-3 mt-1 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
-                        <p className="font-bold text-zinc-800 dark:text-zinc-200 not-italic mb-1 text-[11px]">Abstract:</p>
-                        {paper.abstract}
+                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-md p-4 mt-2 text-sm sm:text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                        <p>{paper.abstract}</p>
                       </div>
                     )}
 
