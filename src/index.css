@@ -1,10 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Fast Sans';
+  src: url('/Fast_Sans.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Fallback font metric matching to minimize Cumulative Layout Shift (CLS) */
+@font-face {
+  font-family: 'Fast Sans Fallback';
+  src: local('Inter'), local('Arial'), local('sans-serif');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-fast: "Fast Sans", "Fast Sans Fallback", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   
   --color-blue-50: #f0f3ff;

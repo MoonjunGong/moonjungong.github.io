@@ -129,10 +129,10 @@ export default function ResearchInterestsCard({
                     value={area.description}
                     onChange={(e) => handleUpdateArea(area.id, 'description', e.target.value)}
                     rows={3}
-                    className="text-xs text-zinc-600 dark:text-zinc-300 w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded p-2 outline-none mb-2"
+                    className="text-xs text-zinc-600 dark:text-zinc-300 w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                   />
                 ) : (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mb-3">
+                  <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mb-3 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                     {area.description}
                   </p>
                 )}

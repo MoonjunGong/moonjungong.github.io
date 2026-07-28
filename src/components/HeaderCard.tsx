@@ -259,10 +259,10 @@ export default function HeaderCard({
                   value={profile.bio}
                   onChange={(e) => handleChange('bio', e.target.value)}
                   rows={4}
-                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none"
+                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
-                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                   {profile.bio}
                 </p>
               )}
@@ -276,10 +276,10 @@ export default function HeaderCard({
                   value={profile.researchInterests}
                   onChange={(e) => handleChange('researchInterests', e.target.value)}
                   rows={4}
-                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none"
+                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
-                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed">
+                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                   {profile.researchInterests}
                 </p>
               )}

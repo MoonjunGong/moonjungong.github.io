@@ -1282,8 +1282,8 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded p-3 mt-1 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify italic mx-4 mb-4">
-                        <p className="font-bold text-zinc-800 dark:text-zinc-200 not-italic mb-1 text-[11px]">Abstract Summary:</p>
+                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded p-3 mt-1 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                        <p className="font-bold text-zinc-800 dark:text-zinc-200 not-italic mb-1 text-[11px]">Abstract:</p>
                         {paper.abstract}
                       </div>
                     )}
