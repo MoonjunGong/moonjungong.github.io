@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github } from 'lucide-react';
+import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download } from 'lucide-react';
 import { Paper, Profile } from '../types';
 
 interface PublicationsSectionProps {
@@ -234,6 +234,26 @@ export default function PublicationsSection({
     navigator.clipboard.writeText(text);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  // Download BibTeX citation helper (.bib file)
+  const downloadBibtex = (paperTitle: string, bibtexText: string) => {
+    if (!bibtexText) return;
+    // Extract cite key if available, otherwise sanitize paper title
+    const match = bibtexText.match(/@\w+\s*\{\s*([^,\s]+)/);
+    const citeKey = match ? match[1] : null;
+    const rawFileName = citeKey || paperTitle.toLowerCase().replace(/[^a-z0-9]+/g, '_').substring(0, 30);
+    const fileName = `${rawFileName || 'citation'}.bib`;
+
+    const blob = new Blob([bibtexText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   // Filter papers
@@ -1271,24 +1291,36 @@ export default function PublicationsSection({
                     {/* Collapsible BibTeX Citation Content */}
                     {isBibtexExpanded && (
                       <div className="bg-zinc-900 text-zinc-100 rounded p-3 mt-1 text-xs font-mono relative overflow-x-auto animate-fadeIn max-h-52 mx-4 mb-4">
-                        <button
-                          type="button"
-                          onClick={() => copyBibtex(paper.id, paper.bibtex)}
-                          className="absolute top-2 right-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white p-1 rounded border border-zinc-700 transition-colors flex items-center gap-1 cursor-pointer animate-fadeIn"
-                        >
-                          {isCopied ? (
-                            <>
-                              <Check className="w-3.5 h-3.5 text-emerald-400" />
-                              <span className="text-[10px] text-emerald-400 font-sans font-semibold">Copied</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="w-3.5 h-3.5" />
-                              <span className="text-[10px] font-sans font-semibold">Copy</span>
-                            </>
-                          )}
-                        </button>
-                        <pre className="pr-12 text-[10px] whitespace-pre-wrap">{paper.bibtex}</pre>
+                        <div className="absolute top-2 right-2 flex items-center gap-1.5 animate-fadeIn z-10">
+                          <button
+                            type="button"
+                            onClick={() => downloadBibtex(paper.title, paper.bibtex)}
+                            className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white px-2 py-1 rounded border border-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
+                            title="Download .bib file"
+                          >
+                            <Download className="w-3.5 h-3.5" />
+                            <span className="text-[10px] font-sans font-semibold">Download</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => copyBibtex(paper.id, paper.bibtex)}
+                            className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white px-2 py-1 rounded border border-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
+                            title="Copy BibTeX citation"
+                          >
+                            {isCopied ? (
+                              <>
+                                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                                <span className="text-[10px] text-emerald-400 font-sans font-semibold">Copied</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3.5 h-3.5" />
+                                <span className="text-[10px] font-sans font-semibold">Copy</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                        <pre className="pr-48 pt-7 sm:pt-0 text-[10px] whitespace-pre-wrap">{paper.bibtex}</pre>
                       </div>
                     )}
                   </>
