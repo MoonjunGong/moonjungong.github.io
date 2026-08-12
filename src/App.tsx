@@ -207,7 +207,7 @@ export default function App() {
     <div className="min-h-screen bg-[#F3E8D3] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
       {/* Sticky Main Scholarly Navigation Bar */}
-      <header className="sticky top-0 bg-[#FAF5EB]/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-[#E2D5BE] dark:border-zinc-800 z-40 transition-all duration-300">
+      <header className="sticky top-0 bg-[#FAF5EB]/50 dark:bg-zinc-900/50 backdrop-blur-md border-b border-[#E2D5BE]/80 dark:border-zinc-800/80 z-40 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
           {/* Logo / Title - Hidden on mobile */}
           <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
