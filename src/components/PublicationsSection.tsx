@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { motion } from 'motion/react';
 import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, ChevronUp, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download } from 'lucide-react';
 import { Paper, Profile } from '../types';
 
@@ -214,7 +215,7 @@ export default function PublicationsSection({
       <span>
         {parts.map((part, i) =>
           part.toLowerCase() === cleanOwner.toLowerCase() ? (
-            <strong key={i} className="text-zinc-900 font-bold border-b border-blue-700/30">
+            <strong key={i} className="text-[#2A2D34] dark:text-zinc-100 font-bold border-b border-[#801428] dark:border-[#7DE2C5]">
               {part}
             </strong>
           ) : (
@@ -282,8 +283,8 @@ export default function PublicationsSection({
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
         <div>
-          <h2 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Publications</h2>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">Selected peer-reviewed papers and preprints.</p>
+          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100">Publications</h2>
+          <p className="text-xs text-[#525660] dark:text-zinc-400">Selected peer-reviewed papers and preprints.</p>
         </div>
         <div className="flex gap-2">
           {isEditing && (
@@ -292,7 +293,7 @@ export default function PublicationsSection({
                 setShowAddForm(prev => !prev);
                 setAddTeaserError(null);
               }}
-              className="px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5"
+              className="px-3 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>{showAddForm ? "Cancel Adding" : "Add Publication"}</span>
@@ -303,61 +304,61 @@ export default function PublicationsSection({
 
       {/* Add Publication Form Modal / Panel */}
       {showAddForm && (
-        <form onSubmit={handleAddPaper} className="bg-zinc-50 border border-zinc-200 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
-          <h3 className="font-bold text-zinc-800 text-sm border-b border-zinc-200 pb-1.5">Add New Scholarly Publication</h3>
+        <form onSubmit={handleAddPaper} className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
+          <h3 className="font-bold text-[#2A2D34] dark:text-zinc-200 text-sm border-b border-[#E0CCA9] dark:border-zinc-800 pb-1.5">Add New Scholarly Publication</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Paper Title *</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Paper Title *</label>
               <input
                 type="text"
                 required
                 value={newPaper.title}
                 onChange={(e) => setNewPaper({ ...newPaper, title: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Co-Authoring with Intention: Directing Multi-Agent AI Writing Workflows..."
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Authors (Comma separated) *</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Authors (Comma separated) *</label>
               <input
                 type="text"
                 required
                 value={newPaper.authors}
                 onChange={(e) => setNewPaper({ ...newPaper, authors: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Evelyn Chen, Sarah Jenkins"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Journal / Venue Name</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Journal / Venue Name</label>
               <input
                 type="text"
                 value={newPaper.journal}
                 onChange={(e) => setNewPaper({ ...newPaper, journal: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="ACM CHI Conference (CHI 2026)"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Publication Year</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Publication Year</label>
               <input
                 type="number"
                 value={newPaper.year}
                 onChange={(e) => setNewPaper({ ...newPaper, year: Number(e.target.value) })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Publication Category</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Publication Category</label>
               <select
                 value={newPaper.category}
                 onChange={(e) => setNewPaper({ ...newPaper, category: e.target.value as Paper['category'] })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600 text-zinc-700"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
               >
                 <option value="conference">Conference Proceeding</option>
                 <option value="journal">Journal Paper</option>
@@ -367,35 +368,35 @@ export default function PublicationsSection({
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">DOI Link</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">DOI Link</label>
               <input
                 type="text"
                 value={newPaper.doi}
                 onChange={(e) => setNewPaper({ ...newPaper, doi: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="10.1145/3613904"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Tags</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Tags</label>
               
               {/* Selected tags */}
               <div className="flex flex-wrap gap-1 mb-2">
                 {(newPaper.tags || []).map(tag => (
-                  <span key={tag} className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-200 flex items-center gap-1">
+                  <span key={tag} className="text-[10px] bg-[#801428]/10 text-[#801428] dark:bg-teal-950/60 dark:text-[#7DE2C5] px-2 py-0.5 rounded-full border border-[#801428]/30 dark:border-teal-800 flex items-center gap-1 font-['Inter',sans-serif]">
                     {tag}
                     <button
                       type="button"
                       onClick={() => setNewPaper({ ...newPaper, tags: (newPaper.tags || []).filter(t => t !== tag) })}
-                      className="text-blue-500 hover:text-blue-800 font-bold ml-0.5 cursor-pointer"
+                      className="text-[#801428] hover:text-[#5F0E1D] dark:text-[#7DE2C5] font-bold ml-0.5 cursor-pointer"
                     >
                       &times;
                     </button>
                   </span>
                 ))}
                 {(newPaper.tags || []).length === 0 && (
-                  <span className="text-zinc-400 text-xs italic">No tags selected.</span>
+                  <span className="text-[#525660] dark:text-zinc-400 text-xs italic">No tags selected.</span>
                 )}
               </div>
 
@@ -405,7 +406,7 @@ export default function PublicationsSection({
                   type="text"
                   id="new-tag-input"
                   placeholder="Create new tag"
-                  className="flex-1 bg-white border border-zinc-200 rounded p-1 text-xs outline-none focus:border-blue-600"
+                  className="flex-1 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault();
@@ -429,7 +430,7 @@ export default function PublicationsSection({
                       }
                     }
                   }}
-                  className="px-2 py-1 bg-zinc-800 text-white rounded text-xs hover:bg-zinc-900 cursor-pointer"
+                  className="px-2 py-1 bg-[#801428] text-white rounded text-xs hover:bg-[#5F0E1D] cursor-pointer"
                 >
                   Add
                 </button>
@@ -438,14 +439,14 @@ export default function PublicationsSection({
               {/* Selection menu of existing tags */}
               {allTags.length > 0 && (
                 <div>
-                  <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
-                  <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-zinc-200 p-1.5 rounded bg-zinc-50">
+                  <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
+                  <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E0CCA9] dark:border-zinc-700 p-1.5 rounded bg-[#F2E0C4] dark:bg-zinc-800">
                     {allTags.map(tag => {
                       const isSelected = (newPaper.tags || []).includes(tag);
                       return (
                         <div
                           key={tag}
-                          className="inline-flex items-center gap-1.5 bg-white hover:bg-zinc-100 rounded border border-zinc-200 pl-2 pr-1 py-0.5 transition-colors"
+                          className="inline-flex items-center gap-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] rounded border border-[#E0CCA9] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
                         >
                           <button
                             type="button"
@@ -454,7 +455,7 @@ export default function PublicationsSection({
                             className={`text-[10px] font-sans font-medium transition-colors ${
                               isSelected
                                 ? 'text-zinc-400 cursor-not-allowed'
-                                : 'text-zinc-700 hover:text-blue-700 cursor-pointer'
+                                : 'text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] cursor-pointer'
                             }`}
                           >
                             {tag}
@@ -481,7 +482,7 @@ export default function PublicationsSection({
                                 setSelectedTag(null);
                               }
                             }}
-                            className="text-red-500 hover:text-red-700 hover:bg-red-50 p-0.5 rounded cursor-pointer transition-colors"
+                            className="text-red-600 hover:text-red-800 hover:bg-red-50 p-0.5 rounded cursor-pointer transition-colors"
                           >
                             <Trash2 className="w-2.5 h-2.5" />
                           </button>
@@ -494,77 +495,77 @@ export default function PublicationsSection({
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Paper URL / Link</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Paper URL / Link</label>
               <input
                 type="text"
                 value={newPaper.link || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, link: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://example.com/paper.pdf or #"
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Code Repository URL</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Code Repository URL</label>
               <input
                 type="text"
                 value={newPaper.codeUrl || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, codeUrl: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://github.com/..."
               />
             </div>
 
             <div>
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Hugging Face URL</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Hugging Face URL</label>
               <input
                 type="text"
                 value={newPaper.huggingfaceUrl || newPaper.huggingface || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, huggingfaceUrl: e.target.value })}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://huggingface.co/..."
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Abstract</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Abstract</label>
               <textarea
                 value={newPaper.abstract}
                 onChange={(e) => setNewPaper({ ...newPaper, abstract: e.target.value })}
                 rows={3}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Abstract descriptive statement..."
               />
             </div>
 
             <div className="md:col-span-2">
-              <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">BibTeX Entry (Optional)</label>
+              <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">BibTeX Entry (Optional)</label>
               <textarea
                 value={newPaper.bibtex}
                 onChange={(e) => setNewPaper({ ...newPaper, bibtex: e.target.value })}
                 rows={3}
-                className="w-full bg-white border border-zinc-200 rounded p-2 text-xs font-mono outline-none focus:border-blue-600"
+                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs font-mono outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="@inproceedings{...}"
               />
             </div>
 
-            <div className="md:col-span-2 border-t border-zinc-200/60 pt-3 space-y-4">
+            <div className="md:col-span-2 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3 space-y-4">
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
                   id="is-featured"
                   checked={newPaper.featured}
                   onChange={(e) => setNewPaper({ ...newPaper, featured: e.target.checked })}
-                  className="accent-blue-700"
+                  className="accent-[#801428]"
                 />
-                <label htmlFor="is-featured" className="text-xs font-semibold text-zinc-600 cursor-pointer select-none">
+                <label htmlFor="is-featured" className="text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 cursor-pointer select-none">
                   Highlight as Featured Publication
                 </label>
               </div>
 
               <div>
-                <label className="text-[10px] font-bold text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
-                <div className="flex flex-col gap-3 bg-white p-2.5 border border-zinc-200 rounded">
+                <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
+                <div className="flex flex-col gap-3 bg-[#F2E0C4] dark:bg-zinc-800 p-2.5 border border-[#E0CCA9] dark:border-zinc-700 rounded">
                   <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                     <input
                       type="file"
@@ -590,11 +591,11 @@ export default function PublicationsSection({
                       <button
                         type="button"
                         onClick={() => document.getElementById('add-teaser-input')?.click()}
-                        className="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-300 rounded text-xs text-zinc-700 font-semibold cursor-pointer transition-colors whitespace-nowrap"
+                        className="px-3 py-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] border border-[#E0CCA9] dark:border-zinc-700 rounded text-xs text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
                       >
                         Upload Teaser (Image/GIF)
                       </button>
-                      <span className="text-[10px] text-zinc-500 font-medium">
+                      <span className="text-[10px] text-[#525660] dark:text-zinc-400 font-medium">
                         (Max size: 1.0 MB)
                       </span>
                     </div>
@@ -605,27 +606,27 @@ export default function PublicationsSection({
                           <img
                             src={newPaper.teaserImage}
                             alt="Teaser preview"
-                            className="h-12 w-auto max-w-[120px] object-contain rounded border border-zinc-200 shadow-xs"
+                            className="h-12 w-auto max-w-[120px] object-contain rounded border border-[#E0CCA9] shadow-xs"
                             referrerPolicy="no-referrer"
                           />
                           <button
                             type="button"
                             onClick={() => setNewPaper({ ...newPaper, teaserImage: undefined })}
-                            className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full p-0.5 text-[8px] hover:bg-red-600 transition-colors cursor-pointer w-4 h-4 flex items-center justify-center font-bold"
+                            className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full p-0.5 text-[8px] hover:bg-red-700 transition-colors cursor-pointer w-4 h-4 flex items-center justify-center font-bold"
                             title="Remove teaser"
                           >
                             &times;
                           </button>
                         </div>
-                        <span className="text-[10px] text-zinc-500">Uploaded & optimized</span>
+                        <span className="text-[10px] text-[#525660] dark:text-zinc-400">Uploaded & optimized</span>
                       </div>
                     ) : (
-                      <span className="text-[10px] text-zinc-400">No teaser uploaded. It will be resized and displayed to the right side of the paper entry.</span>
+                      <span className="text-[10px] text-[#525660] dark:text-zinc-400">No teaser uploaded. It will be resized and displayed to the right side of the paper entry.</span>
                     )}
                   </div>
 
                   {addTeaserError && (
-                    <div className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 rounded p-2 animate-fadeIn">
+                    <div className="text-xs font-semibold text-red-700 bg-red-50 border border-red-200 rounded p-2 animate-fadeIn">
                       ⚠️ {addTeaserError}
                     </div>
                   )}
@@ -634,20 +635,20 @@ export default function PublicationsSection({
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-1.5 border-t border-zinc-200">
+          <div className="flex justify-end gap-2 pt-1.5 border-t border-[#E0CCA9] dark:border-zinc-800">
             <button
               type="button"
               onClick={() => {
                 setShowAddForm(false);
                 setAddTeaserError(null);
               }}
-              className="px-3 py-1.5 text-xs font-semibold text-zinc-500 hover:bg-zinc-200 rounded transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold text-[#525660] hover:bg-[#F2E0C4] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded transition-colors"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-1.5 text-xs font-semibold text-white bg-blue-700 hover:bg-blue-800 rounded shadow-xs transition-colors"
+              className="px-4 py-1.5 text-xs font-semibold text-white bg-[#801428] hover:bg-[#5F0E1D] dark:text-zinc-950 dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] rounded shadow-xs transition-colors cursor-pointer"
             >
               Save Publication
             </button>
@@ -656,52 +657,64 @@ export default function PublicationsSection({
       )}
 
       {/* Filter Toolbar */}
-      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-4 shadow-xs mb-4 space-y-3">
+      <div className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-4 shadow-xs mb-4 space-y-3">
         {/* Search and Category Filters */}
         <div className="flex flex-col md:flex-row gap-3">
           {/* Live Search */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#801428] dark:text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search papers by keywords, titles, co-authors, venues..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded outline-none focus:bg-white dark:focus:bg-zinc-900 focus:border-blue-600 transition-all text-zinc-800 dark:text-zinc-100"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded outline-none focus:bg-[#F9EFE0] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-all text-[#2A2D34] dark:text-zinc-100"
             />
           </div>
 
           {/* Category Quick Tabs */}
-          <div className="flex bg-zinc-100 dark:bg-zinc-800 p-0.5 rounded gap-0.5">
-            {(['all', 'journal', 'conference', 'preprint'] as const).map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-2.5 py-1 rounded text-xs font-semibold capitalize transition-all cursor-pointer ${
-                  activeCategory === cat
-                    ? 'bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 shadow-xs'
-                    : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
-                }`}
-              >
-                {cat === 'all' ? 'All' : cat + 's'}
-              </button>
-            ))}
+          <div className="flex bg-[#EED7B5] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E0CCA9]/80 dark:border-zinc-700/80 relative">
+            {(['all', 'journal', 'conference', 'preprint'] as const).map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`relative px-2.5 py-1 rounded-md text-xs font-semibold capitalize transition-colors duration-200 cursor-pointer select-none ${
+                    isActive
+                      ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
+                      : 'text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="publications-filter-active-pill"
+                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E0CCA9]/60 dark:border-zinc-700 shadow-xs"
+                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">
+                    {cat === 'all' ? 'All' : cat + 's'}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Dynamic Tag Filters Cloud */}
         {allTags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 border-t border-zinc-100 dark:border-zinc-800 pt-3">
-            <span className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mr-1 flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-1.5 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3">
+            <span className="text-[10px] font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mr-1 flex items-center gap-1">
               <Filter className="w-3 h-3" />
               <span>Topic:</span>
             </span>
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer ${
+              className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
-                  ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border border-blue-100 dark:border-blue-900'
-                  : 'bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                  ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
+                  : 'bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
               }`}
             >
               All Topics
@@ -710,10 +723,10 @@ export default function PublicationsSection({
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer ${
+                className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
-                    ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-800 dark:text-blue-300 border border-blue-100 dark:border-blue-900'
-                    : 'bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-700 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                    ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
+                    : 'bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
                 }`}
               >
                 {tag}
@@ -726,16 +739,16 @@ export default function PublicationsSection({
       {/* Publications Listing Grid */}
       <div className="space-y-3">
         {filteredPapers.length === 0 ? (
-          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-10 text-center shadow-xs">
-            <BookOpen className="w-6 h-6 text-zinc-300 dark:text-zinc-600 mx-auto mb-2" />
-            <p className="text-zinc-500 dark:text-zinc-400 text-xs">No publications match your filter criteria.</p>
+          <div className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-10 text-center shadow-xs">
+            <BookOpen className="w-6 h-6 text-[#801428]/50 dark:text-zinc-600 mx-auto mb-2" />
+            <p className="text-[#525660] dark:text-zinc-400 text-xs">No publications match your filter criteria.</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setActiveCategory('all');
                 setSelectedTag(null);
               }}
-              className="mt-2 text-xs font-bold text-blue-700 dark:text-blue-400 hover:underline cursor-pointer"
+              className="mt-2 text-xs font-bold text-[#801428] dark:text-[#7DE2C5] hover:underline cursor-pointer"
             >
               Clear all filters
             </button>
@@ -779,7 +792,7 @@ export default function PublicationsSection({
                         <button
                           type="button"
                           onClick={() => startEditingPaper(paper)}
-                          className="p-1.5 bg-white border border-zinc-200 text-zinc-500 hover:text-blue-700 hover:bg-blue-50 hover:border-blue-200 rounded transition-colors cursor-pointer shadow-xs"
+                          className="p-1.5 bg-white border border-zinc-200 text-zinc-500 hover:text-[#7DE2C5] hover:bg-teal-50 hover:border-teal-200 rounded transition-colors cursor-pointer shadow-xs"
                           title="Edit publication"
                         >
                           <Edit3 className="w-3.5 h-3.5" />
@@ -809,58 +822,58 @@ export default function PublicationsSection({
 
                 {/* Main Paper Card */}
                 <div
-                  className={`flex-1 bg-white dark:bg-zinc-900 border ${
-                    paper.featured ? 'border-blue-200 dark:border-blue-900 bg-blue-50/5 dark:bg-blue-950/20' : 'border-zinc-200 dark:border-zinc-800'
+                  className={`flex-1 bg-[#F9EFE0] dark:bg-zinc-900 border ${
+                    paper.featured ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F2E0C4]/60 dark:bg-teal-950/20' : 'border-[#E0CCA9] dark:border-zinc-800'
                   } rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
                     <form onSubmit={handleSaveEditPaper} className="space-y-3 animate-fadeIn p-4">
-                    <h4 className="text-xs font-bold text-zinc-700 border-b border-zinc-100 pb-1">Edit Publication</h4>
+                    <h4 className="text-xs font-bold text-[#2A2D34] dark:text-zinc-200 border-b border-[#E0CCA9] dark:border-zinc-800 pb-1">Edit Publication</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="md:col-span-2">
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Paper Title *</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Paper Title *</label>
                         <input
                           type="text"
                           required
                           value={editPaperForm.title || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, title: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Authors *</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Authors *</label>
                         <input
                           type="text"
                           required
                           value={editPaperForm.authors || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, authors: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Journal / Venue Name</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Journal / Venue Name</label>
                         <input
                           type="text"
                           value={editPaperForm.journal || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, journal: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Publication Year</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Publication Year</label>
                         <input
                           type="number"
                           value={editPaperForm.year || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, year: Number(e.target.value) })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Category</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Category</label>
                         <select
                           value={editPaperForm.category || 'conference'}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, category: e.target.value as Paper['category'] })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none text-zinc-700"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] rounded p-1 text-xs outline-none text-[#2A2D34] dark:text-zinc-100"
                         >
                           <option value="conference">Conference Proceeding</option>
                           <option value="journal">Journal Paper</option>
@@ -869,33 +882,33 @@ export default function PublicationsSection({
                         </select>
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">DOI Link</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">DOI Link</label>
                         <input
                           type="text"
                           value={editPaperForm.doi || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, doi: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-1">Tags</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Tags</label>
                         
                         {/* Selected tags */}
                         <div className="flex flex-wrap gap-1 mb-2">
                           {(editPaperForm.tags || []).map(tag => (
-                            <span key={tag} className="text-[10px] bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-200 flex items-center gap-1">
+                            <span key={tag} className="text-[10px] bg-[#801428]/10 text-[#801428] px-2 py-0.5 rounded-full border border-[#801428]/30 flex items-center gap-1 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 font-['Inter',sans-serif]">
                               {tag}
                               <button
                                 type="button"
                                 onClick={() => setEditPaperForm({ ...editPaperForm, tags: (editPaperForm.tags || []).filter(t => t !== tag) })}
-                                className="text-blue-500 hover:text-blue-800 font-bold ml-0.5 cursor-pointer"
+                                className="text-[#801428] hover:text-[#5F0E1D] dark:text-[#7DE2C5] dark:hover:text-[#68d0b3] font-bold ml-0.5 cursor-pointer"
                               >
                                 &times;
                               </button>
                             </span>
                           ))}
                           {(editPaperForm.tags || []).length === 0 && (
-                            <span className="text-zinc-400 text-xs italic">No tags selected.</span>
+                            <span className="text-[#525660] dark:text-zinc-400 text-xs italic">No tags selected.</span>
                           )}
                         </div>
 
@@ -905,7 +918,7 @@ export default function PublicationsSection({
                             type="text"
                             id="edit-tag-input"
                             placeholder="Create new tag"
-                            className="flex-1 bg-zinc-50 border border-zinc-200 rounded p-1 text-xs outline-none focus:border-blue-600"
+                            className="flex-1 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
                                 e.preventDefault();
@@ -929,7 +942,7 @@ export default function PublicationsSection({
                                 }
                               }
                             }}
-                            className="px-2 py-1 bg-zinc-800 text-white rounded text-xs hover:bg-zinc-900 cursor-pointer"
+                            className="px-2 py-1 bg-[#801428] text-white rounded text-xs hover:bg-[#5F0E1D] cursor-pointer"
                           >
                             Add
                           </button>
@@ -938,14 +951,14 @@ export default function PublicationsSection({
                         {/* Selection menu of existing tags */}
                         {allTags.length > 0 && (
                           <div>
-                            <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
-                            <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-zinc-200 p-1.5 rounded bg-zinc-100">
+                            <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
+                            <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E0CCA9] dark:border-zinc-700 p-1.5 rounded bg-[#F2E0C4] dark:bg-zinc-800">
                               {allTags.map(tag => {
                                 const isSelected = (editPaperForm.tags || []).includes(tag);
                                 return (
                                   <div
                                     key={tag}
-                                    className="inline-flex items-center gap-1.5 bg-white hover:bg-zinc-50 rounded border border-zinc-200 pl-2 pr-1 py-0.5 transition-colors"
+                                    className="inline-flex items-center gap-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] dark:hover:bg-zinc-800 rounded border border-[#E0CCA9] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
                                   >
                                     <button
                                       type="button"
@@ -954,7 +967,7 @@ export default function PublicationsSection({
                                       className={`text-[10px] font-sans font-medium transition-colors ${
                                         isSelected
                                           ? 'text-zinc-400 cursor-not-allowed'
-                                          : 'text-zinc-700 hover:text-blue-700 cursor-pointer'
+                                          : 'text-[#2A2D34] hover:text-[#801428] dark:text-zinc-200 dark:hover:text-[#7DE2C5] cursor-pointer'
                                       }`}
                                     >
                                       {tag}
@@ -979,7 +992,7 @@ export default function PublicationsSection({
                                           setSelectedTag(null);
                                         }
                                       }}
-                                      className="text-red-500 hover:text-red-700 hover:bg-red-50 p-0.5 rounded cursor-pointer transition-colors"
+                                      className="text-red-600 hover:text-red-800 hover:bg-red-50 p-0.5 rounded cursor-pointer transition-colors"
                                     >
                                       <Trash2 className="w-2.5 h-2.5" />
                                     </button>
@@ -991,55 +1004,55 @@ export default function PublicationsSection({
                         )}
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Paper URL / Link</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Paper URL / Link</label>
                         <input
                           type="text"
                           value={editPaperForm.link || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, link: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Code Repository URL</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Code Repository URL</label>
                         <input
                           type="text"
                           value={editPaperForm.codeUrl || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, codeUrl: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Hugging Face URL</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Hugging Face URL</label>
                         <input
                           type="text"
                           value={editPaperForm.huggingfaceUrl || editPaperForm.huggingface || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, huggingfaceUrl: e.target.value, huggingface: e.target.value })}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                           placeholder="https://huggingface.co/..."
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">Abstract</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Abstract</label>
                         <textarea
                           value={editPaperForm.abstract || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, abstract: e.target.value })}
                           rows={2}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1.5 text-xs outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs outline-none"
                         />
                       </div>
                       <div className="md:col-span-2">
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-0.5">BibTeX Entry</label>
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">BibTeX Entry</label>
                         <textarea
                           value={editPaperForm.bibtex || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, bibtex: e.target.value })}
                           rows={2}
-                          className="w-full bg-zinc-50 border border-zinc-200 focus:border-blue-600 rounded p-1.5 text-xs font-mono outline-none"
+                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs font-mono outline-none"
                         />
                       </div>
 
-                      <div className="md:col-span-2 border-t border-zinc-200/60 pt-3">
-                        <label className="text-[9px] font-bold text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
-                        <div className="flex flex-col gap-2.5 bg-zinc-50 p-2 border border-zinc-200 rounded">
+                      <div className="md:col-span-2 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3">
+                        <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
+                        <div className="flex flex-col gap-2.5 bg-[#F2E0C4] dark:bg-zinc-800 p-2 border border-[#E0CCA9] dark:border-zinc-700 rounded">
                           <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                             <input
                               type="file"
@@ -1065,11 +1078,11 @@ export default function PublicationsSection({
                               <button
                                 type="button"
                                 onClick={() => document.getElementById(`edit-teaser-input-${paper.id}`)?.click()}
-                                className="px-2.5 py-1 bg-white hover:bg-zinc-100 border border-zinc-300 rounded text-[10px] text-zinc-700 font-semibold cursor-pointer transition-colors whitespace-nowrap"
+                                className="px-2.5 py-1 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] dark:hover:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded text-[10px] text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
                               >
                                 Upload Teaser (Image/GIF)
                               </button>
-                              <span className="text-[10px] text-zinc-500 font-medium">
+                              <span className="text-[10px] text-[#525660] dark:text-zinc-400 font-medium">
                                 (Max size: 1.0 MB)
                               </span>
                             </div>
@@ -1080,47 +1093,47 @@ export default function PublicationsSection({
                                   <img
                                     src={editPaperForm.teaserImage}
                                     alt="Teaser preview"
-                                    className="h-10 w-auto max-w-[120px] object-contain rounded border border-zinc-200 shadow-xs"
+                                    className="h-10 w-auto max-w-[120px] object-contain rounded border border-[#E0CCA9] shadow-xs"
                                     referrerPolicy="no-referrer"
                                   />
                                   <button
                                     type="button"
                                     onClick={() => setEditPaperForm({ ...editPaperForm, teaserImage: undefined })}
-                                    className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full p-0.5 text-[8px] hover:bg-red-600 transition-colors cursor-pointer w-4 h-4 flex items-center justify-center font-bold"
+                                    className="absolute -top-1.5 -right-1.5 bg-red-600 text-white rounded-full p-0.5 text-[8px] hover:bg-red-700 transition-colors cursor-pointer w-4 h-4 flex items-center justify-center font-bold"
                                     title="Remove teaser"
                                   >
                                     &times;
                                   </button>
                                 </div>
-                                <span className="text-[9px] text-zinc-500">Uploaded & optimized</span>
+                                <span className="text-[9px] text-[#525660] dark:text-zinc-400">Uploaded & optimized</span>
                               </div>
                             ) : (
-                              <span className="text-[9px] text-zinc-400">No teaser uploaded.</span>
+                              <span className="text-[9px] text-[#525660] dark:text-zinc-400">No teaser uploaded.</span>
                             )}
                           </div>
 
                           {editTeaserError && (
-                            <div className="text-xs font-semibold text-red-600 bg-red-50 border border-red-100 rounded p-2 animate-fadeIn">
+                            <div className="text-xs font-semibold text-red-700 bg-red-50 border border-red-200 rounded p-2 animate-fadeIn">
                               ⚠️ {editTeaserError}
                             </div>
                           )}
                         </div>
                       </div>
                     </div>
-                    <div className="flex justify-end gap-2 pt-2 border-t border-zinc-200">
+                    <div className="flex justify-end gap-2 pt-2 border-t border-[#E0CCA9] dark:border-zinc-800">
                       <button
                         type="button"
                         onClick={() => {
                           setEditingPaperId(null);
                           setEditTeaserError(null);
                         }}
-                        className="px-2.5 py-1 text-[10px] font-bold text-zinc-500 hover:bg-zinc-200 rounded cursor-pointer"
+                        className="px-2.5 py-1 text-[10px] font-bold text-[#525660] hover:bg-[#F2E0C4] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded cursor-pointer"
                       >
                         Cancel
                       </button>
                       <button
                         type="submit"
-                        className="px-3.5 py-1 text-[10px] font-bold text-white bg-blue-700 hover:bg-blue-800 rounded shadow-xs cursor-pointer"
+                        className="px-3.5 py-1 text-[10px] font-bold text-white bg-[#801428] hover:bg-[#5F0E1D] dark:text-zinc-950 dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] rounded shadow-xs cursor-pointer"
                       >
                         Save Changes
                       </button>
@@ -1130,7 +1143,7 @@ export default function PublicationsSection({
                   <>
                     {/* Featured Highlight Ribbon */}
                     {paper.featured && (
-                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-blue-700 text-white text-[8px] font-bold tracking-wider uppercase py-0.5 px-2 rounded flex items-center gap-0.5 shadow-xs z-10">
+                      <div className="absolute top-0 right-8 -translate-y-1/2 bg-[#801428] text-white dark:bg-[#7DE2C5] dark:text-zinc-950 text-[8px] font-bold tracking-wider uppercase py-0.5 px-2 rounded flex items-center gap-0.5 shadow-xs z-10">
                         <Star className="w-2.5 h-2.5 fill-current" />
                         <span>Featured</span>
                       </div>
@@ -1146,18 +1159,18 @@ export default function PublicationsSection({
                             {/* Publication Tag Category Badge */}
                             <div className="flex flex-wrap items-center gap-1.5">
                               <span className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
-                                paper.category === 'journal' ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-900' :
-                                paper.category === 'conference' ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-700 dark:text-blue-300 border border-blue-100 dark:border-blue-900' :
-                                paper.category === 'workshop' ? 'bg-amber-50 dark:bg-amber-950/50 text-amber-700 dark:text-amber-300 border border-amber-100 dark:border-amber-900' :
-                                'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700'
+                                paper.category === 'journal' ? 'bg-indigo-100 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-900' :
+                                paper.category === 'conference' ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800/80' :
+                                paper.category === 'workshop' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-200 dark:border-amber-900' :
+                                'bg-[#F2E0C4] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
                               }`}>
                                 {paper.category}
                               </span>
-                              <span className="text-xs text-zinc-900 dark:text-zinc-100 font-bold">{paper.journal}</span>
+                              <span className="text-xs text-[#2A2D34] dark:text-zinc-100 font-bold">{paper.journal}</span>
                             </div>
 
                             {/* Paper Title */}
-                            <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 leading-snug hover:text-blue-700 dark:hover:text-blue-400 transition-colors">
+                            <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug hover:text-[#801428] dark:hover:text-[#7DE2C5] transition-colors">
                               {paperLinkToUse !== '#' ? (
                                 <a
                                   href={paperLinkToUse}
@@ -1166,7 +1179,7 @@ export default function PublicationsSection({
                                   className="hover:underline inline-flex items-center gap-1"
                                 >
                                   <span>{paper.title}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline text-zinc-400 dark:text-zinc-500 shrink-0 align-middle" />
+                                  <ExternalLink className="w-3.5 h-3.5 inline text-[#801428] dark:text-zinc-500 shrink-0 align-middle" />
                                 </a>
                               ) : (
                                 paper.title
@@ -1174,14 +1187,14 @@ export default function PublicationsSection({
                             </h3>
 
                             {/* Authors List (with Highlight on the Portfolio Owner) */}
-                            <p className="text-zinc-600 dark:text-zinc-400 text-xs">
+                            <p className="text-[#525660] dark:text-zinc-400 text-xs">
                               {highlightAuthor(paper.authors, profile.name)}
                             </p>
 
                             {/* Individual tags */}
                             <div className="flex flex-wrap gap-1 pt-1">
                               {(paper.tags || []).map(tag => (
-                                <span key={tag} className="text-[10px] bg-zinc-50 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 px-1.5 py-0.5 rounded border border-zinc-200 dark:border-zinc-700">
+                                <span key={tag} className="text-[10px] bg-[#F2E0C4] text-[#801428] px-1.5 py-0.5 rounded border border-[#E0CCA9] dark:bg-teal-950/50 dark:text-[#7DE2C5] dark:border-teal-800/70 font-['Inter',sans-serif]">
                                   {tag}
                                 </span>
                               ))}
@@ -1199,9 +1212,9 @@ export default function PublicationsSection({
                                   href={paperLinkToUse}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
-                                  <FileText className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+                                  <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
                                   <span>Paper</span>
                                 </a>
                               )}
@@ -1211,9 +1224,9 @@ export default function PublicationsSection({
                                   href={paper.codeUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
-                                  <Github className="w-3.5 h-3.5 text-zinc-500 dark:text-zinc-400" />
+                                  <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
                                   <span>GitHub</span>
                                 </a>
                               )}
@@ -1223,7 +1236,7 @@ export default function PublicationsSection({
                                   href={hfLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-zinc-700 dark:text-zinc-300 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded shadow-xs hover:border-zinc-300 dark:hover:border-zinc-600 transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
                                   <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
                                   <span>Hugging Face</span>
@@ -1240,7 +1253,7 @@ export default function PublicationsSection({
                                 setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
                                 setExpandedBibtexId(null);
                               }}
-                              className="text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-blue-700 dark:hover:text-blue-400 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                              className="text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
                             >
                               <span>Abstract</span>
                               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
@@ -1252,7 +1265,7 @@ export default function PublicationsSection({
                                 setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
                                 setExpandedAbstractId(null);
                               }}
-                              className="text-xs font-bold text-zinc-600 dark:text-zinc-400 hover:text-blue-700 dark:hover:text-blue-400 flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                              className="text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
                             >
                               <span>BibTeX Citation</span>
                               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
@@ -1265,7 +1278,7 @@ export default function PublicationsSection({
                       {paper.teaserImage && (
                         <div className="p-4 sm:pl-0 flex items-center justify-center shrink-0">
                           <div
-                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-zinc-200/80 dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
+                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-[#E0CCA9] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
@@ -1282,7 +1295,7 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-zinc-50 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700 rounded-md p-2 mt-2 text-sm sm:text-[13.5px] text-zinc-700 dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                      <div className="bg-[#F2E0C4] dark:bg-zinc-800/80 border border-[#E0CCA9] dark:border-zinc-700 rounded-md p-3 mt-2 text-sm sm:text-[13.5px] text-[#2A2D34] dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                         <p>{paper.abstract}</p>
                       </div>
                     )}

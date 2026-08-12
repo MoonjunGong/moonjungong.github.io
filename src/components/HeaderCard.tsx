@@ -90,54 +90,53 @@ export default function HeaderCard({
   };
 
   return (
-    <div id="header-section" className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
-      {/* Visual Accent Banner */}
-      <div className="h-1.5 bg-zinc-900 dark:bg-blue-600" />
-
+    <div id="header-section" className="bg-[#F9EFE0] dark:bg-zinc-900 border-2 border-[#801428] dark:border-[#7DE2C5] rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
       <div className="p-6 md:p-8">
-        <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="flex flex-col md:flex-row gap-8 items-stretch">
 
           {/* Avatar and Info Grid */}
-          <div className="w-full md:w-1/4 flex flex-col items-center">
-            <div className="relative group mb-2">
-              <img
-                src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
-                alt={profile.name}
-                className="w-32 md:w-40 h-auto rounded-lg border-2 border-zinc-200 dark:border-zinc-700 shadow-xs transition-all duration-300"
-                referrerPolicy="no-referrer"
-              />
-              {isEditing && (
-                <>
-                  <input
-                    type="file"
-                    ref={avatarInputRef}
-                    onChange={handleAvatarUpload}
-                    accept="image/*"
-                    className="hidden"
-                  />
-                  <button
-                    onClick={() => avatarInputRef.current?.click()}
-                    className="absolute inset-0 bg-zinc-900/80 rounded-lg flex flex-col items-center justify-center p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer text-white"
-                  >
-                    <Camera className="w-5 h-5 mb-1.5 text-blue-400" />
-                    <span className="text-[11px] font-bold">Upload Photo</span>
-                    <span className="text-[8px] text-zinc-300 mt-1 font-mono">PNG, JPG, WebP</span>
-                  </button>
-                </>
-              )}
+          <div className="w-full md:w-1/4 flex flex-col items-center justify-between">
+            <div className="flex-1 flex flex-col items-center justify-center py-2">
+              <div className="relative group">
+                <img
+                  src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
+                  alt={profile.name}
+                  className="w-32 md:w-40 h-auto rounded-lg transition-all duration-300"
+                  referrerPolicy="no-referrer"
+                />
+                {isEditing && (
+                  <>
+                    <input
+                      type="file"
+                      ref={avatarInputRef}
+                      onChange={handleAvatarUpload}
+                      accept="image/*"
+                      className="hidden"
+                    />
+                    <button
+                      onClick={() => avatarInputRef.current?.click()}
+                      className="absolute inset-0 bg-zinc-900/80 rounded-lg flex flex-col items-center justify-center p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer text-white"
+                    >
+                      <Camera className="w-5 h-5 mb-1.5 text-white" />
+                      <span className="text-[11px] font-bold">Upload Photo</span>
+                      <span className="text-[8px] text-zinc-300 mt-1 font-mono">PNG, JPG, WebP</span>
+                    </button>
+                  </>
+                )}
+              </div>
             </div>
 
             {/* Academic Social & Contact Coordinates with descriptive text inside */}
-            <div className="w-full flex flex-col gap-1.5 mt-2.5 md:mt-3.5 font-sans">
+            <div className="w-full flex flex-col gap-1.5 mt-4 md:mt-auto font-sans">
               {profile.googleScholar && (
                 <a
                   href={profile.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
                   title="Google Scholar Citations"
                 >
-                  <GoogleScholarIcon className="w-3.5 h-3.5 text-[#4285F4]" />
+                  <GoogleScholarIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
                   <span>Google Scholar</span>
                 </a>
               )}
@@ -146,17 +145,17 @@ export default function HeaderCard({
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
                   title="Click to copy email address"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 animate-fadeIn" />
-                      <span className="text-emerald-700 dark:text-emerald-400">Email Copied!</span>
+                      <Check className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 animate-fadeIn" />
+                      <span className="text-[#2A2D34] dark:text-zinc-100 font-bold">Email Copied!</span>
                     </>
                   ) : (
                     <>
-                      <GmailIcon className="w-3.5 h-3.5 shrink-0" />
+                      <Mail className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
                       <span>Copy Email</span>
                     </>
                   )}
@@ -167,10 +166,10 @@ export default function HeaderCard({
                 <a
                   href={profile.cvUrl}
                   download={`${profile.name.replace(/\s+/g, '_')}_CV.pdf`}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
-                  <FileText className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400 shrink-0" />
+                  <FileText className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
                   <span>Curriculum Vitae</span>
                 </a>
               )}
@@ -182,10 +181,10 @@ export default function HeaderCard({
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="LinkedIn Profile"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-[#0A66C2] dark:text-[#388ee7] shrink-0" />
+                    <Linkedin className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
                   </a>
                 )}
 
@@ -194,10 +193,10 @@ export default function HeaderCard({
                     href={profile.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-zinc-50 dark:bg-zinc-800/80 hover:bg-zinc-100 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700/80 hover:border-zinc-300 dark:hover:border-zinc-600 text-zinc-700 dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="Twitter/X Profile"
                   >
-                    <XIcon className="w-3.5 h-3.5 text-black dark:text-white shrink-0" />
+                    <XIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
                   </a>
                 )}
               </div>
@@ -210,82 +209,82 @@ export default function HeaderCard({
               {isEditing ? (
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Full Name</label>
+                    <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase tracking-widest block">Full Name</label>
                     <input
                       type="text"
                       value={profile.name}
                       onChange={(e) => handleChange('name', e.target.value)}
-                      className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 bg-transparent"
+                      className="text-2xl font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 bg-transparent"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Academic Title</label>
+                      <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase tracking-widest block">Academic Title</label>
                       <input
                         type="text"
                         value={profile.title}
                         onChange={(e) => handleChange('title', e.target.value)}
-                        className="text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 text-sm bg-transparent"
+                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm bg-transparent"
                       />
                     </div>
                     <div>
-                      <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block">Affiliation</label>
+                      <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase tracking-widest block">Affiliation</label>
                       <input
                         type="text"
                         value={profile.affiliation}
                         onChange={(e) => handleChange('affiliation', e.target.value)}
-                        className="text-zinc-700 dark:text-zinc-300 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full py-1 text-sm font-semibold bg-transparent"
+                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm font-semibold bg-transparent"
                       />
                     </div>
                   </div>
                 </div>
               ) : (
                 <>
-                  <h1 className="text-2xl md:text-3xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-1">
+                  <h1 className="text-2xl md:text-3xl font-bold text-[#2A2D34] dark:text-zinc-100 tracking-tight mb-1">
                     {profile.name}
                   </h1>
-                  <p className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">
-                    {profile.title} • <span className="font-semibold text-zinc-800 dark:text-zinc-200">{profile.affiliation}</span>
+                  <p className="text-sm text-[#525660] dark:text-zinc-400 font-medium">
+                    {profile.title} • <span className="font-semibold text-[#2A2D34] dark:text-zinc-200">{profile.affiliation}</span>
                   </p>
                 </>
               )}
             </div>
 
             {/* Academic Bio Text */}
-            <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4">
-              <h2 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2.5">Biography</h2>
+            <div className="border-t border-[#E0CCA9] dark:border-zinc-800 pt-4">
+              <h2 className="text-xs font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mb-2.5">Biography</h2>
               {isEditing ? (
                 <textarea
                   value={profile.bio}
                   onChange={(e) => handleChange('bio', e.target.value)}
-                  rows={4}
-                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                  rows={5}
+                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
-                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
-                  {profile.bio}
-                </p>
+                <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                  {profile.bio.split('\n\n').map((paragraph, index) => (
+                    <p key={index}>{paragraph}</p>
+                  ))}
+                </div>
               )}
             </div>
 
             {/* Research Interests Text */}
-            <div className="border-t border-zinc-100 dark:border-zinc-800 pt-4">
-              <h2 className="text-xs font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2.5">Research Interests</h2>
+            <div className="border-t border-[#E0CCA9] dark:border-zinc-800 pt-4">
+              <h2 className="text-xs font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mb-2.5">Research Interests</h2>
               {isEditing ? (
                 <textarea
                   value={profile.researchInterests}
                   onChange={(e) => handleChange('researchInterests', e.target.value)}
                   rows={4}
-                  className="w-full text-zinc-700 dark:text-zinc-200 text-xs leading-relaxed p-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md focus:border-blue-600 outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
-                <p className="text-zinc-700 dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                <p className="text-[#2A2D34] dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                   {profile.researchInterests}
                 </p>
               )}
             </div>
-
-
 
           </div>
         </div>

@@ -50,13 +50,13 @@ export default function ResearchInterestsCard({
     <div id="interests-section" className="mb-8">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h2 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Research Focus Areas</h2>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400">Major domains of ongoing exploration</p>
+          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100">Research Focus Areas</h2>
+          <p className="text-xs text-[#525660] dark:text-zinc-400">Major domains of ongoing exploration</p>
         </div>
         {isEditing && (
           <button
             onClick={addArea}
-            className="px-2.5 py-1.5 bg-blue-700 hover:bg-blue-800 text-white rounded text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5"
+            className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Icons.Plus className="w-3.5 h-3.5" />
             <span>Add Focus Area</span>
@@ -69,17 +69,17 @@ export default function ResearchInterestsCard({
           return (
             <div
               key={area.id}
-              className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:border-zinc-300 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
+              className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
             >
               <div>
                 {/* Header Icon + Edit controls */}
                 <div className="flex justify-between items-start mb-3">
-                  <div className="p-2 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 transition-colors">
+                  <div className="p-2 rounded-md bg-[#F2E0C4] dark:bg-zinc-800 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
                     {isEditing ? (
                       <select
                         value={area.iconName}
                         onChange={(e) => handleUpdateArea(area.id, 'iconName', e.target.value)}
-                        className="text-xs bg-transparent border-none outline-none font-medium cursor-pointer text-zinc-700 dark:text-zinc-300"
+                        className="text-xs bg-transparent border-none outline-none font-medium cursor-pointer text-[#2A2D34] dark:text-zinc-300"
                       >
                         <option value="Sparkles">Sparkles</option>
                         <option value="Users">Users</option>
@@ -115,10 +115,10 @@ export default function ResearchInterestsCard({
                     type="text"
                     value={area.title}
                     onChange={(e) => handleUpdateArea(area.id, 'title', e.target.value)}
-                    className="text-sm font-bold text-zinc-900 dark:text-zinc-100 border-b border-zinc-200 dark:border-zinc-700 focus:border-blue-600 outline-none w-full mb-2 bg-transparent"
+                    className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full mb-2 bg-transparent"
                   />
                 ) : (
-                  <h3 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 mb-1.5 leading-snug">
+                  <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 mb-1.5 leading-snug">
                     {area.title}
                   </h3>
                 )}
@@ -129,10 +129,10 @@ export default function ResearchInterestsCard({
                     value={area.description}
                     onChange={(e) => handleUpdateArea(area.id, 'description', e.target.value)}
                     rows={3}
-                    className="text-xs text-zinc-600 dark:text-zinc-300 w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                    className="text-xs text-[#4E5158] dark:text-zinc-300 w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                   />
                 ) : (
-                  <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mb-3 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                  <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-relaxed mb-3 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                     {area.description}
                   </p>
                 )}

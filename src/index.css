@@ -54,13 +54,18 @@
 
 /* Custom scrollbar and custom selection styling for high density theme */
 ::selection {
-  background-color: rgba(0, 47, 167, 0.15);
-  color: #002FA7;
+  background-color: rgba(128, 20, 40, 0.2);
+  color: #801428;
+}
+
+html.dark ::selection {
+  background-color: rgba(125, 226, 197, 0.25);
+  color: #7DE2C5;
 }
 
 body {
-  background-color: #f4f4f5; /* Zinc 50 */
-  color: #18181b; /* Zinc 900 */
+  background-color: #F2E0C4; /* Warm sandy beige */
+  color: #2A2D34; /* Deep charcoal */
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
 }

@@ -204,19 +204,19 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col pb-12 selection:bg-blue-100 dark:selection:bg-blue-900 selection:text-blue-900 dark:selection:text-blue-100 transition-colors duration-300">
+    <div className="min-h-screen bg-[#F2E0C4] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
       {/* Sticky Main Scholarly Navigation Bar */}
-      <header className="sticky top-0 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 z-40 transition-all duration-300">
+      <header className="sticky top-0 bg-[#F9EFE0]/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-[#E0CCA9] dark:border-zinc-800 z-40 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
           {/* Logo / Title - Hidden on mobile */}
           <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
-            <div className="w-7 h-7 rounded bg-zinc-900 dark:bg-blue-600 flex items-center justify-center text-white shadow-xs text-xs font-bold font-sans">
+            <div className="w-7 h-7 rounded bg-[#801428] dark:bg-[#7DE2C5] flex items-center justify-center text-white dark:text-zinc-900 shadow-xs text-xs font-bold font-sans">
               {renderWebsiteIcon()}
             </div>
             <div>
-              <span className="font-bold text-sm tracking-tight text-zinc-900 dark:text-zinc-100 block leading-tight">{profile.websiteTitle || profile.name || "Academic Portfolio"}</span>
-              <span className="text-[9px] font-mono text-blue-700 dark:text-blue-400 font-bold block uppercase tracking-wider">Academic Portfolio</span>
+              <span className="font-bold text-sm tracking-tight text-[#2A2D34] dark:text-zinc-100 block leading-tight">{profile.websiteTitle || profile.name || "Academic Portfolio"}</span>
+              <span className="text-[9px] font-mono text-[#801428] dark:text-[#7DE2C5] font-bold block uppercase tracking-wider">Academic Portfolio</span>
             </div>
           </div>
 
@@ -226,7 +226,7 @@ export default function App() {
               <button
                 onClick={() => scrollToSection('header-section', 'about')}
                 className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'about' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                  activeTab === 'about' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
                 }`}
               >
                 Biography
@@ -234,7 +234,7 @@ export default function App() {
               <button
                 onClick={() => scrollToSection('interests-section', 'focus')}
                 className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'focus' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                  activeTab === 'focus' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
                 }`}
               >
                 Research
@@ -242,7 +242,7 @@ export default function App() {
               <button
                 onClick={() => scrollToSection('publications-section', 'pubs')}
                 className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'pubs' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                  activeTab === 'pubs' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
                 }`}
               >
                 Publications
@@ -250,7 +250,7 @@ export default function App() {
               <button
                 onClick={() => scrollToSection('cv-section', 'cv')}
                 className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'cv' ? 'border-blue-700 dark:border-blue-400 text-zinc-900 dark:text-zinc-100' : 'border-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200'
+                  activeTab === 'cv' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
                 }`}
               >
                 Timeline
@@ -295,11 +295,11 @@ export default function App() {
         />
 
         {/* Subtle bottom details */}
-        <footer className="text-center text-zinc-400 text-xs py-6 border-t border-zinc-200/60 max-w-2xl mx-auto space-y-1">
-          <p className="font-medium text-zinc-500 text-[11px]">
+        <footer className="text-center text-[#525660] dark:text-zinc-400 text-xs py-6 border-t border-[#E0CCA9] dark:border-zinc-800/80 max-w-2xl mx-auto space-y-1">
+          <p className="font-medium text-[#2A2D34] dark:text-zinc-400 text-[11px]">
             Last Updated on {import.meta.env.VITE_BUILD_DATE || 'Jul 2026'}
           </p>
-          <p className="text-[10px] text-zinc-400">© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+          <p className="text-[10px] text-[#525660] dark:text-zinc-400">© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
         </footer>
 
       </main>
@@ -312,7 +312,7 @@ export default function App() {
               e.currentTarget.blur();
               scrollToTop();
             }}
-            className="bg-zinc-900/90 text-white hover:bg-zinc-800 dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-zinc-700/80 dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+            className="bg-[#2A2D34]/90 text-white hover:bg-[#801428] dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-[#E0CCA9] dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
             title="Back to Top"
             aria-label="Back to Top"
           >
@@ -325,14 +325,14 @@ export default function App() {
             e.currentTarget.blur();
             toggleDarkMode();
           }}
-          className="bg-white/90 dark:bg-zinc-900/90 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-zinc-200/80 dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+          className="bg-[#F9EFE0]/90 dark:bg-zinc-900/90 hover:bg-[#EED7B5] dark:hover:bg-zinc-800 text-[#2A2D34] dark:text-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-[#E0CCA9] dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
           title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
             <Icons.Sun className="w-4 h-4 text-orange-500 fill-orange-400 transition-transform sm:hover:rotate-45" />
           ) : (
-            <Icons.Moon className="w-4 h-4 text-indigo-950 fill-indigo-900 transition-transform sm:hover:-rotate-12" />
+            <Icons.Moon className="w-4 h-4 text-[#801428] fill-[#801428] transition-transform sm:hover:-rotate-12" />
           )}
         </button>
       </div>

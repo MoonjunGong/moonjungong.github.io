@@ -14,8 +14,8 @@ export const INITIAL_PROFILE: Profile = {
   title: "Ph.D Student",
   affiliation: "City University of Hong Kong",
   email: "Moonjungong@gmail.com",
-  avatarUrl: "./data/avatar.jpg",
-  bio: "I am a PhD student at the City University of Hong Kong, where I work under the supervision of Prof. Jiawei Ma. I received my bachelor's degree from Beijing University of Posts and Telecommunications. Prior to my doctoral studies, I gained extensive research experience, working with Yiming Li and advised by Prof. Chen Feng at New York University, followed by a position as a research assistant at Tsinghua University under the guidance of Prof. Hang Zhao.",
+  avatarUrl: "./data/avatar-transparent.png",
+  bio: "I am a PhD student at the City University of Hong Kong, where I work under the supervision of Prof. Jiawei Ma. I received my bachelor's degree from Beijing University of Posts and Telecommunications.\n\nPrior to my doctoral studies, I gained extensive research experience, working with Yiming Li and advised by Prof. Chen Feng at New York University, followed by a position as a research assistant at Tsinghua University under the guidance of Prof. Hang Zhao.",
   researchInterests: "I'm driven by a big question: how can we build autonomous systems that don't just process the physical world, but truly understand it — perceiving, reasoning, and acting with the reliability and adaptability that humans bring to everyday life? A key area I aim to explore is explainable, generalizable, and robust representation learning.",
   googleScholar: "https://scholar.google.com/citations?user=9t65xl0AAAAJ&hl=en",
   linkedin: "https://www.linkedin.com/in/moonjun-gong-209183283/",
@@ -243,10 +243,26 @@ export const INITIAL_EXPERIENCES: AcademicExperience[] = [
   },
   {
     id: "exp-2",
+    role: "Research Assitant",
+    institution: "Tsinghua University",
+    duration: "2024 - 2024",
+    description: "",
+    type: "position"
+  },
+  {
+    id: "exp-3",
     role: "B.S. in Artificial Intelligence",
     institution: "Beijing University of Posts and Telecommunications",
     duration: "2020 - 2024",
     description: "",
     type: "education"
+  },
+  {
+    id: "exp-4",
+    role: "Research Assistant",
+    institution: "New York University",
+    duration: "2023 - 2025",
+    description: "",
+    type: "position"
   }
 ];
