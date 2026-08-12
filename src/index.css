@@ -64,7 +64,7 @@ html.dark ::selection {
 }
 
 body {
-  background-color: #F2E0C4; /* Warm sandy beige */
+  background-color: #F3E8D3; /* Warm beige / oatmeal */
   color: #2A2D34; /* Deep charcoal */
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;

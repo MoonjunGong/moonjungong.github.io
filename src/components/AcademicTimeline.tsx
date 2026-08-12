@@ -97,7 +97,7 @@ export default function AcademicTimeline({
       case 'position':
         return {
           icon: <Briefcase className="w-4 h-4 text-[#801428] dark:text-[#7DE2C5]" />,
-          bullet: 'border-[#801428] dark:border-[#7DE2C5] bg-[#F9EFE0] dark:bg-teal-950/70',
+          bullet: 'border-[#801428] dark:border-[#7DE2C5] bg-[#FAF5EB] dark:bg-teal-950/70',
           badge: 'bg-[#801428]/10 text-[#801428] border-[#801428]/30 dark:bg-teal-950/80 dark:text-[#7DE2C5] dark:border-teal-700/80',
           label: 'Position'
         };
@@ -122,7 +122,7 @@ export default function AcademicTimeline({
 
         <div className="flex flex-wrap gap-2 items-center">
           {/* Quick Category Filters */}
-          <div className="flex bg-[#EED7B5] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E0CCA9]/80 dark:border-zinc-700/80 relative">
+          <div className="flex bg-[#F3E8D3] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E2D5BE] dark:border-zinc-700/80 relative">
             {availableFilters.map(type => {
               const isActive = activeFilter === type;
               return (
@@ -138,7 +138,7 @@ export default function AcademicTimeline({
                   {isActive && (
                     <motion.div
                       layoutId="academic-filter-active-pill"
-                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E0CCA9]/60 dark:border-zinc-700 shadow-xs"
+                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E2D5BE] dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -164,8 +164,8 @@ export default function AcademicTimeline({
 
       {/* Add Timeline Item Form */}
       {showAddForm && (
-        <form onSubmit={handleAddExperience} className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
-          <h3 className="font-bold text-[#2A2D34] dark:text-zinc-200 text-sm border-b border-[#E0CCA9] dark:border-zinc-800 pb-1.5">Add CV Milestone</h3>
+        <form onSubmit={handleAddExperience} className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
+          <h3 className="font-bold text-[#2A2D34] dark:text-zinc-200 text-sm border-b border-[#E2D5BE] dark:border-zinc-800 pb-1.5">Add CV Milestone</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
@@ -175,7 +175,7 @@ export default function AcademicTimeline({
                 required
                 value={newExp.role}
                 onChange={(e) => setNewExp({ ...newExp, role: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
                 placeholder="Ph.D. in Computer Science"
               />
             </div>
@@ -187,7 +187,7 @@ export default function AcademicTimeline({
                 required
                 value={newExp.institution}
                 onChange={(e) => setNewExp({ ...newExp, institution: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
                 placeholder="Massachusetts Institute of Technology (MIT)"
               />
             </div>
@@ -198,7 +198,7 @@ export default function AcademicTimeline({
                 type="text"
                 value={newExp.duration}
                 onChange={(e) => setNewExp({ ...newExp, duration: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
                 placeholder="2017 - 2022"
               />
             </div>
@@ -208,7 +208,7 @@ export default function AcademicTimeline({
               <select
                 value={newExp.type}
                 onChange={(e) => setNewExp({ ...newExp, type: e.target.value as AcademicExperience['type'] })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-200"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-200"
               >
                 <option value="position">Faculty / Research Position</option>
                 <option value="education">Degree / Education</option>
@@ -222,17 +222,17 @@ export default function AcademicTimeline({
                 value={newExp.description}
                 onChange={(e) => setNewExp({ ...newExp, description: e.target.value })}
                 rows={3}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100"
                 placeholder="Specialization in HCI, human-in-the-loop systems..."
               />
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-1.5 border-t border-[#E0CCA9] dark:border-zinc-800">
+          <div className="flex justify-end gap-2 pt-1.5 border-t border-[#E2D5BE] dark:border-zinc-800">
             <button
               type="button"
               onClick={() => setShowAddForm(false)}
-              className="px-3 py-1.5 text-xs font-semibold text-[#525660] hover:bg-[#EED7B5] dark:hover:bg-zinc-800 rounded transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold text-[#525660] hover:bg-[#EAE0CB] dark:hover:bg-zinc-800 rounded transition-colors"
             >
               Cancel
             </button>
@@ -247,7 +247,7 @@ export default function AcademicTimeline({
       )}
 
       {/* Main Timeline Graphic & Items */}
-      <div className="relative border-l-2 border-[#E0CCA9] dark:border-zinc-800 ml-4 pl-6 md:pl-8 space-y-4 py-1">
+      <div className="relative border-l-2 border-[#E2D5BE] dark:border-zinc-800 ml-4 pl-6 md:pl-8 space-y-4 py-1">
         {filteredExperiences.length === 0 ? (
           <p className="text-[#525660] dark:text-zinc-400 text-xs ml-2">No CV items listed for this category.</p>
         ) : (
@@ -261,7 +261,7 @@ export default function AcademicTimeline({
                 </div>
 
                 {/* CV Item Card */}
-                <div className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-lg p-4 hover:shadow-xs transition-all duration-300">
+                <div className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-lg p-4 hover:shadow-xs transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
                     <div>
                       <div className="flex items-center gap-2 flex-wrap mb-1">
@@ -270,7 +270,7 @@ export default function AcademicTimeline({
                             type="text"
                             value={exp.role}
                             onChange={(e) => handleUpdateExperience(exp.id, 'role', e.target.value)}
-                            className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none flex-1 min-w-[200px] bg-transparent"
+                            className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none flex-1 min-w-[200px] bg-transparent"
                           />
                         ) : (
                           <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug">
@@ -289,7 +289,7 @@ export default function AcademicTimeline({
                           type="text"
                           value={exp.institution}
                           onChange={(e) => handleUpdateExperience(exp.id, 'institution', e.target.value)}
-                          className="text-[#2A2D34] dark:text-zinc-300 text-xs border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full bg-transparent"
+                          className="text-[#2A2D34] dark:text-zinc-300 text-xs border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full bg-transparent"
                         />
                       ) : (
                         <p className="text-[#2A2D34] dark:text-zinc-300 text-xs font-semibold">
@@ -307,7 +307,7 @@ export default function AcademicTimeline({
                           type="text"
                           value={exp.duration}
                           onChange={(e) => handleUpdateExperience(exp.id, 'duration', e.target.value)}
-                          className="border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-16 py-0.5 text-xs font-mono text-right text-[#2A2D34] dark:text-zinc-300 bg-transparent"
+                          className="border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-16 py-0.5 text-xs font-mono text-right text-[#2A2D34] dark:text-zinc-300 bg-transparent"
                         />
                       ) : (
                         <span>{exp.duration}</span>
@@ -317,7 +317,7 @@ export default function AcademicTimeline({
                     {isEditing && (
                       <button
                         onClick={() => handleDeleteExperience(exp.id)}
-                        className="p-1 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-[#E0CCA9] dark:border-zinc-700 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
+                        className="p-1 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-[#E2D5BE] dark:border-zinc-700 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors cursor-pointer"
                         title="Delete CV item"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -332,11 +332,11 @@ export default function AcademicTimeline({
                     value={exp.description}
                     onChange={(e) => handleUpdateExperience(exp.id, 'description', e.target.value)}
                     rows={2}
-                    className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 text-xs text-[#2A2D34] dark:text-zinc-300 outline-none mt-1"
+                    className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs text-[#2A2D34] dark:text-zinc-300 outline-none mt-1"
                   />
                 ) : (
                   exp.description ? (
-                    <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-normal text-justify mt-1.5 pt-1.5 border-t border-[#E0CCA9] dark:border-zinc-800">
+                    <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-normal text-justify mt-1.5 pt-1.5 border-t border-[#E2D5BE] dark:border-zinc-800">
                       {exp.description}
                     </p>
                   ) : null

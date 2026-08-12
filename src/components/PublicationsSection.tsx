@@ -304,8 +304,8 @@ export default function PublicationsSection({
 
       {/* Add Publication Form Modal / Panel */}
       {showAddForm && (
-        <form onSubmit={handleAddPaper} className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
-          <h3 className="font-bold text-[#2A2D34] dark:text-zinc-200 text-sm border-b border-[#E0CCA9] dark:border-zinc-800 pb-1.5">Add New Scholarly Publication</h3>
+        <form onSubmit={handleAddPaper} className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 rounded-lg p-5 mb-6 shadow-inner animate-fadeIn space-y-3">
+          <h3 className="font-bold text-[#2A2D34] dark:text-zinc-200 text-sm border-b border-[#E2D5BE] dark:border-zinc-800 pb-1.5">Add New Scholarly Publication</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
@@ -315,7 +315,7 @@ export default function PublicationsSection({
                 required
                 value={newPaper.title}
                 onChange={(e) => setNewPaper({ ...newPaper, title: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Co-Authoring with Intention: Directing Multi-Agent AI Writing Workflows..."
               />
             </div>
@@ -327,7 +327,7 @@ export default function PublicationsSection({
                 required
                 value={newPaper.authors}
                 onChange={(e) => setNewPaper({ ...newPaper, authors: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Evelyn Chen, Sarah Jenkins"
               />
             </div>
@@ -338,7 +338,7 @@ export default function PublicationsSection({
                 type="text"
                 value={newPaper.journal}
                 onChange={(e) => setNewPaper({ ...newPaper, journal: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="ACM CHI Conference (CHI 2026)"
               />
             </div>
@@ -349,7 +349,7 @@ export default function PublicationsSection({
                 type="number"
                 value={newPaper.year}
                 onChange={(e) => setNewPaper({ ...newPaper, year: Number(e.target.value) })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
               />
             </div>
 
@@ -358,7 +358,7 @@ export default function PublicationsSection({
               <select
                 value={newPaper.category}
                 onChange={(e) => setNewPaper({ ...newPaper, category: e.target.value as Paper['category'] })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
               >
                 <option value="conference">Conference Proceeding</option>
                 <option value="journal">Journal Paper</option>
@@ -373,7 +373,7 @@ export default function PublicationsSection({
                 type="text"
                 value={newPaper.doi}
                 onChange={(e) => setNewPaper({ ...newPaper, doi: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="10.1145/3613904"
               />
             </div>
@@ -406,7 +406,7 @@ export default function PublicationsSection({
                   type="text"
                   id="new-tag-input"
                   placeholder="Create new tag"
-                  className="flex-1 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                  className="flex-1 bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault();
@@ -440,13 +440,13 @@ export default function PublicationsSection({
               {allTags.length > 0 && (
                 <div>
                   <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
-                  <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E0CCA9] dark:border-zinc-700 p-1.5 rounded bg-[#F2E0C4] dark:bg-zinc-800">
+                  <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E2D5BE] dark:border-zinc-700 p-1.5 rounded bg-[#F3E8D3] dark:bg-zinc-800">
                     {allTags.map(tag => {
                       const isSelected = (newPaper.tags || []).includes(tag);
                       return (
                         <div
                           key={tag}
-                          className="inline-flex items-center gap-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] rounded border border-[#E0CCA9] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
+                          className="inline-flex items-center gap-1.5 bg-[#FAF5EB] dark:bg-zinc-900 hover:bg-[#F3E8D3] rounded border border-[#E2D5BE] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
                         >
                           <button
                             type="button"
@@ -500,7 +500,7 @@ export default function PublicationsSection({
                 type="text"
                 value={newPaper.link || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, link: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://example.com/paper.pdf or #"
               />
             </div>
@@ -511,7 +511,7 @@ export default function PublicationsSection({
                 type="text"
                 value={newPaper.codeUrl || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, codeUrl: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://github.com/..."
               />
             </div>
@@ -522,7 +522,7 @@ export default function PublicationsSection({
                 type="text"
                 value={newPaper.huggingfaceUrl || newPaper.huggingface || ''}
                 onChange={(e) => setNewPaper({ ...newPaper, huggingfaceUrl: e.target.value })}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="https://huggingface.co/..."
               />
             </div>
@@ -533,7 +533,7 @@ export default function PublicationsSection({
                 value={newPaper.abstract}
                 onChange={(e) => setNewPaper({ ...newPaper, abstract: e.target.value })}
                 rows={3}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="Abstract descriptive statement..."
               />
             </div>
@@ -544,12 +544,12 @@ export default function PublicationsSection({
                 value={newPaper.bibtex}
                 onChange={(e) => setNewPaper({ ...newPaper, bibtex: e.target.value })}
                 rows={3}
-                className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs font-mono outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-2 text-xs font-mono outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                 placeholder="@inproceedings{...}"
               />
             </div>
 
-            <div className="md:col-span-2 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3 space-y-4">
+            <div className="md:col-span-2 border-t border-[#E2D5BE] dark:border-zinc-800 pt-3 space-y-4">
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
@@ -565,7 +565,7 @@ export default function PublicationsSection({
 
               <div>
                 <label className="text-[10px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
-                <div className="flex flex-col gap-3 bg-[#F2E0C4] dark:bg-zinc-800 p-2.5 border border-[#E0CCA9] dark:border-zinc-700 rounded">
+                <div className="flex flex-col gap-3 bg-[#F3E8D3] dark:bg-zinc-800 p-2.5 border border-[#E2D5BE] dark:border-zinc-700 rounded">
                   <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                     <input
                       type="file"
@@ -591,7 +591,7 @@ export default function PublicationsSection({
                       <button
                         type="button"
                         onClick={() => document.getElementById('add-teaser-input')?.click()}
-                        className="px-3 py-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] border border-[#E0CCA9] dark:border-zinc-700 rounded text-xs text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
+                        className="px-3 py-1.5 bg-[#FAF5EB] dark:bg-zinc-900 hover:bg-[#F3E8D3] border border-[#E2D5BE] dark:border-zinc-700 rounded text-xs text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
                       >
                         Upload Teaser (Image/GIF)
                       </button>
@@ -606,7 +606,7 @@ export default function PublicationsSection({
                           <img
                             src={newPaper.teaserImage}
                             alt="Teaser preview"
-                            className="h-12 w-auto max-w-[120px] object-contain rounded border border-[#E0CCA9] shadow-xs"
+                            className="h-12 w-auto max-w-[120px] object-contain rounded border border-[#E2D5BE] shadow-xs"
                             referrerPolicy="no-referrer"
                           />
                           <button
@@ -635,14 +635,14 @@ export default function PublicationsSection({
             </div>
           </div>
 
-          <div className="flex justify-end gap-2 pt-1.5 border-t border-[#E0CCA9] dark:border-zinc-800">
+          <div className="flex justify-end gap-2 pt-1.5 border-t border-[#E2D5BE] dark:border-zinc-800">
             <button
               type="button"
               onClick={() => {
                 setShowAddForm(false);
                 setAddTeaserError(null);
               }}
-              className="px-3 py-1.5 text-xs font-semibold text-[#525660] hover:bg-[#F2E0C4] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold text-[#525660] hover:bg-[#F3E8D3] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded transition-colors"
             >
               Cancel
             </button>
@@ -657,7 +657,7 @@ export default function PublicationsSection({
       )}
 
       {/* Filter Toolbar */}
-      <div className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-4 shadow-xs mb-4 space-y-3">
+      <div className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 rounded-lg p-4 shadow-xs mb-4 space-y-3">
         {/* Search and Category Filters */}
         <div className="flex flex-col md:flex-row gap-3">
           {/* Live Search */}
@@ -668,12 +668,12 @@ export default function PublicationsSection({
               placeholder="Search papers by keywords, titles, co-authors, venues..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded outline-none focus:bg-[#F9EFE0] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-all text-[#2A2D34] dark:text-zinc-100"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded outline-none focus:bg-[#FAF5EB] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-all text-[#2A2D34] dark:text-zinc-100"
             />
           </div>
 
           {/* Category Quick Tabs */}
-          <div className="flex bg-[#EED7B5] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E0CCA9]/80 dark:border-zinc-700/80 relative">
+          <div className="flex bg-[#F3E8D3] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E2D5BE]/80 dark:border-zinc-700/80 relative">
             {(['all', 'journal', 'conference', 'preprint'] as const).map((cat) => {
               const isActive = activeCategory === cat;
               return (
@@ -689,7 +689,7 @@ export default function PublicationsSection({
                   {isActive && (
                     <motion.div
                       layoutId="publications-filter-active-pill"
-                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E0CCA9]/60 dark:border-zinc-700 shadow-xs"
+                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E2D5BE]/60 dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -704,7 +704,7 @@ export default function PublicationsSection({
 
         {/* Dynamic Tag Filters Cloud */}
         {allTags.length > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3">
+          <div className="flex flex-wrap items-center gap-1.5 border-t border-[#E2D5BE] dark:border-zinc-800 pt-3">
             <span className="text-[10px] font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mr-1 flex items-center gap-1">
               <Filter className="w-3 h-3" />
               <span>Topic:</span>
@@ -714,7 +714,7 @@ export default function PublicationsSection({
               className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
                   ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
-                  : 'bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
+                  : 'bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
               }`}
             >
               All Topics
@@ -726,7 +726,7 @@ export default function PublicationsSection({
                 className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
                     ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
-                    : 'bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
+                    : 'bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
                 }`}
               >
                 {tag}
@@ -739,7 +739,7 @@ export default function PublicationsSection({
       {/* Publications Listing Grid */}
       <div className="space-y-3">
         {filteredPapers.length === 0 ? (
-          <div className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 rounded-lg p-10 text-center shadow-xs">
+          <div className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 rounded-lg p-10 text-center shadow-xs">
             <BookOpen className="w-6 h-6 text-[#801428]/50 dark:text-zinc-600 mx-auto mb-2" />
             <p className="text-[#525660] dark:text-zinc-400 text-xs">No publications match your filter criteria.</p>
             <button
@@ -822,13 +822,13 @@ export default function PublicationsSection({
 
                 {/* Main Paper Card */}
                 <div
-                  className={`flex-1 bg-[#F9EFE0] dark:bg-zinc-900 border ${
-                    paper.featured ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F2E0C4]/60 dark:bg-teal-950/20' : 'border-[#E0CCA9] dark:border-zinc-800'
+                  className={`flex-1 bg-[#FAF5EB] dark:bg-zinc-900 border ${
+                    paper.featured ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 dark:bg-teal-950/20' : 'border-[#E2D5BE] dark:border-zinc-800'
                   } rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
                     <form onSubmit={handleSaveEditPaper} className="space-y-3 animate-fadeIn p-4">
-                    <h4 className="text-xs font-bold text-[#2A2D34] dark:text-zinc-200 border-b border-[#E0CCA9] dark:border-zinc-800 pb-1">Edit Publication</h4>
+                    <h4 className="text-xs font-bold text-[#2A2D34] dark:text-zinc-200 border-b border-[#E2D5BE] dark:border-zinc-800 pb-1">Edit Publication</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="md:col-span-2">
                         <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-0.5">Paper Title *</label>
@@ -837,7 +837,7 @@ export default function PublicationsSection({
                           required
                           value={editPaperForm.title || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, title: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -847,7 +847,7 @@ export default function PublicationsSection({
                           required
                           value={editPaperForm.authors || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, authors: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -856,7 +856,7 @@ export default function PublicationsSection({
                           type="text"
                           value={editPaperForm.journal || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, journal: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -865,7 +865,7 @@ export default function PublicationsSection({
                           type="number"
                           value={editPaperForm.year || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, year: Number(e.target.value) })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -873,7 +873,7 @@ export default function PublicationsSection({
                         <select
                           value={editPaperForm.category || 'conference'}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, category: e.target.value as Paper['category'] })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] rounded p-1 text-xs outline-none text-[#2A2D34] dark:text-zinc-100"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] rounded p-1 text-xs outline-none text-[#2A2D34] dark:text-zinc-100"
                         >
                           <option value="conference">Conference Proceeding</option>
                           <option value="journal">Journal Paper</option>
@@ -887,7 +887,7 @@ export default function PublicationsSection({
                           type="text"
                           value={editPaperForm.doi || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, doi: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -918,7 +918,7 @@ export default function PublicationsSection({
                             type="text"
                             id="edit-tag-input"
                             placeholder="Create new tag"
-                            className="flex-1 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
+                            className="flex-1 bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none focus:border-[#801428] dark:focus:border-[#7DE2C5]"
                             onKeyDown={(e) => {
                               if (e.key === 'Enter') {
                                 e.preventDefault();
@@ -952,13 +952,13 @@ export default function PublicationsSection({
                         {allTags.length > 0 && (
                           <div>
                             <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Select from existing tags (delete removes tag from all papers):</label>
-                            <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E0CCA9] dark:border-zinc-700 p-1.5 rounded bg-[#F2E0C4] dark:bg-zinc-800">
+                            <div className="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto border border-[#E2D5BE] dark:border-zinc-700 p-1.5 rounded bg-[#F3E8D3] dark:bg-zinc-800">
                               {allTags.map(tag => {
                                 const isSelected = (editPaperForm.tags || []).includes(tag);
                                 return (
                                   <div
                                     key={tag}
-                                    className="inline-flex items-center gap-1.5 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] dark:hover:bg-zinc-800 rounded border border-[#E0CCA9] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
+                                    className="inline-flex items-center gap-1.5 bg-[#FAF5EB] dark:bg-zinc-900 hover:bg-[#F3E8D3] dark:hover:bg-zinc-800 rounded border border-[#E2D5BE] dark:border-zinc-700 pl-2 pr-1 py-0.5 transition-colors"
                                   >
                                     <button
                                       type="button"
@@ -1009,7 +1009,7 @@ export default function PublicationsSection({
                           type="text"
                           value={editPaperForm.link || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, link: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1018,7 +1018,7 @@ export default function PublicationsSection({
                           type="text"
                           value={editPaperForm.codeUrl || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, codeUrl: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                         />
                       </div>
                       <div>
@@ -1027,7 +1027,7 @@ export default function PublicationsSection({
                           type="text"
                           value={editPaperForm.huggingfaceUrl || editPaperForm.huggingface || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, huggingfaceUrl: e.target.value, huggingface: e.target.value })}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1 text-xs outline-none"
                           placeholder="https://huggingface.co/..."
                         />
                       </div>
@@ -1037,7 +1037,7 @@ export default function PublicationsSection({
                           value={editPaperForm.abstract || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, abstract: e.target.value })}
                           rows={2}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs outline-none"
                         />
                       </div>
                       <div className="md:col-span-2">
@@ -1046,13 +1046,13 @@ export default function PublicationsSection({
                           value={editPaperForm.bibtex || ''}
                           onChange={(e) => setEditPaperForm({ ...editPaperForm, bibtex: e.target.value })}
                           rows={2}
-                          className="w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs font-mono outline-none"
+                          className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100 rounded p-1.5 text-xs font-mono outline-none"
                         />
                       </div>
 
-                      <div className="md:col-span-2 border-t border-[#E0CCA9] dark:border-zinc-800 pt-3">
+                      <div className="md:col-span-2 border-t border-[#E2D5BE] dark:border-zinc-800 pt-3">
                         <label className="text-[9px] font-bold text-[#525660] dark:text-zinc-400 uppercase block mb-1">Teaser Image / GIF</label>
-                        <div className="flex flex-col gap-2.5 bg-[#F2E0C4] dark:bg-zinc-800 p-2 border border-[#E0CCA9] dark:border-zinc-700 rounded">
+                        <div className="flex flex-col gap-2.5 bg-[#F3E8D3] dark:bg-zinc-800 p-2 border border-[#E2D5BE] dark:border-zinc-700 rounded">
                           <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
                             <input
                               type="file"
@@ -1078,7 +1078,7 @@ export default function PublicationsSection({
                               <button
                                 type="button"
                                 onClick={() => document.getElementById(`edit-teaser-input-${paper.id}`)?.click()}
-                                className="px-2.5 py-1 bg-[#F9EFE0] dark:bg-zinc-900 hover:bg-[#F2E0C4] dark:hover:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded text-[10px] text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
+                                className="px-2.5 py-1 bg-[#FAF5EB] dark:bg-zinc-900 hover:bg-[#F3E8D3] dark:hover:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded text-[10px] text-[#2A2D34] dark:text-zinc-200 font-semibold cursor-pointer transition-colors whitespace-nowrap"
                               >
                                 Upload Teaser (Image/GIF)
                               </button>
@@ -1093,7 +1093,7 @@ export default function PublicationsSection({
                                   <img
                                     src={editPaperForm.teaserImage}
                                     alt="Teaser preview"
-                                    className="h-10 w-auto max-w-[120px] object-contain rounded border border-[#E0CCA9] shadow-xs"
+                                    className="h-10 w-auto max-w-[120px] object-contain rounded border border-[#E2D5BE] shadow-xs"
                                     referrerPolicy="no-referrer"
                                   />
                                   <button
@@ -1120,14 +1120,14 @@ export default function PublicationsSection({
                         </div>
                       </div>
                     </div>
-                    <div className="flex justify-end gap-2 pt-2 border-t border-[#E0CCA9] dark:border-zinc-800">
+                    <div className="flex justify-end gap-2 pt-2 border-t border-[#E2D5BE] dark:border-zinc-800">
                       <button
                         type="button"
                         onClick={() => {
                           setEditingPaperId(null);
                           setEditTeaserError(null);
                         }}
-                        className="px-2.5 py-1 text-[10px] font-bold text-[#525660] hover:bg-[#F2E0C4] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded cursor-pointer"
+                        className="px-2.5 py-1 text-[10px] font-bold text-[#525660] hover:bg-[#F3E8D3] dark:text-zinc-400 dark:hover:bg-zinc-800 rounded cursor-pointer"
                       >
                         Cancel
                       </button>
@@ -1162,7 +1162,7 @@ export default function PublicationsSection({
                                 paper.category === 'journal' ? 'bg-indigo-100 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-900' :
                                 paper.category === 'conference' ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800/80' :
                                 paper.category === 'workshop' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-200 dark:border-amber-900' :
-                                'bg-[#F2E0C4] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E0CCA9] dark:border-zinc-700'
+                                'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
                               }`}>
                                 {paper.category}
                               </span>
@@ -1194,7 +1194,7 @@ export default function PublicationsSection({
                             {/* Individual tags */}
                             <div className="flex flex-wrap gap-1 pt-1">
                               {(paper.tags || []).map(tag => (
-                                <span key={tag} className="text-[10px] bg-[#F2E0C4] text-[#801428] px-1.5 py-0.5 rounded border border-[#E0CCA9] dark:bg-teal-950/50 dark:text-[#7DE2C5] dark:border-teal-800/70 font-['Inter',sans-serif]">
+                                <span key={tag} className="text-[10px] bg-[#F3E8D3] text-[#801428] px-1.5 py-0.5 rounded border border-[#E2D5BE] dark:bg-teal-950/50 dark:text-[#7DE2C5] dark:border-teal-800/70 font-['Inter',sans-serif]">
                                   {tag}
                                 </span>
                               ))}
@@ -1212,7 +1212,7 @@ export default function PublicationsSection({
                                   href={paperLinkToUse}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
                                   <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
                                   <span>Paper</span>
@@ -1224,7 +1224,7 @@ export default function PublicationsSection({
                                   href={paper.codeUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
                                   <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
                                   <span>GitHub</span>
@@ -1236,7 +1236,7 @@ export default function PublicationsSection({
                                   href={hfLink}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F2E0C4] dark:bg-zinc-800 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
                                 >
                                   <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
                                   <span>Hugging Face</span>
@@ -1278,7 +1278,7 @@ export default function PublicationsSection({
                       {paper.teaserImage && (
                         <div className="p-4 sm:pl-0 flex items-center justify-center shrink-0">
                           <div
-                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-[#E0CCA9] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
+                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-lg overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
@@ -1295,7 +1295,7 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-[#F2E0C4] dark:bg-zinc-800/80 border border-[#E0CCA9] dark:border-zinc-700 rounded-md p-3 mt-2 text-sm sm:text-[13.5px] text-[#2A2D34] dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                      <div className="bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700 rounded-md p-3 mt-2 text-sm sm:text-[13.5px] text-[#2A2D34] dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                         <p>{paper.abstract}</p>
                       </div>
                     )}

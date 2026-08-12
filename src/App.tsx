@@ -204,10 +204,10 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F2E0C4] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
+    <div className="min-h-screen bg-[#F3E8D3] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
       {/* Sticky Main Scholarly Navigation Bar */}
-      <header className="sticky top-0 bg-[#F9EFE0]/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-[#E0CCA9] dark:border-zinc-800 z-40 transition-all duration-300">
+      <header className="sticky top-0 bg-[#FAF5EB]/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-[#E2D5BE] dark:border-zinc-800 z-40 transition-all duration-300">
         <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
           {/* Logo / Title - Hidden on mobile */}
           <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
@@ -295,7 +295,7 @@ export default function App() {
         />
 
         {/* Subtle bottom details */}
-        <footer className="text-center text-[#525660] dark:text-zinc-400 text-xs py-6 border-t border-[#E0CCA9] dark:border-zinc-800/80 max-w-2xl mx-auto space-y-1">
+        <footer className="text-center text-[#525660] dark:text-zinc-400 text-xs py-6 border-t border-[#E2D5BE] dark:border-zinc-800/80 max-w-2xl mx-auto space-y-1">
           <p className="font-medium text-[#2A2D34] dark:text-zinc-400 text-[11px]">
             Last Updated on {import.meta.env.VITE_BUILD_DATE || 'Jul 2026'}
           </p>
@@ -312,11 +312,11 @@ export default function App() {
               e.currentTarget.blur();
               scrollToTop();
             }}
-            className="bg-[#2A2D34]/90 text-white hover:bg-[#801428] dark:bg-white/90 dark:text-zinc-900 dark:hover:bg-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-[#E0CCA9] dark:border-zinc-200/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+            className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
             title="Back to Top"
             aria-label="Back to Top"
           >
-            <Icons.ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5" />
+            <Icons.ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5 text-[#2A2D34]" />
           </button>
         )}
 
@@ -325,14 +325,14 @@ export default function App() {
             e.currentTarget.blur();
             toggleDarkMode();
           }}
-          className="bg-[#F9EFE0]/90 dark:bg-zinc-900/90 hover:bg-[#EED7B5] dark:hover:bg-zinc-800 text-[#2A2D34] dark:text-zinc-100 p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-[#E0CCA9] dark:border-zinc-700/80 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+          className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
           title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
-            <Icons.Sun className="w-4 h-4 text-orange-500 fill-orange-400 transition-transform sm:hover:rotate-45" />
+            <Icons.Sun className="w-4 h-4 text-amber-500 fill-amber-400 transition-transform sm:hover:rotate-45" />
           ) : (
-            <Icons.Moon className="w-4 h-4 text-[#801428] fill-[#801428] transition-transform sm:hover:-rotate-12" />
+            <Icons.Moon className="w-4 h-4 text-[#2A2D34] fill-[#2A2D34] transition-transform sm:hover:-rotate-12" />
           )}
         </button>
       </div>

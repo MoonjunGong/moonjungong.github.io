@@ -69,12 +69,12 @@ export default function ResearchInterestsCard({
           return (
             <div
               key={area.id}
-              className="bg-[#F9EFE0] dark:bg-zinc-900 border border-[#E0CCA9] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
+              className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
             >
               <div>
                 {/* Header Icon + Edit controls */}
                 <div className="flex justify-between items-start mb-3">
-                  <div className="p-2 rounded-md bg-[#F2E0C4] dark:bg-zinc-800 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
+                  <div className="p-2 rounded-md bg-[#F3E8D3] dark:bg-zinc-800 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
                     {isEditing ? (
                       <select
                         value={area.iconName}
@@ -115,7 +115,7 @@ export default function ResearchInterestsCard({
                     type="text"
                     value={area.title}
                     onChange={(e) => handleUpdateArea(area.id, 'title', e.target.value)}
-                    className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full mb-2 bg-transparent"
+                    className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full mb-2 bg-transparent"
                   />
                 ) : (
                   <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 mb-1.5 leading-snug">
@@ -129,7 +129,7 @@ export default function ResearchInterestsCard({
                     value={area.description}
                     onChange={(e) => handleUpdateArea(area.id, 'description', e.target.value)}
                     rows={3}
-                    className="text-xs text-[#4E5158] dark:text-zinc-300 w-full bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                    className="text-xs text-[#4E5158] dark:text-zinc-300 w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                   />
                 ) : (
                   <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-relaxed mb-3 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">

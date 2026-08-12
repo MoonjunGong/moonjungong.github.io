@@ -90,7 +90,7 @@ export default function HeaderCard({
   };
 
   return (
-    <div id="header-section" className="bg-[#F9EFE0] dark:bg-zinc-900 border-2 border-[#801428] dark:border-[#7DE2C5] rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
+    <div id="header-section" className="bg-[#FAF5EB] dark:bg-zinc-900 border-2 border-[#801428] dark:border-[#7DE2C5] rounded-lg shadow-sm overflow-hidden mb-6 transition-all duration-300">
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row gap-8 items-stretch">
 
@@ -133,7 +133,7 @@ export default function HeaderCard({
                   href={profile.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
                   title="Google Scholar Citations"
                 >
                   <GoogleScholarIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
@@ -145,7 +145,7 @@ export default function HeaderCard({
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
                   title="Click to copy email address"
                 >
                   {copied ? (
@@ -166,7 +166,7 @@ export default function HeaderCard({
                 <a
                   href={profile.cvUrl}
                   download={`${profile.name.replace(/\s+/g, '_')}_CV.pdf`}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
                   <FileText className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
@@ -181,7 +181,7 @@ export default function HeaderCard({
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="LinkedIn Profile"
                   >
                     <Linkedin className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
@@ -193,7 +193,7 @@ export default function HeaderCard({
                     href={profile.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-[#F2E0C4] dark:bg-zinc-800/80 hover:bg-[#EED7B5] dark:hover:bg-zinc-700 border border-[#E0CCA9] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
                     title="Twitter/X Profile"
                   >
                     <XIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
@@ -214,7 +214,7 @@ export default function HeaderCard({
                       type="text"
                       value={profile.name}
                       onChange={(e) => handleChange('name', e.target.value)}
-                      className="text-2xl font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 bg-transparent"
+                      className="text-2xl font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 bg-transparent"
                     />
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -224,7 +224,7 @@ export default function HeaderCard({
                         type="text"
                         value={profile.title}
                         onChange={(e) => handleChange('title', e.target.value)}
-                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm bg-transparent"
+                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm bg-transparent"
                       />
                     </div>
                     <div>
@@ -233,7 +233,7 @@ export default function HeaderCard({
                         type="text"
                         value={profile.affiliation}
                         onChange={(e) => handleChange('affiliation', e.target.value)}
-                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E0CCA9] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm font-semibold bg-transparent"
+                        className="text-[#2A2D34] dark:text-zinc-300 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full py-1 text-sm font-semibold bg-transparent"
                       />
                     </div>
                   </div>
@@ -251,14 +251,14 @@ export default function HeaderCard({
             </div>
 
             {/* Academic Bio Text */}
-            <div className="border-t border-[#E0CCA9] dark:border-zinc-800 pt-4">
+            <div className="border-t border-[#E2D5BE] dark:border-zinc-800 pt-4">
               <h2 className="text-xs font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mb-2.5">Biography</h2>
               {isEditing ? (
                 <textarea
                   value={profile.bio}
                   onChange={(e) => handleChange('bio', e.target.value)}
                   rows={5}
-                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
                 <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
@@ -270,14 +270,14 @@ export default function HeaderCard({
             </div>
 
             {/* Research Interests Text */}
-            <div className="border-t border-[#E0CCA9] dark:border-zinc-800 pt-4">
+            <div className="border-t border-[#E2D5BE] dark:border-zinc-800 pt-4">
               <h2 className="text-xs font-bold text-[#525660] dark:text-zinc-500 uppercase tracking-widest mb-2.5">Research Interests</h2>
               {isEditing ? (
                 <textarea
                   value={profile.researchInterests}
                   onChange={(e) => handleChange('researchInterests', e.target.value)}
                   rows={4}
-                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F2E0C4] dark:bg-zinc-800 border border-[#E0CCA9] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                  className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs leading-relaxed p-3 bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
                 <p className="text-[#2A2D34] dark:text-zinc-300 text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
