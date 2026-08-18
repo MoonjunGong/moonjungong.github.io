@@ -133,11 +133,17 @@ export default function HeaderCard({
                   href={profile.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   title="Google Scholar Citations"
                 >
-                  <GoogleScholarIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
-                  <span>Google Scholar</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                  />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <GoogleScholarIcon className="w-3.5 h-3.5 shrink-0 transition-colors" />
+                    <span>Google Scholar</span>
+                  </span>
                 </a>
               )}
 
@@ -145,20 +151,26 @@ export default function HeaderCard({
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold cursor-pointer transition-all active:scale-[0.98] shadow-2xs"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold cursor-pointer transition-colors active:scale-[0.98] shadow-2xs"
                   title="Click to copy email address"
                 >
-                  {copied ? (
-                    <>
-                      <Check className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 animate-fadeIn" />
-                      <span className="text-[#2A2D34] dark:text-zinc-100 font-bold">Email Copied!</span>
-                    </>
-                  ) : (
-                    <>
-                      <Mail className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
-                      <span>Copy Email</span>
-                    </>
-                  )}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                  />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 shrink-0 text-[#2A2D34] dark:text-zinc-100 animate-fadeIn" />
+                        <span className="text-[#2A2D34] dark:text-zinc-100 font-bold">Email Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="w-3.5 h-3.5 shrink-0 transition-colors" />
+                        <span>Copy Email</span>
+                      </>
+                    )}
+                  </span>
                 </button>
               )}
 
@@ -166,11 +178,17 @@ export default function HeaderCard({
                 <a
                   href={profile.cvUrl}
                   download={`${profile.name.replace(/\s+/g, '_')}_CV.pdf`}
-                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-xs font-semibold transition-all shadow-2xs cursor-pointer"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
-                  <span>Curriculum Vitae</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                  />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <FileText className="w-3.5 h-3.5 shrink-0 transition-colors" />
+                    <span>Curriculum Vitae</span>
+                  </span>
                 </a>
               )}
 
@@ -181,10 +199,16 @@ export default function HeaderCard({
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
                     title="LinkedIn Profile"
                   >
-                    <Linkedin className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                    />
+                    <span className="relative z-10 flex items-center justify-center">
+                      <Linkedin className="w-3.5 h-3.5 shrink-0 transition-colors" />
+                    </span>
                   </a>
                 )}
 
@@ -193,10 +217,16 @@ export default function HeaderCard({
                     href={profile.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 rounded text-[11px] font-semibold transition-all shadow-2xs"
+                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
                     title="Twitter/X Profile"
                   >
-                    <XIcon className="w-3.5 h-3.5 text-[#2A2D34] dark:text-zinc-100 shrink-0" />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                    />
+                    <span className="relative z-10 flex items-center justify-center">
+                      <XIcon className="w-3.5 h-3.5 shrink-0 transition-colors" />
+                    </span>
                   </a>
                 )}
               </div>

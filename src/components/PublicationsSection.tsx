@@ -953,7 +953,9 @@ export default function PublicationsSection({
                 {/* Main Paper Card */}
                 <div
                   className={`flex-1 bg-[#FAF5EB] dark:bg-zinc-900 border ${
-                    paper.featured ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 dark:bg-teal-950/20' : 'border-[#E2D5BE] dark:border-zinc-800'
+                    paper.featured
+                      ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 dark:bg-teal-950/20 hover:border-[#801428]/70 dark:hover:border-teal-700'
+                      : 'border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700'
                   } rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
@@ -1341,10 +1343,16 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="Paper"
                               aria-label="View Paper"
-                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
-                              <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
-                              <span className="hidden sm:inline">Paper</span>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                              />
+                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors" />
+                                <span className="hidden sm:inline">Paper</span>
+                              </span>
                             </a>
                           )}
 
@@ -1355,10 +1363,16 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="GitHub"
                               aria-label="View GitHub Repository"
-                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
-                              <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
-                              <span className="hidden sm:inline">GitHub</span>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                              />
+                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors" />
+                                <span className="hidden sm:inline">GitHub</span>
+                              </span>
                             </a>
                           )}
 
@@ -1369,10 +1383,16 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="Hugging Face"
                               aria-label="View Hugging Face Page"
-                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
-                              <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
-                              <span className="hidden sm:inline">Hugging Face</span>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                              />
+                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
+                                <span className="hidden sm:inline">Hugging Face</span>
+                              </span>
                             </a>
                           )}
 
