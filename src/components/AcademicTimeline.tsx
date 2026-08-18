@@ -122,7 +122,7 @@ export default function AcademicTimeline({
 
         <div className="flex flex-wrap gap-2 items-center">
           {/* Quick Category Filters */}
-          <div className="flex bg-[#F3E8D3] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E2D5BE] dark:border-zinc-700/80 relative">
+          <div className="flex bg-[#F7F1E6] dark:bg-zinc-800/90 p-1 rounded-lg gap-1 border border-[#E5DAC5] dark:border-zinc-700/80 relative">
             {availableFilters.map(type => {
               const isActive = activeFilter === type;
               return (
@@ -267,7 +267,7 @@ export default function AcademicTimeline({
                 </div>
 
                 {/* CV Item Card */}
-                <div className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-lg p-4 hover:shadow-xs transition-all duration-300">
+                <div className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-lg p-4 hover:shadow-xs transition-all duration-300">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
                     <div>
                       <div className="flex items-center gap-2 flex-wrap mb-1">

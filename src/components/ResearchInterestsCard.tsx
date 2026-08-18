@@ -69,12 +69,12 @@ export default function ResearchInterestsCard({
           return (
             <div
               key={area.id}
-              className="bg-[#FAF5EB] dark:bg-zinc-900 border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
+              className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
             >
               <div>
                 {/* Header Icon + Edit controls */}
                 <div className="flex justify-between items-start mb-3">
-                  <div className="p-2 rounded-md bg-[#F3E8D3] dark:bg-zinc-800 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
+                  <div className="p-2 rounded-md bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5]/80 dark:border-zinc-700/60 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
                     {isEditing ? (
                       <select
                         value={area.iconName}

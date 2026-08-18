@@ -832,7 +832,7 @@ export default function PublicationsSection({
               className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
                   ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
-                  : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
+                  : 'bg-[#F7F1E6] dark:bg-zinc-800/90 text-[#525660] dark:text-zinc-300 border border-[#E5DAC5] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
               }`}
             >
               {selectedTag && (
@@ -850,7 +850,7 @@ export default function PublicationsSection({
                 className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
                     ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
-                    : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
+                    : 'bg-[#F7F1E6] dark:bg-zinc-800/90 text-[#525660] dark:text-zinc-300 border border-[#E5DAC5] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
                 {selectedTag !== tag && (
@@ -952,11 +952,11 @@ export default function PublicationsSection({
 
                 {/* Main Paper Card */}
                 <div
-                  className={`flex-1 bg-[#FAF5EB] dark:bg-zinc-900 border ${
+                  className={`flex-1 ${
                     paper.featured
-                      ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 dark:bg-teal-950/20 hover:border-[#801428]/70 dark:hover:border-teal-700'
-                      : 'border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700'
-                  } rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
+                      ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 hover:bg-[#F3E8D3]/85 dark:bg-teal-950/20 dark:hover:bg-teal-950/35 hover:border-[#801428]/70 dark:hover:border-teal-700'
+                      : 'bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700'
+                  } border rounded-lg hover:shadow-xs transition-all duration-300 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
                     <form onSubmit={handleSaveEditPaper} className="space-y-3 animate-fadeIn p-4">
@@ -1294,7 +1294,7 @@ export default function PublicationsSection({
                                 paper.category === 'journal' ? 'bg-indigo-100 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-900' :
                                 paper.category === 'conference' ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800/80' :
                                 paper.category === 'workshop' ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 border border-amber-200 dark:border-amber-900' :
-                                'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
+                                'bg-[#F7F1E6] dark:bg-zinc-800/90 text-[#525660] dark:text-zinc-300 border border-[#E5DAC5] dark:border-zinc-700'
                               }`}>
                                 {paper.category}
                               </span>
@@ -1326,7 +1326,7 @@ export default function PublicationsSection({
                             {/* Individual tags */}
                             <div className="flex flex-wrap gap-1 pt-1">
                               {(paper.tags || []).map(tag => (
-                                <span key={tag} className="text-[10px] bg-[#F3E8D3] text-[#801428] px-1.5 py-0.5 rounded border border-[#E2D5BE] dark:bg-teal-950/50 dark:text-[#7DE2C5] dark:border-teal-800/70 font-['Inter',sans-serif]">
+                                <span key={tag} className="text-[10px] bg-[#F7F1E6] text-[#801428] px-1.5 py-0.5 rounded border border-[#E5DAC5] dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800/70 font-['Inter',sans-serif]">
                                   {tag}
                                 </span>
                               ))}
@@ -1343,7 +1343,7 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="Paper"
                               aria-label="View Paper"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
                               <span
                                 aria-hidden="true"
@@ -1363,7 +1363,7 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="GitHub"
                               aria-label="View GitHub Repository"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
                               <span
                                 aria-hidden="true"
@@ -1383,7 +1383,7 @@ export default function PublicationsSection({
                               rel="noopener noreferrer"
                               title="Hugging Face"
                               aria-label="View Hugging Face Page"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
                               <span
                                 aria-hidden="true"
@@ -1444,7 +1444,7 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700 rounded-md p-3 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
+                      <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-md p-3 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
                         <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-[11px] sm:text-xs leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                           {paper.abstract.split('\n\n').map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
