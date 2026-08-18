@@ -1,122 +1,187 @@
 # Academic Portfolio Website
 
-An elegant, fully-featured, and modern academic portfolio and personal website designed for scholars, researchers, and students. Built with React, TypeScript, and Tailwind CSS, this static single-page application provides a clean, fast, and responsive showcase for biographical details, publications, research focus areas, and career timelines.
+An elegant, fully-featured, high-performance academic portfolio and personal website designed for scholars, researchers, and students. Built with React 19, TypeScript, and Tailwind CSS, this single-page static application provides a clean, fast, and responsive showcase for biographical details, publications, research focus areas, and career timelines.
 
-Designed specifically for easy editing via source files and zero-maintenance static deployment (e.g., Cloudflare Pages, GitHub Pages, Vercel, or Netlify).
+Designed specifically for effortless editing via source files and zero-maintenance static deployment to **GitHub Pages**, **Cloudflare Pages**, **Vercel**, or **Netlify**.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. Re-designed Biography & Profile
-* **Colored Brand & Contact Icons**: Custom brand-colored icons for Google Scholar (`#4285F4`), official Gmail vector logo for email, rose PDF icon for CV, LinkedIn (`#0A66C2`), and current X logo.
-* **Google Scholar**: Direct link button to citation metrics.
-* **Copy Email**: Interactive copy-to-clipboard button with Gmail logo and visual checkmark feedback, preventing email scraping while keeping contact seamless.
-* **Full-length Curriculum Vitae**: Dedicated button for direct downloading of CV (PDF format).
-* **Social Links**: Clean buttons for LinkedIn and X (Twitter) profiles.
-* **Proportional Avatar & Aligned Spacing**: Dedicated image aspect ratio with balanced padding aligned with right-hand content panels.
+### 1. Biography & Contact Showcase
+* **Brand-Colored Contact Actions**: Official Gmail logo copy-to-clipboard button with visual feedback, Google Scholar (`#4285F4`), CV download button, LinkedIn (`#0A66C2`), and current X logo.
+* **Proportional Avatar**: Aspect-ratio-contained profile photo with optimized responsive sizing and eager priority loading.
+* **Sticky Top Floating Navigation**: Translucent glassmorphic header bar with quick section navigation, dynamic scroll-spy, and dark/light mode toggle.
 
-### 2. Tabbed Scientific Dashboard
-* **About / Biography**: Clean display of academic narrative, office coordinates, and research interests styled with optimized custom typography.
-* **Focus Areas**: Interactive cards showcasing core research focus areas, complete with configurable Lucide icons and detailed descriptions.
-* **Publications Section**: Chronologically grouped scholarly articles (Conferences, Journals, Workshops, Preprints). Includes:
-  * Filterable tags and search keywords
-  * Teaser image / diagram previews with lightbox zoom
-  * External DOI links, PDF direct links, and code repositories
+### 2. Scholarly Research Dashboard
+* **Biography / About**: Academic narrative and research mission styled with optimized custom typography.
+* **Focus Areas**: Interactive cards highlighting core research themes with dynamic Lucide icons and hover transitions.
+* **Publication Engine**: Chronologically organized articles (Conferences, Journals, Workshops, Preprints) featuring:
+  * Real-time search by title, author, venue, and tag keywords
+  * Teaser diagram previews with zoom lightbox modal
+  * External links to paper PDFs, code repositories, and DOI identifiers
   * One-click pre-formatted **BibTeX** clipboard copying
-  * **BibTeX `.bib` File Download**: Direct one-click download button for `.bib` citation files using auto-extracted citekeys.
-  * **Abstract View**: Styled abstract sections rendered with high readability typography.
-* **Academic Timeline**: Vertical timeline tracking Education, Professional Positions, and Academic Honors or Awards.
+  * **BibTeX `.bib` File Download**: Direct one-click download button for `.bib` citation files using citekeys
+  * High-legibility abstract accordion drawer
+* **Academic Career Timeline**: Vertical timeline for Education, Professional Experience, and Honors / Awards.
 
-### 3. Web Font Optimization & CLS Prevention
-* **WOFF2 Web Font**: Uses lightweight `Fast_Sans.woff2` for abstract text, bio narrative, and research focus descriptions.
-* **Preloading & Swap**: Preloaded in `index.html` with `font-display: swap` for zero render blocking.
-* **CLS Prevention**: Custom `@font-face` fallback metric matching (`ascent-override`, `descent-override`, `line-gap-override`) to eliminate Cumulative Layout Shift during font load.
-
-### 4. Static & Host-Ready Architecture
-* **File-Based Configuration**: All personal information, research areas, publication lists, and career history are defined in `/src/data.ts` with inline documentation and type definitions.
-* **Local Asset Folder**: Store your avatar image, paper teaser diagrams, CV PDF, and font files in `/public/` and reference them cleanly.
-* **Zero Backend Required**: Completely static site with zero database or server dependencies, guaranteeing top performance and security.
+### 3. Performance & Asset Optimization
+* **Automated WebP Image Pipeline**: `npm run build` uses `sharp` to automatically convert `.png`, `.jpg`, and `.jpeg` images into compressed `.webp` assets (often saving **70–90%** bandwidth).
+* **HTML5 `<picture>` Fallbacks**: Serves next-gen WebP to modern browsers while preserving full backward compatibility with PNG/JPG fallbacks.
+* **Optimized Font Loading**: Custom `Fast_Sans.woff2` font with CLS (Cumulative Layout Shift) fallback matching and preconnected Google Fonts.
+* **Tree-Shaken JavaScript Bundle**: Vendor chunk splitting for React, Motion, and Lucide icons for maximum caching and rapid initial load.
 
 ---
 
-## 📂 Directory & File Structure
+## 📂 Directory Structure
 
 ```text
-├── index.html                 # Main entrypoint HTML with font preloading tags
+├── index.html                 # Main entrypoint HTML with font preloading & stylesheet links
 ├── metadata.json              # Applet metadata configuration
-├── package.json               # Project dependencies and build scripts
-├── vite.config.ts             # Vite configuration with Tailwind CSS
+├── package.json               # Dependencies and build scripts
+├── vite.config.ts             # Vite configuration with chunk splitting
+├── scripts/
+│   └── optimize-images.js     # Image optimization script (PNG/JPG -> WebP)
 ├── public/
-│   ├── Fast_Sans.woff2        # Optimized WOFF2 custom font file
-│   └── data/                  # Static media assets (avatar, CV PDF, teaser images)
-│       ├── README.md
+│   ├── Fast_Sans.woff2        # Custom font file
+│   └── data/                  # Static media assets (avatar, CV PDF, teaser images, webp)
+│       ├── README.md          # Guide for managing public assets
 │       ├── avatar.jpg
+│       ├── avatar.webp
 │       ├── cv.pdf
-│       └── paper1_teaser.jpg
+│       ├── sscbench.png
+│       └── sscbench.webp
 └── src/
-    ├── main.tsx               # Application entry point
-    ├── App.tsx                # Main layout, sticky navigation bar, and tab switching
-    ├── data.ts                # Primary content configuration file (Profile, Papers, Focus Areas, Timeline)
-    ├── types.ts               # TypeScript types and interfaces
-    ├── index.css              # Global styles importing Tailwind CSS, Fast Sans & CLS font-face fallbacks
+    ├── main.tsx               # React application root mount
+    ├── App.tsx                # Sticky navbar, section layout, dark mode state
+    ├── data.ts                # Main content configuration (Profile, Papers, Focus Areas, Timeline)
+    ├── types.ts               # Shared TypeScript types and interfaces
+    ├── index.css              # Global styles importing Tailwind CSS & font face declarations
     └── components/
-        ├── HeaderCard.tsx            # Biography header with Gmail, Google Scholar, LinkedIn, X, and CV buttons
-        ├── ResearchInterestsCard.tsx  # Focus areas grid with dynamic icon rendering
-        ├── PublicationsSection.tsx    # Categorized publication list, teasers, BibTeX copy & .bib download
-        └── AcademicTimeline.tsx      # Vertical academic career timeline
+        ├── HeaderCard.tsx            # Profile header with avatar, bio, and contact buttons
+        ├── ResearchInterestsCard.tsx  # Focus areas cards with dynamic Lucide icons
+        ├── PublicationsSection.tsx    # Publication filters, teaser images, BibTeX modal & download
+        ├── AcademicTimeline.tsx      # Vertical academic experience timeline
+        └── OptimizedImage.tsx        # Responsive <picture> element with WebP + fallback
 ```
 
 ---
 
-## ⚙️ Content Customization Guide
+## ⚙️ How to Update Your Content
 
-### Editing Your Profile & Papers
-To update your website content, simply open `src/data.ts` in any code editor:
+All content and configuration is centralized in **`src/data.ts`** with comprehensive inline TypeScript types:
 
-1. **Profile Data**: Update `INITIAL_PROFILE` with your name, title, affiliation, bio, email, and social links.
-2. **Research Focus Areas**: Edit `INITIAL_RESEARCH_AREAS` and choose Lucide icon names (e.g., `"Brain"`, `"Sparkles"`, `"Users"`, `"Code"`).
-3. **Publications**: Add or edit papers in `INITIAL_PAPERS` with titles, authors, venues, DOIs, BibTeX entries, abstracts, and teaser image paths.
-4. **Academic Timeline**: Update `INITIAL_EXPERIENCES` with education history, positions, and awards (type: `"education" | "position" | "award"`).
+### 1. Update Profile & Contact Info (`INITIAL_PROFILE`)
+```ts
+export const INITIAL_PROFILE: Profile = {
+  name: "Your Name",
+  title: "Ph.D Student / Postdoc / Professor",
+  affiliation: "Your University / Institution",
+  email: "your.email@example.com",
+  avatarUrl: "./data/avatar.jpg", // path inside public/
+  bio: "Your biography narrative...",
+  researchInterests: "Summary of your overarching research mission...",
+  googleScholar: "https://scholar.google.com/citations?user=...",
+  linkedin: "https://www.linkedin.com/in/...",
+  twitter: "https://x.com/...",
+  cvUrl: "./data/cv.pdf",
+  websiteTitle: "Your Name",
+};
+```
 
-### Managing Media & Assets
-Place all static files inside `public/`:
-* `public/data/avatar.jpg` -> reference as `"/data/avatar.jpg"` in `src/data.ts`
-* `public/data/cv.pdf` -> reference as `"/data/cv.pdf"` in `src/data.ts`
-* `public/data/paper1_teaser.jpg` -> reference as `"/data/paper1_teaser.jpg"` in `src/data.ts`
-* `public/Fast_Sans.woff2` -> loaded in `src/index.css` & preloaded in `index.html`
+### 2. Configure Focus Areas (`INITIAL_RESEARCH_AREAS`)
+Choose any Lucide icon name (e.g., `"Brain"`, `"Eye"`, `"Cpu"`, `"Sparkles"`, `"Users"`, `"BookOpen"`):
+```ts
+{
+  id: "ra-1",
+  name: "Computer Vision",
+  description: "3D scene understanding, neural rendering, and Gaussian Splatting.",
+  iconName: "Eye",
+}
+```
+
+### 3. Add Publications (`INITIAL_PAPERS`)
+```ts
+{
+  id: "pub-1",
+  title: "Paper Title",
+  authors: "Author One, Author Two, Your Name",
+  journal: "CVPR 2026",
+  year: 2026,
+  category: "conference", // "conference" | "journal" | "workshop" | "preprint"
+  featured: true,
+  teaserImage: "./data/my_paper_teaser.png", // Optional teaser diagram
+  tags: ["Computer Vision", "Gaussian Splatting"],
+  link: "https://arxiv.org/...",
+  codeUrl: "https://github.com/...",
+  abstract: "Full paper abstract here...",
+  bibtex: `@inproceedings{...}`
+}
+```
+
+### 4. Update Academic Timeline (`INITIAL_EXPERIENCES`)
+```ts
+{
+  id: "exp-1",
+  title: "Ph.D. in Computer Science",
+  institution: "Your University",
+  period: "2024 — Present",
+  description: "Advised by Prof. Jane Doe.",
+  type: "education" // "education" | "position" | "award"
+}
+```
 
 ---
 
-## 🛠️ Tech Stack
+## 🖼️ Adding & Optimizing Images
 
-* **Framework**: React 19 + Vite 6 (Single Page Application)
-* **Language**: TypeScript for strict type checking (`/src/types.ts`)
-* **Styling**: Tailwind CSS v4 for clean, responsive styling
-* **Icons**: [Lucide React](https://lucide.dev/) + Custom SVG brand icons (Google Scholar, Gmail, LinkedIn, current X logo)
-* **Fonts**: `Fast_Sans.woff2` with CLS fallback matching & font preloading
-* **Animations**: `motion/react` layout transitions
+1. Place your new image (`.png`, `.jpg`, or `.jpeg`) into the `public/data/` folder (e.g., `public/data/my_teaser.png`).
+2. Reference it in `src/data.ts`:
+   ```ts
+   teaserImage: "./data/my_teaser.png"
+   ```
+3. To generate optimized WebP versions locally, run:
+   ```bash
+   node scripts/optimize-images.js public
+   ```
+4. When you build with `npm run build`, all images in both `public/` and `dist/` are automatically converted and optimized into `.webp` format.
 
 ---
 
-## 🚀 Local Development & Deployment
+## 🚀 Development & Deployment
 
-### Local Setup
-1. Clone the repository.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Run dev server:
-   ```bash
-   npm run dev
-   ```
+### Local Development
+```bash
+# 1. Install dependencies
+npm install
 
-### Building & Deploying
-To deploy to **Cloudflare Pages**, **Vercel**, **GitHub Pages**, or **Netlify**:
+# 2. Start local Vite development server (port 3000)
+npm run dev
+```
 
-1. Build static production assets:
-   ```bash
-   npm run build
-   ```
-2. Set the build output directory to `dist` in your static hosting provider's configuration.
+### Building for Production
+```bash
+# Compiles TypeScript, bundles assets with Vite, and generates WebP images
+npm run build
+```
+
+### Deploying to Static Hosts
+This application builds into the **`dist/`** directory.
+
+* **GitHub Pages**: Ensure your GitHub Actions workflow runs `npm ci` and `npm run build`, then deploys the `./dist` folder.
+* **Cloudflare Pages / Vercel / Netlify**:
+  * **Build command**: `npm run build`
+  * **Output directory**: `dist`
+  * **Node.js version**: 18+ or 20+
+
+---
+
+## 🛠️ Technology Stack
+
+* **UI Framework**: [React 19](https://react.dev/)
+* **Bundler & Dev Server**: [Vite 6](https://vitejs.dev/)
+* **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+* **Image Processing**: [Sharp](https://sharp.pixelplumbing.com/) (automated WebP pipeline)
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Animations**: [Motion](https://motion.dev/)
+* **Type Safety**: [TypeScript](https://www.typescriptlang.org/)

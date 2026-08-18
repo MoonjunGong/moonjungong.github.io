@@ -1,9 +1,21 @@
-# Data Directory for Static Assets
+# Public Data Directory (`public/data/`)
 
-Place your static files in this folder (`public/data/`) so they can be referenced in `src/data.ts`:
+Place all your static media assets (profile avatars, CV PDFs, publication diagrams) in this folder.
 
-- **Avatar Image**: `public/data/avatar.jpg` -> reference as `"/data/avatar.jpg"` in `src/data.ts`
-- **Curriculum Vitae (PDF)**: `public/data/cv.pdf` -> reference as `"/data/cv.pdf"` in `src/data.ts`
-- **Paper Teaser Images**: `public/data/paper1_teaser.jpg`, `public/data/paper2_teaser.jpg`, etc. -> reference as `"/data/paper1_teaser.jpg"` in `src/data.ts`
+## File Organization & Naming
 
-When deployed to Cloudflare Pages or any static host, all files inside `public/data/` will be served directly at `/data/<filename>`.
+| Asset Type | Recommended Location | Example Reference in `src/data.ts` |
+| :--- | :--- | :--- |
+| **Profile Photo** | `public/data/avatar.jpg` | `avatarUrl: "./data/avatar.jpg"` |
+| **Curriculum Vitae** | `public/data/cv.pdf` | `cvUrl: "./data/cv.pdf"` |
+| **Paper Teasers** | `public/data/<name>.png` | `teaserImage: "./data/<name>.png"` |
+
+## Automatic WebP Optimization
+
+When you place a `.png` or `.jpg` image in this directory, you can generate an optimized `.webp` file alongside it by running:
+
+```bash
+node scripts/optimize-images.js public
+```
+
+During deployment, `npm run build` will also automatically convert and compress all images in `./dist` for ultra-fast loading with zero loss in visual quality.
