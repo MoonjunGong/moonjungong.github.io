@@ -90,7 +90,7 @@ export default function HeaderCard({
   };
 
   return (
-    <div id="header-section" className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border-2 border-[#801428] dark:border-[#7DE2C5] rounded-lg shadow-sm hover:shadow-xs overflow-hidden mb-6 transition-all duration-300">
+    <div id="header-section" className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border-4 border-[#801428] dark:border-[#7DE2C5] rounded-2xl shadow-sm hover:shadow-xs overflow-hidden mb-6 transition-all duration-300">
       <div className="p-6 md:p-8">
         <div className="flex flex-col md:flex-row gap-8 items-stretch">
 
@@ -101,7 +101,7 @@ export default function HeaderCard({
                 <img
                   src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
                   alt={profile.name}
-                  className="w-32 md:w-40 h-auto rounded-lg transition-all duration-300"
+                  className="w-32 md:w-40 h-auto rounded-xl transition-all duration-300"
                   referrerPolicy="no-referrer"
                 />
                 {isEditing && (
@@ -115,7 +115,7 @@ export default function HeaderCard({
                     />
                     <button
                       onClick={() => avatarInputRef.current?.click()}
-                      className="absolute inset-0 bg-zinc-900/80 rounded-lg flex flex-col items-center justify-center p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer text-white"
+                      className="absolute inset-0 bg-zinc-900/80 rounded-xl flex flex-col items-center justify-center p-3 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 cursor-pointer text-white"
                     >
                       <Camera className="w-5 h-5 mb-1.5 text-white" />
                       <span className="text-[11px] font-bold">Upload Photo</span>
@@ -133,7 +133,7 @@ export default function HeaderCard({
                   href={profile.googleScholar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded-lg text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   title="Google Scholar Citations"
                 >
                   <span
@@ -151,7 +151,7 @@ export default function HeaderCard({
                 <button
                   type="button"
                   onClick={handleCopyEmail}
-                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold cursor-pointer transition-colors active:scale-[0.98] shadow-2xs"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded-lg text-xs font-semibold cursor-pointer transition-colors active:scale-[0.98] shadow-2xs"
                   title="Click to copy email address"
                 >
                   <span
@@ -178,7 +178,7 @@ export default function HeaderCard({
                 <a
                   href={profile.cvUrl}
                   download={`${profile.name.replace(/\s+/g, '_')}_CV.pdf`}
-                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
+                  className="group/btn relative overflow-hidden w-full flex items-center justify-center gap-2 px-3 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded-lg text-xs font-semibold transition-colors shadow-2xs cursor-pointer"
                   title="Download Curriculum Vitae"
                 >
                   <span
@@ -199,7 +199,7 @@ export default function HeaderCard({
                     href={profile.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
+                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded-lg text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
                     title="LinkedIn Profile"
                   >
                     <span
@@ -217,7 +217,7 @@ export default function HeaderCard({
                     href={profile.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
+                    className="group/btn relative overflow-hidden flex items-center justify-center px-1 py-2 bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 text-[#2A2D34] dark:text-zinc-200 hover:text-[#801428] dark:hover:text-[#7DE2C5] rounded-lg text-[11px] font-semibold transition-colors shadow-2xs cursor-pointer"
                     title="Twitter/X Profile"
                   >
                     <span

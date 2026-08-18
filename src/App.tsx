@@ -213,7 +213,7 @@ export default function App() {
       {/* Fixed Floating Navigation Bar */}
       <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-all duration-300">
         <div 
-          className="pointer-events-auto w-[calc(100%+6px)] -mx-[3px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-lg sm:rounded-xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
+          className="pointer-events-auto w-[calc(100%+6px)] -mx-[3px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
           style={{
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)'
@@ -221,7 +221,7 @@ export default function App() {
         >
           {/* Logo / Title - Hidden on mobile */}
           <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
-            <div className="w-7 h-7 rounded bg-[#801428] dark:bg-[#7DE2C5] flex items-center justify-center text-white dark:text-zinc-900 shadow-xs text-xs font-bold font-sans">
+            <div className="w-7 h-7 rounded-lg bg-[#801428] dark:bg-[#7DE2C5] flex items-center justify-center text-white dark:text-zinc-900 shadow-xs text-xs font-bold font-sans">
               {renderWebsiteIcon()}
             </div>
             <div>

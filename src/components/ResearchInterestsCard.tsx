@@ -56,7 +56,7 @@ export default function ResearchInterestsCard({
         {isEditing && (
           <button
             onClick={addArea}
-            className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Icons.Plus className="w-3.5 h-3.5" />
             <span>Add Focus Area</span>
@@ -69,12 +69,12 @@ export default function ResearchInterestsCard({
           return (
             <div
               key={area.id}
-              className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-lg p-5 transition-all duration-300 flex flex-col justify-between relative"
+              className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 shadow-xs rounded-2xl p-5 transition-all duration-300 flex flex-col justify-between relative"
             >
               <div>
                 {/* Header Icon + Edit controls */}
                 <div className="flex justify-between items-start mb-3">
-                  <div className="p-2 rounded-md bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5]/80 dark:border-zinc-700/60 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
+                  <div className="p-2 rounded-xl bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5]/80 dark:border-zinc-700/60 text-[#801428] dark:text-[#7DE2C5] transition-colors font-bold">
                     {isEditing ? (
                       <select
                         value={area.iconName}
@@ -101,7 +101,7 @@ export default function ResearchInterestsCard({
                   {isEditing && (
                     <button
                       onClick={() => removeArea(area.id)}
-                      className="p-1 hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded transition-colors"
+                      className="p-1 hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors"
                       title="Delete area"
                     >
                       <Icons.Trash2 className="w-3.5 h-3.5" />
@@ -129,7 +129,7 @@ export default function ResearchInterestsCard({
                     value={area.description}
                     onChange={(e) => handleUpdateArea(area.id, 'description', e.target.value)}
                     rows={3}
-                    className="text-xs text-[#4E5158] dark:text-zinc-300 w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
+                    className="text-xs text-[#4E5158] dark:text-zinc-300 w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-lg p-2 outline-none mb-2 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                   />
                 ) : (
                   <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-relaxed mb-3 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
