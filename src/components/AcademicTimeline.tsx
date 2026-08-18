@@ -142,10 +142,10 @@ export default function AcademicTimeline({
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   ) : (
-                    /* Blurry spotlight glow on back of text */
+                    /* Bright, compact soft blurry spotlight glow directly behind text */
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 m-auto w-4/5 h-4/5 rounded-full bg-white/90 dark:bg-zinc-600/70 blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_14px_rgba(255,255,255,0.9)] dark:shadow-[0_0_14px_rgba(125,226,197,0.35)]"
+                      className="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full bg-white dark:bg-zinc-600/90 blur-[5px] opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_10px_2px_rgba(255,255,255,1)] dark:shadow-[0_0_10px_2px_rgba(125,226,197,0.4)]"
                     />
                   )}
                   <span className="relative z-10">

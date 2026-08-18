@@ -805,10 +805,10 @@ export default function PublicationsSection({
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   ) : (
-                    /* Blurry spotlight glow on back of text */
+                    /* Bright, compact soft blurry spotlight glow directly behind text */
                     <span
                       aria-hidden="true"
-                      className="absolute inset-0 m-auto w-4/5 h-4/5 rounded-full bg-white/90 dark:bg-zinc-600/70 blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_14px_rgba(255,255,255,0.9)] dark:shadow-[0_0_14px_rgba(125,226,197,0.35)]"
+                      className="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full bg-white dark:bg-zinc-600/90 blur-[5px] opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_10px_2px_rgba(255,255,255,1)] dark:shadow-[0_0_10px_2px_rgba(125,226,197,0.4)]"
                     />
                   )}
                   <span className="relative z-10">
@@ -829,7 +829,7 @@ export default function PublicationsSection({
             </span>
             <button
               onClick={() => setSelectedTag(null)}
-              className={`group relative px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
+              className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
                   ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
                   : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
@@ -838,7 +838,7 @@ export default function PublicationsSection({
               {selectedTag && (
                 <span
                   aria-hidden="true"
-                  className="absolute inset-0 m-auto w-full h-full rounded bg-[#801428]/20 dark:bg-[#7DE2C5]/25 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                 />
               )}
               <span className="relative z-10">All Topics</span>
@@ -847,7 +847,7 @@ export default function PublicationsSection({
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`group relative px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
+                className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
                     ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
                     : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
@@ -856,7 +856,7 @@ export default function PublicationsSection({
                 {selectedTag !== tag && (
                   <span
                     aria-hidden="true"
-                    className="absolute inset-0 m-auto w-full h-full rounded bg-[#801428]/20 dark:bg-[#7DE2C5]/25 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                    className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                   />
                 )}
                 <span className="relative z-10">{tag}</span>
