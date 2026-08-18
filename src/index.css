@@ -69,6 +69,15 @@ body {
   -webkit-hyphens: manual;
   -ms-hyphens: manual;
   hyphens: manual;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure smooth touch interactions and mobile active feedback */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {

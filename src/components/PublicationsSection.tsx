@@ -684,7 +684,7 @@ export default function PublicationsSection({
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`group relative px-2.5 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none ${
+                  className={`group relative px-2.5 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none active:scale-95 ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
                       : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
@@ -1243,7 +1243,7 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="Paper"
                                 aria-label="View Paper"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
@@ -1263,7 +1263,7 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="GitHub"
                                 aria-label="View GitHub Repository"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
@@ -1283,7 +1283,7 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="Hugging Face"
                                 aria-label="View Hugging Face Page"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
@@ -1302,7 +1302,7 @@ export default function PublicationsSection({
                                 setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
                                 setExpandedBibtexId(null);
                               }}
-                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-colors min-h-[30px] sm:min-h-0"
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-95 flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-all min-h-[30px] sm:min-h-0 select-none"
                             >
                               <span>TL;DR</span>
                               <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
@@ -1314,7 +1314,7 @@ export default function PublicationsSection({
                                 setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
                                 setExpandedAbstractId(null);
                               }}
-                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-colors min-h-[30px] sm:min-h-0"
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-95 flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-all min-h-[30px] sm:min-h-0 select-none"
                             >
                               <span>BibTeX</span>
                               <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />

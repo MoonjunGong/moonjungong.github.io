@@ -129,7 +129,7 @@ export default function AcademicTimeline({
                 <button
                   key={type}
                   onClick={() => setActiveFilter(type)}
-                  className={`group relative px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none ${
+                  className={`group relative px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none active:scale-95 ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
                       : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
