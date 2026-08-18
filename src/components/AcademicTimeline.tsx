@@ -129,17 +129,23 @@ export default function AcademicTimeline({
                 <button
                   key={type}
                   onClick={() => setActiveFilter(type)}
-                  className={`relative px-3 py-1 rounded-md text-xs font-semibold capitalize transition-colors duration-200 cursor-pointer select-none ${
+                  className={`group relative px-3 py-1 rounded-md text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
-                      : 'text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                      : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                   }`}
                 >
-                  {isActive && (
+                  {isActive ? (
                     <motion.div
                       layoutId="academic-filter-active-pill"
                       className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E2D5BE] dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  ) : (
+                    /* Blurry spotlight glow on back of text */
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 m-auto w-4/5 h-4/5 rounded-full bg-white/90 dark:bg-zinc-600/70 blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_14px_rgba(255,255,255,0.9)] dark:shadow-[0_0_14px_rgba(125,226,197,0.35)]"
                     />
                   )}
                   <span className="relative z-10">

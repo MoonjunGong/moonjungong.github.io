@@ -179,23 +179,27 @@ export default function App() {
       clearTimeout(manualScrollTimeoutRef.current);
     }
 
-    const element = document.getElementById(id);
-    if (element) {
-      const navbarHeight = 56;
-      const breathingRoom = 20;
-      const totalOffset = navbarHeight + breathingRoom;
-      const scrollY = Math.max(
-        window.scrollY || 0,
-        document.documentElement.scrollTop || 0,
-        document.body.scrollTop || 0
-      );
+    if (tabName === 'about') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        const navbarHeight = 64;
+        const breathingRoom = 16;
+        const totalOffset = navbarHeight + breathingRoom;
+        const scrollY = Math.max(
+          window.scrollY || 0,
+          document.documentElement.scrollTop || 0,
+          document.body.scrollTop || 0
+        );
 
-      const elementTop = element.getBoundingClientRect().top + scrollY;
+        const elementTop = element.getBoundingClientRect().top + scrollY;
 
-      window.scrollTo({
-        top: Math.max(0, elementTop - totalOffset),
-        behavior: 'smooth'
-      });
+        window.scrollTo({
+          top: Math.max(0, elementTop - totalOffset),
+          behavior: 'smooth'
+        });
+      }
     }
 
     manualScrollTimeoutRef.current = setTimeout(() => {
@@ -206,9 +210,15 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F3E8D3] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
-      {/* Sticky Main Scholarly Navigation Bar */}
-      <header className="sticky top-0 bg-[#FAF5EB]/50 dark:bg-zinc-900/50 backdrop-blur-md border-b border-[#E2D5BE]/80 dark:border-zinc-800/80 z-40 transition-all duration-300">
-        <div className="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center justify-between">
+      {/* Fixed Floating Navigation Bar */}
+      <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-all duration-300">
+        <div 
+          className="pointer-events-auto w-[calc(100%+6px)] -mx-[3px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-lg sm:rounded-xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
+          style={{
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)'
+          }}
+        >
           {/* Logo / Title - Hidden on mobile */}
           <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
             <div className="w-7 h-7 rounded bg-[#801428] dark:bg-[#7DE2C5] flex items-center justify-center text-white dark:text-zinc-900 shadow-xs text-xs font-bold font-sans">
@@ -261,7 +271,7 @@ export default function App() {
       </header>
 
       {/* Main Structural Container */}
-      <main className="max-w-5xl mx-auto px-4 md:px-6 pt-6 flex-1 w-full space-y-6">
+      <main className="max-w-5xl mx-auto px-4 md:px-6 pt-20 sm:pt-24 flex-1 w-full space-y-6">
         
         {/* Profile Card & Narrative Bio */}
         <HeaderCard

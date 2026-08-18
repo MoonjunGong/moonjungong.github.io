@@ -1,7 +1,119 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, ChevronUp, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download } from 'lucide-react';
+import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, ChevronUp, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download, GripHorizontal } from 'lucide-react';
 import { Paper, Profile } from '../types';
+
+interface BibtexViewerProps {
+  paperId: string;
+  title: string;
+  bibtex: string;
+  isCopied: boolean;
+  onCopy: () => void;
+  onDownload: () => void;
+}
+
+function BibtexViewer({ bibtex, isCopied, onCopy, onDownload }: BibtexViewerProps) {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  // Check if bibtex content is 5 lines or fewer
+  const lineCount = useMemo(() => {
+    if (!bibtex) return 0;
+    return bibtex.trim().split(/\r?\n/).filter(line => line.trim().length > 0).length;
+  }, [bibtex]);
+
+  const isShort = lineCount <= 5;
+
+  // Initial height tuned for exactly the first ~5 lines of tiny BibTeX text
+  const [height, setHeight] = useState<number>(85);
+  const isDraggingRef = useRef(false);
+  const startYRef = useRef(0);
+  const startHeightRef = useRef(85);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    isDraggingRef.current = true;
+    startYRef.current = e.clientY;
+    startHeightRef.current = height;
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDraggingRef.current) return;
+    const deltaY = e.clientY - startYRef.current;
+    // Cap upper limit strictly to the total content scrollHeight so no blank space is shown
+    const maxContentHeight = contentRef.current ? contentRef.current.scrollHeight : 280;
+    const minHeight = 70;
+    const upperLimit = Math.max(minHeight, maxContentHeight);
+    const newHeight = Math.max(minHeight, Math.min(upperLimit, startHeightRef.current + deltaY));
+    setHeight(newHeight);
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    isDraggingRef.current = false;
+    try {
+      (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  return (
+    <div className="bg-zinc-900 text-zinc-100 rounded-md mt-2 text-xs font-mono relative animate-fadeIn mx-3 sm:mx-4 mb-4 border border-zinc-800 shadow-xs overflow-hidden flex flex-col">
+      {/* Light-colored action buttons for high visibility and contrast */}
+      <div className="absolute top-2 right-2 flex items-center gap-1.5 z-10">
+        <button
+          type="button"
+          onClick={onDownload}
+          className="bg-white hover:bg-zinc-100 text-zinc-900 hover:text-black px-2 py-0.5 rounded border border-zinc-200 shadow-xs transition-all flex items-center gap-1 cursor-pointer text-[9.5px] font-sans font-bold active:scale-95"
+          title="Download .bib file"
+        >
+          <Download className="w-3 h-3 text-zinc-700" />
+          <span>Download</span>
+        </button>
+        <button
+          type="button"
+          onClick={onCopy}
+          className="bg-white hover:bg-zinc-100 text-zinc-900 hover:text-black px-2 py-0.5 rounded border border-zinc-200 shadow-xs transition-all flex items-center gap-1 cursor-pointer text-[9.5px] font-sans font-bold active:scale-95"
+          title="Copy BibTeX citation"
+        >
+          {isCopied ? (
+            <>
+              <Check className="w-3 h-3 text-emerald-600" />
+              <span className="text-emerald-700">Copied</span>
+            </>
+          ) : (
+            <>
+              <Copy className="w-3 h-3 text-zinc-700" />
+              <span>Copy</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Code Container: auto height if <=5 lines, or resizable height if >5 lines */}
+      <div
+        ref={contentRef}
+        style={isShort ? undefined : { height: `${height}px` }}
+        className={`p-3 pt-2 overflow-x-hidden select-text ${isShort ? 'h-auto' : 'overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700'}`}
+      >
+        <pre className="text-[9.5px] font-mono text-zinc-400 whitespace-pre-wrap break-all sm:break-words leading-relaxed">
+          {bibtex}
+        </pre>
+      </div>
+
+      {/* Slim drag-down bar shown ONLY when content exceeds 5 lines */}
+      {!isShort && (
+        <div
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          title="Drag down to expand"
+          className="w-full bg-zinc-950 hover:bg-zinc-800 border-t border-zinc-800/80 py-1 flex items-center justify-center cursor-row-resize select-none transition-colors group touch-none"
+        >
+          <div className="w-8 h-1 rounded-full bg-zinc-600 group-hover:bg-zinc-300 transition-colors" />
+        </div>
+      )}
+    </div>
+  );
+}
 
 interface PublicationsSectionProps {
   papers: Paper[];
@@ -680,17 +792,23 @@ export default function PublicationsSection({
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`relative px-2.5 py-1 rounded-md text-xs font-semibold capitalize transition-colors duration-200 cursor-pointer select-none ${
+                  className={`group relative px-2.5 py-1 rounded-md text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
-                      : 'text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                      : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                   }`}
                 >
-                  {isActive && (
+                  {isActive ? (
                     <motion.div
                       layoutId="publications-filter-active-pill"
                       className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-md border border-[#E2D5BE]/60 dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                    />
+                  ) : (
+                    /* Blurry spotlight glow on back of text */
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 m-auto w-4/5 h-4/5 rounded-full bg-white/90 dark:bg-zinc-600/70 blur-md opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_14px_rgba(255,255,255,0.9)] dark:shadow-[0_0_14px_rgba(125,226,197,0.35)]"
                     />
                   )}
                   <span className="relative z-10">
@@ -711,25 +829,37 @@ export default function PublicationsSection({
             </span>
             <button
               onClick={() => setSelectedTag(null)}
-              className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
+              className={`group relative px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
-                  ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
-                  : 'bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
+                  ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
+                  : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
               }`}
             >
-              All Topics
+              {selectedTag && (
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 m-auto w-full h-full rounded bg-[#801428]/20 dark:bg-[#7DE2C5]/25 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                />
+              )}
+              <span className="relative z-10">All Topics</span>
             </button>
             {allTags.map(tag => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`px-2 py-0.5 text-xs rounded font-medium transition-all cursor-pointer font-['Inter',sans-serif] ${
+                className={`group relative px-2.5 py-0.5 text-xs rounded font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
-                    ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800'
-                    : 'bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700'
+                    ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
+                    : 'bg-[#F3E8D3] dark:bg-zinc-800 text-[#525660] dark:text-zinc-300 border border-[#E2D5BE] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
-                {tag}
+                {selectedTag !== tag && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 m-auto w-full h-full rounded bg-[#801428]/20 dark:bg-[#7DE2C5]/25 blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                  />
+                )}
+                <span className="relative z-10">{tag}</span>
               </button>
             ))}
           </div>
@@ -1203,74 +1333,73 @@ export default function PublicationsSection({
                         </div>
 
                         {/* Expandable Blocks Bar */}
-                        <div className="mt-3 space-y-2 sm:space-y-0 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
-                          {/* Row 1 for mobile (or aligned inline on desktop) */}
-                          {((paperLinkToUse !== '#') || paper.codeUrl || hfLink) && (
-                            <div className="flex flex-wrap items-center gap-3">
-                              {paperLinkToUse !== '#' && (
-                                <a
-                                  href={paperLinkToUse}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
-                                >
-                                  <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
-                                  <span>Paper</span>
-                                </a>
-                              )}
-
-                              {paper.codeUrl && (
-                                <a
-                                  href={paper.codeUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
-                                >
-                                  <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
-                                  <span>GitHub</span>
-                                </a>
-                              )}
-
-                              {hfLink && (
-                                <a
-                                  href={hfLink}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="px-2.5 py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
-                                >
-                                  <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
-                                  <span>Hugging Face</span>
-                                </a>
-                              )}
-                            </div>
+                        <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2.5">
+                          {paperLinkToUse !== '#' && (
+                            <a
+                              href={paperLinkToUse}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="Paper"
+                              aria-label="View Paper"
+                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                            >
+                              <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
+                              <span className="hidden sm:inline">Paper</span>
+                            </a>
                           )}
 
-                          {/* Row 2 for mobile (or aligned inline on desktop) */}
-                          <div className="flex items-center gap-3">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
-                                setExpandedBibtexId(null);
-                              }}
-                              className="text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                          {paper.codeUrl && (
+                            <a
+                              href={paper.codeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="GitHub"
+                              aria-label="View GitHub Repository"
+                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
-                              <span>Abstract</span>
-                              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
-                            </button>
+                              <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400" />
+                              <span className="hidden sm:inline">GitHub</span>
+                            </a>
+                          )}
 
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
-                                setExpandedAbstractId(null);
-                              }}
-                              className="text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-0.5 cursor-pointer whitespace-nowrap"
+                          {hfLink && (
+                            <a
+                              href={hfLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              title="Hugging Face"
+                              aria-label="View Hugging Face Page"
+                              className="px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-[#EAE0CB] dark:hover:bg-zinc-700 border border-[#E2D5BE] dark:border-zinc-700 rounded shadow-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer"
                             >
-                              <span>BibTeX Citation</span>
-                              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
-                            </button>
-                          </div>
+                              <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
+                              <span className="hidden sm:inline">Hugging Face</span>
+                            </a>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
+                              setExpandedBibtexId(null);
+                            }}
+                            className="text-[11px] sm:text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-0.5 sm:gap-1 py-0.5 px-1 cursor-pointer whitespace-nowrap transition-colors"
+                          >
+                            <span>Abstract</span>
+                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
+                              setExpandedAbstractId(null);
+                            }}
+                            className="text-[11px] sm:text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-0.5 sm:gap-1 py-0.5 px-1 cursor-pointer whitespace-nowrap transition-colors"
+                          >
+                            <span className="sm:hidden">BibTeX</span>
+                            <span className="hidden sm:inline">BibTeX Citation</span>
+                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
+                          </button>
                         </div>
                       </div>
 
@@ -1295,45 +1424,25 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700 rounded-md p-3 mt-2 text-sm sm:text-[13.5px] text-[#2A2D34] dark:text-zinc-300 leading-relaxed animate-fadeIn text-justify not-italic mx-4 mb-4 font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
-                        <p>{paper.abstract}</p>
+                      <div className="bg-[#F3E8D3] dark:bg-zinc-800/80 border border-[#E2D5BE] dark:border-zinc-700 rounded-md p-3 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
+                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-[11px] sm:text-xs leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                          {paper.abstract.split('\n\n').map((paragraph, index) => (
+                            <p key={index}>{paragraph}</p>
+                          ))}
+                        </div>
                       </div>
                     )}
 
                     {/* Collapsible BibTeX Citation Content */}
                     {isBibtexExpanded && (
-                      <div className="bg-zinc-900 text-zinc-100 rounded p-3 mt-1 text-xs font-mono relative overflow-x-auto animate-fadeIn max-h-52 mx-4 mb-4">
-                        <div className="absolute top-2 right-2 flex items-center gap-1.5 animate-fadeIn z-10">
-                          <button
-                            type="button"
-                            onClick={() => downloadBibtex(paper.title, paper.bibtex)}
-                            className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white px-2 py-1 rounded border border-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
-                            title="Download .bib file"
-                          >
-                            <Download className="w-3.5 h-3.5" />
-                            <span className="text-[10px] font-sans font-semibold">Download</span>
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => copyBibtex(paper.id, paper.bibtex)}
-                            className="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white px-2 py-1 rounded border border-zinc-700 transition-colors flex items-center gap-1 cursor-pointer"
-                            title="Copy BibTeX citation"
-                          >
-                            {isCopied ? (
-                              <>
-                                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                                <span className="text-[10px] text-emerald-400 font-sans font-semibold">Copied</span>
-                              </>
-                            ) : (
-                              <>
-                                <Copy className="w-3.5 h-3.5" />
-                                <span className="text-[10px] font-sans font-semibold">Copy</span>
-                              </>
-                            )}
-                          </button>
-                        </div>
-                        <pre className="pr-48 pt-7 sm:pt-0 text-[10px] whitespace-pre-wrap">{paper.bibtex}</pre>
-                      </div>
+                      <BibtexViewer
+                        paperId={paper.id}
+                        title={paper.title}
+                        bibtex={paper.bibtex}
+                        isCopied={isCopied}
+                        onCopy={() => copyBibtex(paper.id, paper.bibtex)}
+                        onDownload={() => downloadBibtex(paper.title, paper.bibtex)}
+                      />
                     )}
                   </>
                 )}

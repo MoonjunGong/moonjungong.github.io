@@ -63,6 +63,15 @@ html.dark ::selection {
   color: #7DE2C5;
 }
 
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
 body {
   background-color: #F3E8D3; /* Warm beige / oatmeal */
   color: #2A2D34; /* Deep charcoal */
