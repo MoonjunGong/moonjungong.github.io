@@ -235,32 +235,32 @@ export default function App() {
             <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-3 sm:gap-5 text-[11px] font-bold uppercase tracking-wider">
               <button
                 onClick={() => scrollToSection('header-section', 'about')}
-                className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'about' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer ${
+                  activeTab === 'about' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
                 Biography
               </button>
               <button
                 onClick={() => scrollToSection('interests-section', 'focus')}
-                className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'focus' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer ${
+                  activeTab === 'focus' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
                 Research
               </button>
               <button
                 onClick={() => scrollToSection('publications-section', 'pubs')}
-                className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'pubs' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer ${
+                  activeTab === 'pubs' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
                 Publications
               </button>
               <button
                 onClick={() => scrollToSection('cv-section', 'cv')}
-                className={`pb-1 border-b-2 transition-all cursor-pointer ${
-                  activeTab === 'cv' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#2A2D34] dark:hover:text-zinc-200'
+                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer ${
+                  activeTab === 'cv' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
                 Timeline
