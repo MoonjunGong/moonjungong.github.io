@@ -102,6 +102,7 @@ export default function HeaderCard({
                 <OptimizedImage
                   src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
                   alt={profile.name}
+                  loading="eager"
                   decoding="async"
                   fetchPriority="high"
                   className="w-32 md:w-40 h-auto rounded-xl transition-all duration-300"
