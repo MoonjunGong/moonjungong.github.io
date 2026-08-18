@@ -57,31 +57,31 @@ function BibtexViewer({ bibtex, isCopied, onCopy, onDownload }: BibtexViewerProp
 
   return (
     <div className="bg-zinc-900 text-zinc-100 rounded-xl mt-2 text-xs font-mono relative animate-fadeIn mx-3 sm:mx-4 mb-4 border border-zinc-800 shadow-xs overflow-hidden flex flex-col">
-      {/* Light-colored action buttons for high visibility and contrast */}
+      {/* Semi-transparent white action buttons sized identically to publication action buttons */}
       <div className="absolute top-2 right-2 flex items-center gap-1.5 z-10">
         <button
           type="button"
           onClick={onDownload}
-          className="bg-white hover:bg-zinc-100 text-zinc-900 hover:text-black px-2 py-0.5 rounded-lg border border-zinc-200 shadow-xs transition-all flex items-center gap-1 cursor-pointer text-[9.5px] font-sans font-bold active:scale-95"
+          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-95 shrink-0"
           title="Download .bib file"
         >
-          <Download className="w-3 h-3 text-zinc-700" />
+          <Download className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
           <span>Download</span>
         </button>
         <button
           type="button"
           onClick={onCopy}
-          className="bg-white hover:bg-zinc-100 text-zinc-900 hover:text-black px-2 py-0.5 rounded-lg border border-zinc-200 shadow-xs transition-all flex items-center gap-1 cursor-pointer text-[9.5px] font-sans font-bold active:scale-95"
+          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-95 shrink-0"
           title="Copy BibTeX citation"
         >
           {isCopied ? (
             <>
-              <Check className="w-3 h-3 text-emerald-600" />
-              <span className="text-emerald-700">Copied</span>
+              <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <span className="text-emerald-700 font-bold">Copied</span>
             </>
           ) : (
             <>
-              <Copy className="w-3 h-3 text-zinc-700" />
+              <Copy className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
               <span>Copy</span>
             </>
           )}
