@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Search, Filter, BookOpen, Copy, Check, FileText, ChevronDown, ChevronUp, Star, Trash2, Plus, ExternalLink, Edit3, Code, X, Github, Download, GripHorizontal } from 'lucide-react';
 import { Paper, Profile } from '../types';
+import { OptimizedImage } from './OptimizedImage';
 
 interface BibtexViewerProps {
   paperId: string;
@@ -1431,11 +1432,12 @@ export default function PublicationsSection({
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
-                            <img
+                            <OptimizedImage
                               src={paper.teaserImage}
                               alt={`Teaser for ${paper.title}`}
+                              loading="lazy"
+                              decoding="async"
                               className="max-h-28 sm:max-h-32 md:max-h-36 w-full h-auto object-contain transition-transform duration-300 group-hover/image:scale-[1.04] rounded-lg"
-                              referrerPolicy="no-referrer"
                             />
                           </div>
                         </div>
@@ -1493,11 +1495,10 @@ export default function PublicationsSection({
             >
               <X className="w-5 h-5 text-black" />
             </button>
-            <img
+            <OptimizedImage
               src={selectedZoomImage}
               alt="Teaser full preview"
               className="max-w-full max-h-[78vh] object-contain rounded-xl"
-              referrerPolicy="no-referrer"
             />
           </div>
         </div>

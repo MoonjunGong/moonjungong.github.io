@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as Icons from 'lucide-react';
+import { ArrowUp, Sun, Moon, BookOpen } from 'lucide-react';
 import { Profile, Paper, AcademicExperience, ResearchArea } from './types';
 import {
   INITIAL_PROFILE,
@@ -76,14 +76,9 @@ export default function App() {
     setIsDarkMode(prev => !prev);
   };
 
-  // Helper to dynamically render websiteIcon from Lucide
+  // Helper to dynamically render websiteIcon
   const renderWebsiteIcon = () => {
-    const iconName = profile.websiteIcon || "BookOpen";
-    const IconComponent = (Icons as any)[iconName];
-    if (IconComponent) {
-      return <IconComponent className="w-3.5 h-3.5" />;
-    }
-    return <span className="text-sm leading-none flex items-center justify-center font-sans">{iconName}</span>;
+    return <BookOpen className="w-3.5 h-3.5" />;
   };
 
   const isManualScrollingRef = React.useRef(false);
@@ -213,7 +208,7 @@ export default function App() {
       {/* Fixed Floating Navigation Bar */}
       <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-all duration-300">
         <div 
-          className="pointer-events-auto w-[calc(100%+6px)] -mx-[3px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
+          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
           style={{
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)'
@@ -326,7 +321,7 @@ export default function App() {
             title="Back to Top"
             aria-label="Back to Top"
           >
-            <Icons.ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5 text-[#2A2D34]" />
+            <ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5 text-[#2A2D34]" />
           </button>
         )}
 
@@ -340,9 +335,9 @@ export default function App() {
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
-            <Icons.Sun className="w-4 h-4 text-amber-500 fill-amber-400 transition-transform sm:hover:rotate-45" />
+            <Sun className="w-4 h-4 text-amber-500 fill-amber-400 transition-transform sm:hover:rotate-45" />
           ) : (
-            <Icons.Moon className="w-4 h-4 text-[#2A2D34] fill-[#2A2D34] transition-transform sm:hover:-rotate-12" />
+            <Moon className="w-4 h-4 text-[#2A2D34] fill-[#2A2D34] transition-transform sm:hover:-rotate-12" />
           )}
         </button>
       </div>

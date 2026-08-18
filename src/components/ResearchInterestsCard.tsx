@@ -1,5 +1,20 @@
 import React from 'react';
-import * as Icons from 'lucide-react';
+import {
+  Sparkles,
+  Users,
+  Eye,
+  Brain,
+  BookOpen,
+  Cpu,
+  Globe,
+  Code,
+  Database,
+  GraduationCap,
+  Lightbulb,
+  Plus,
+  Trash2,
+  LucideIcon
+} from 'lucide-react';
 import { ResearchArea } from '../types';
 
 interface ResearchInterestsCardProps {
@@ -7,6 +22,20 @@ interface ResearchInterestsCardProps {
   isEditing: boolean;
   onUpdateAreas: (updated: ResearchArea[] | ((prev: ResearchArea[]) => ResearchArea[])) => void;
 }
+
+const ICON_MAP: Record<string, LucideIcon> = {
+  Sparkles,
+  Users,
+  Eye,
+  Brain,
+  BookOpen,
+  Cpu,
+  Globe,
+  Code,
+  Database,
+  GraduationCap,
+  Lightbulb,
+};
 
 export default function ResearchInterestsCard({
   areas,
@@ -39,11 +68,8 @@ export default function ResearchInterestsCard({
 
   // Helper to dynamically load a Lucide Icon by string name
   const renderIcon = (name: string, className: string = "w-4 h-4") => {
-    const IconComponent = (Icons as any)[name];
-    if (IconComponent) {
-      return <IconComponent className={className} />;
-    }
-    return <Icons.BookOpen className={className} />; // Fallback icon
+    const IconComponent = ICON_MAP[name] || BookOpen;
+    return <IconComponent className={className} />;
   };
 
   return (
@@ -58,7 +84,7 @@ export default function ResearchInterestsCard({
             onClick={addArea}
             className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <Icons.Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5" />
             <span>Add Focus Area</span>
           </button>
         )}
@@ -104,7 +130,7 @@ export default function ResearchInterestsCard({
                       className="p-1 hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors"
                       title="Delete area"
                     >
-                      <Icons.Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>

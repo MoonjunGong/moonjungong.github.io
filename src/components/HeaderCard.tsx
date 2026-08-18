@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter, FileText, BookOpen, RotateCcw, Camera, Check } from 'lucide-react';
 import { Profile } from '../types';
+import { OptimizedImage } from './OptimizedImage';
 
 interface HeaderCardProps {
   profile: Profile;
@@ -98,11 +99,12 @@ export default function HeaderCard({
           <div className="w-full md:w-1/4 flex flex-col items-center justify-between">
             <div className="flex-1 flex flex-col items-center justify-center py-2">
               <div className="relative group">
-                <img
+                <OptimizedImage
                   src={profile.avatarUrl || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400"}
                   alt={profile.name}
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-32 md:w-40 h-auto rounded-xl transition-all duration-300"
-                  referrerPolicy="no-referrer"
                 />
                 {isEditing && (
                   <>
