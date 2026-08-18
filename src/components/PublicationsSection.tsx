@@ -802,7 +802,7 @@ export default function PublicationsSection({
                   {isActive ? (
                     <motion.div
                       layoutId="publications-filter-active-pill"
-                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-lg border border-[#E2D5BE]/60 dark:border-zinc-700 shadow-xs"
+                      className="absolute inset-[1px] bg-white dark:bg-zinc-900 rounded-[7px] border border-[#E2D5BE]/60 dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   ) : (
@@ -1303,20 +1303,8 @@ export default function PublicationsSection({
                             </div>
 
                             {/* Paper Title */}
-                            <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug hover:text-[#801428] dark:hover:text-[#7DE2C5] transition-colors">
-                              {paperLinkToUse !== '#' ? (
-                                <a
-                                  href={paperLinkToUse}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="hover:underline inline-flex items-center gap-1"
-                                >
-                                  <span>{paper.title}</span>
-                                  <ExternalLink className="w-3.5 h-3.5 inline text-[#801428] dark:text-zinc-500 shrink-0 align-middle" />
-                                </a>
-                              ) : (
-                                paper.title
-                              )}
+                            <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug">
+                              {paper.title}
                             </h3>
 
                             {/* Authors List (with Highlight on the Portfolio Owner) */}
@@ -1467,7 +1455,7 @@ export default function PublicationsSection({
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
                       <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-xl p-3 sm:p-4 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
-                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                           {paper.abstract.split('\n\n').map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                           ))}

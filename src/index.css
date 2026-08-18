@@ -66,9 +66,9 @@ html,
 body {
   overflow-x: hidden;
   max-width: 100vw;
-  -webkit-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
+  -webkit-hyphens: manual;
+  -ms-hyphens: manual;
+  hyphens: manual;
 }
 
 body {

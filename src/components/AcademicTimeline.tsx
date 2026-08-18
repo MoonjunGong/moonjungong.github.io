@@ -138,7 +138,7 @@ export default function AcademicTimeline({
                   {isActive ? (
                     <motion.div
                       layoutId="academic-filter-active-pill"
-                      className="absolute inset-0 bg-white dark:bg-zinc-900 rounded-lg border border-[#E2D5BE] dark:border-zinc-700 shadow-xs"
+                      className="absolute inset-[1px] bg-white dark:bg-zinc-900 rounded-[7px] border border-[#E2D5BE] dark:border-zinc-700 shadow-xs"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   ) : (

@@ -208,7 +208,7 @@ export default function App() {
       {/* Fixed Floating Navigation Bar */}
       <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-all duration-300">
         <div 
-          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/[0.01] dark:bg-zinc-900/[0.01] backdrop-blur-md backdrop-saturate-150 border border-[#E2D5BE]/70 dark:border-zinc-800/70 shadow-sm shadow-black/5 dark:shadow-black/20 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300"
+          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/40 hover:bg-[#FAF5EB]/85 dark:bg-zinc-900/40 dark:hover:bg-zinc-900/85 backdrop-blur-md hover:backdrop-blur-lg backdrop-saturate-150 border border-[#E2D5BE]/70 hover:border-[#E2D5BE] dark:border-zinc-800/70 dark:hover:border-zinc-700 shadow-xs hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300 group/nav"
           style={{
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)'

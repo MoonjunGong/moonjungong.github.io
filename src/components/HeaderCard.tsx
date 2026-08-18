@@ -293,7 +293,7 @@ export default function HeaderCard({
                   className="w-full text-[#2A2D34] dark:text-zinc-200 text-xs sm:text-sm leading-relaxed p-3 bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-md focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]"
                 />
               ) : (
-                <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                   {profile.bio.split('\n\n').map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
