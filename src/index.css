@@ -137,5 +137,23 @@ html.dark body {
   }
 }
 
+/* Container Query & Responsive rules for publication buttons */
+.pub-actions-container {
+  container-type: inline-size;
+  container-name: pubactions;
+}
+
+@container pubactions (max-width: 460px) {
+  .btn-text {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-text {
+    display: none;
+  }
+}
+
 
 

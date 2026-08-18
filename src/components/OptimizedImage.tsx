@@ -8,8 +8,9 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 /**
- * OptimizedImage renders a modern <picture> element that requests the .webp version
- * when available, with an automatic fallback to the original image format (PNG/JPG).
+ * OptimizedImage standardizes local image asset path resolution and automatically serves
+ * the generated .webp version with an automatic, resilient fallback to the original (PNG/JPG)
+ * if the .webp is unavailable or fails to load.
  */
 export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
@@ -20,51 +21,36 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   decoding = 'async',
   ...rest
 }) => {
-  const [webpError, setWebpError] = useState(false);
-
   if (!src) return null;
 
-  // Check if image is a local static asset (e.g. ./data/avatar.jpg, data/avatar.jpg, or /data/avatar.jpg)
-  const isLocalStaticAsset =
-    (src.startsWith('./data/') ||
-      src.startsWith('data/') ||
-      src.startsWith('/data/')) &&
-    /\.(png|jpg|jpeg)$/i.test(src);
+  // Normalize path format (e.g. ./data/file.png -> data/file.png)
+  const normalizedSrc = src.startsWith('./') ? src.slice(2) : src;
 
-  if (!isLocalStaticAsset || webpError) {
-    return (
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        loading={loading}
-        decoding={decoding}
-        referrerPolicy="no-referrer"
-        {...rest}
-      />
-    );
-  }
+  // Determine if this is a local PNG/JPG asset that has an automated .webp sibling
+  const isConvertible = /\.(png|jpe?g)$/i.test(normalizedSrc);
+  const webpSrc = isConvertible
+    ? normalizedSrc.replace(/\.(png|jpe?g)$/i, '.webp')
+    : normalizedSrc;
 
-  // Generate WebP candidate path
-  const webpSrc = src.replace(/\.(png|jpg|jpeg)$/i, '.webp');
+  // State to track if WebP source failed so we switch back cleanly to normalized original
+  const [currentSrc, setCurrentSrc] = useState<string>(webpSrc);
 
   return (
-    <picture className={pictureClassName}>
-      <source
-        srcSet={webpSrc}
-        type="image/webp"
-        onError={() => setWebpError(true)}
-      />
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        loading={loading}
-        decoding={decoding}
-        referrerPolicy="no-referrer"
-        {...rest}
-      />
-    </picture>
+    <img
+      src={currentSrc}
+      alt={alt}
+      className={className}
+      loading={loading}
+      decoding={decoding}
+      referrerPolicy="no-referrer"
+      onError={() => {
+        // If webp fails to load, gracefully fall back to original PNG/JPG source
+        if (currentSrc !== normalizedSrc) {
+          setCurrentSrc(normalizedSrc);
+        }
+      }}
+      {...rest}
+    />
   );
 };
 

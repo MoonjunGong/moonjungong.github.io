@@ -1332,103 +1332,123 @@ export default function PublicationsSection({
                                 </span>
                               ))}
                             </div>
+
+                            {/* Mobile Teaser Image (under tags, above buttons) */}
+                            {paper.teaserImage && (
+                              <div className="sm:hidden pt-2.5 pb-1 flex justify-center">
+                                <div
+                                  className="w-full max-w-xs rounded-xl overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs cursor-pointer group/image"
+                                  onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
+                                  title="Click to zoom preview"
+                                >
+                                  <OptimizedImage
+                                    src={paper.teaserImage}
+                                    alt={`Teaser for ${paper.title}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="max-h-36 w-full h-auto object-contain transition-transform duration-300 group-hover/image:scale-[1.03] rounded-lg"
+                                  />
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
 
-                        {/* Expandable Blocks Bar */}
-                        <div className="mt-3 flex flex-wrap items-center gap-1.5 sm:gap-2.5">
-                          {paperLinkToUse !== '#' && (
-                            <a
-                              href={paperLinkToUse}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              title="Paper"
-                              aria-label="View Paper"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                        {/* Action Buttons Bar - Stays on a single line (flex-nowrap) with responsive .btn-text container queries */}
+                        <div className="pub-actions-container mt-3 overflow-x-auto no-scrollbar">
+                          <div className="flex flex-nowrap items-center gap-1.5 sm:gap-2">
+                            {paperLinkToUse !== '#' && (
+                              <a
+                                href={paperLinkToUse}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Paper"
+                                aria-label="View Paper"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                />
+                                <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                  <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors shrink-0" />
+                                  <span className="btn-text">Paper</span>
+                                </span>
+                              </a>
+                            )}
+
+                            {paper.codeUrl && (
+                              <a
+                                href={paper.codeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="GitHub"
+                                aria-label="View GitHub Repository"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                />
+                                <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                  <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors shrink-0" />
+                                  <span className="btn-text">GitHub</span>
+                                </span>
+                              </a>
+                            )}
+
+                            {hfLink && (
+                              <a
+                                href={hfLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Hugging Face"
+                                aria-label="View Hugging Face Page"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                />
+                                <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
+                                  <span className="text-xs leading-none shrink-0" role="img" aria-label="Hugging Face">🤗</span>
+                                  <span className="btn-text">Hugging Face</span>
+                                </span>
+                              </a>
+                            )}
+
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
+                                setExpandedBibtexId(null);
+                              }}
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-colors min-h-[30px] sm:min-h-0"
                             >
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
-                              />
-                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors" />
-                                <span className="hidden sm:inline">Paper</span>
-                              </span>
-                            </a>
-                          )}
+                              <span>TL;DR</span>
+                              <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
+                            </button>
 
-                          {paper.codeUrl && (
-                            <a
-                              href={paper.codeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              title="GitHub"
-                              aria-label="View GitHub Repository"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
+                                setExpandedAbstractId(null);
+                              }}
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-colors min-h-[30px] sm:min-h-0"
                             >
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
-                              />
-                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors" />
-                                <span className="hidden sm:inline">GitHub</span>
-                              </span>
-                            </a>
-                          )}
-
-                          {hfLink && (
-                            <a
-                              href={hfLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              title="Hugging Face"
-                              aria-label="View Hugging Face Page"
-                              className="group/btn relative overflow-hidden px-1.5 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] dark:bg-zinc-800/90 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-colors flex items-center gap-1 sm:gap-1.5 cursor-pointer"
-                            >
-                              <span
-                                aria-hidden="true"
-                                className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
-                              />
-                              <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                <span className="text-xs leading-none" role="img" aria-label="Hugging Face">🤗</span>
-                                <span className="hidden sm:inline">Hugging Face</span>
-                              </span>
-                            </a>
-                          )}
-
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
-                              setExpandedBibtexId(null);
-                            }}
-                            className="text-[11px] sm:text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-0.5 sm:gap-1 py-0.5 px-1 cursor-pointer whitespace-nowrap transition-colors"
-                          >
-                            <span>Abstract</span>
-                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
-                              setExpandedAbstractId(null);
-                            }}
-                            className="text-[11px] sm:text-xs font-bold text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] flex items-center gap-0.5 sm:gap-1 py-0.5 px-1 cursor-pointer whitespace-nowrap transition-colors"
-                          >
-                            <span className="sm:hidden">BibTeX</span>
-                            <span className="hidden sm:inline">BibTeX Citation</span>
-                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
-                          </button>
+                              <span>BibTeX</span>
+                              <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
+                            </button>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Right Side: Resized and framed Teaser Image */}
+                      {/* Right Side: Resized and framed Teaser Image (Desktop only) */}
                       {paper.teaserImage && (
-                        <div className="p-4 sm:pl-0 flex items-center justify-center shrink-0">
+                        <div className="hidden sm:flex p-4 pl-0 items-center justify-center shrink-0">
                           <div
-                            className="w-full sm:w-44 md:w-52 shrink-0 rounded-xl overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
+                            className="w-44 md:w-52 shrink-0 rounded-xl overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
@@ -1446,8 +1466,8 @@ export default function PublicationsSection({
 
                     {/* Collapsible Abstract Content */}
                     {isAbstractExpanded && (
-                      <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-xl p-3 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
-                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-[11px] sm:text-xs leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                      <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-xl p-3 sm:p-4 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
+                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed [hyphens:auto] [-webkit-hyphens:auto] font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
                           {paper.abstract.split('\n\n').map((paragraph, index) => (
                             <p key={index}>{paragraph}</p>
                           ))}
