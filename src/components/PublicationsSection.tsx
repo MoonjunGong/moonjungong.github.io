@@ -1290,7 +1290,13 @@ export default function PublicationsSection({
                                   className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                                 />
                                 <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                  <span className="text-xs leading-none shrink-0" role="img" aria-label="Hugging Face">🤗</span>
+                                  <img
+                                    src="/hf-logo.svg"
+                                    alt="Hugging Face"
+                                    className="w-3.5 h-3.5 object-contain shrink-0"
+                                    loading="lazy"
+                                    decoding="async"
+                                  />
                                   <span className="btn-text">Hugging Face</span>
                                 </span>
                               </a>
