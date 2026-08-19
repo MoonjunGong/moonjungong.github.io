@@ -1293,7 +1293,7 @@ export default function PublicationsSection({
                                   <img
                                     src="/hf-logo.svg"
                                     alt="Hugging Face"
-                                    className="w-5 h-5 object-contain shrink-0"
+                                    className="w-3.5 h-3.5 object-contain shrink-0"
                                     loading="lazy"
                                     decoding="async"
                                   />
