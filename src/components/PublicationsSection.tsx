@@ -668,7 +668,7 @@ export default function PublicationsSection({
             <Search className="w-4 h-4 text-[#801428] dark:text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search papers by keywords, titles, co-authors, venues..."
+              placeholder="Search papers..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-3 py-2 text-xs bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-xl outline-none focus:bg-[#FAF5EB] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-[background-color,border-color] duration-160 text-[#2A2D34] dark:text-zinc-100"
