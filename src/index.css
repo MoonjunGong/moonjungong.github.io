@@ -204,5 +204,13 @@ html.dark body {
   }
 }
 
+/* Prevent auto-detected phone links on mobile Safari/Chrome from overriding typography */
+a[href^="tel:"] {
+  color: inherit !important;
+  text-decoration: none !important;
+  pointer-events: none;
+  cursor: default;
+}
+
 
 

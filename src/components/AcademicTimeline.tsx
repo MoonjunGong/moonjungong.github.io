@@ -318,7 +318,7 @@ export default function AcademicTimeline({
                           className="border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-16 py-0.5 text-xs font-mono text-right text-[#2A2D34] dark:text-zinc-300 bg-transparent"
                         />
                       ) : (
-                        <span>{exp.duration}</span>
+                        <span className="select-text whitespace-nowrap notranslate" x-apple-data-detectors="false">{exp.duration}</span>
                       )}
                     </div>
 
