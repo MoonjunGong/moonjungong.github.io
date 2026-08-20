@@ -129,23 +129,17 @@ export default function AcademicTimeline({
                 <button
                   key={type}
                   onClick={() => setActiveFilter(type)}
-                  className={`group relative px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                  className={`group relative px-3 py-1 rounded-lg text-xs font-semibold capitalize transition-[color,transform] duration-160 cursor-pointer select-none active:scale-95 ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
                       : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                   }`}
                 >
-                  {isActive ? (
+                  {isActive && (
                     <motion.div
                       layoutId="academic-filter-active-pill"
                       className="absolute inset-[1px] bg-white dark:bg-zinc-900 rounded-[7px] border border-[#E2D5BE] dark:border-zinc-700 shadow-xs"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  ) : (
-                    /* Bright, compact soft blurry spotlight glow directly behind text */
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full bg-white dark:bg-zinc-600/90 blur-[5px] opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_10px_2px_rgba(255,255,255,1)] dark:shadow-[0_0_10px_2px_rgba(125,226,197,0.4)]"
+                      transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
                     />
                   )}
                   <span className="relative z-10">
@@ -159,7 +153,7 @@ export default function AcademicTimeline({
           {isEditing && (
             <button
               onClick={() => setShowAddForm(prev => !prev)}
-              className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-[transform,background-color] duration-160 active:scale-95 flex items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>{showAddForm ? "Cancel" : "Add Item"}</span>
@@ -267,7 +261,7 @@ export default function AcademicTimeline({
                 </div>
 
                 {/* CV Item Card */}
-                <div className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-xl p-4 hover:shadow-xs transition-all duration-300">
+                <div className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-xl p-4 hover:shadow-xs transition-[background-color,border-color,box-shadow] duration-200">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
                     <div>
                       <div className="flex items-center gap-2 flex-wrap mb-1">

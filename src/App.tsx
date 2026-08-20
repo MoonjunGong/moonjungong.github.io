@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowUp, Sun, Moon, BookOpen } from 'lucide-react';
 import { Profile, Paper, AcademicExperience, ResearchArea } from './types';
 import {
@@ -206,16 +207,16 @@ export default function App() {
     <div className="min-h-screen bg-[#F3E8D3] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
       {/* Fixed Floating Navigation Bar */}
-      <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-all duration-300">
+      <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-[top,transform] duration-200">
         <div 
-          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/40 hover:bg-[#FAF5EB]/85 dark:bg-zinc-900/40 dark:hover:bg-zinc-900/85 backdrop-blur-md hover:backdrop-blur-lg backdrop-saturate-150 border border-[#E2D5BE]/70 hover:border-[#E2D5BE] dark:border-zinc-800/70 dark:hover:border-zinc-700 shadow-xs hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 rounded-xl sm:rounded-2xl px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-all duration-300 group/nav"
+          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/50 hover:bg-[#FAF5EB]/85 dark:bg-zinc-900/50 dark:hover:bg-zinc-900/85 backdrop-blur-md hover:backdrop-blur-lg backdrop-saturate-150 border border-[#E2D5BE]/70 hover:border-[#E2D5BE] dark:border-zinc-800/70 dark:hover:border-zinc-700 shadow-xs hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-[background-color,border-color,box-shadow] duration-200 group/nav"
           style={{
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)'
           }}
         >
           {/* Logo / Title - Hidden on mobile */}
-          <div className="hidden sm:flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('header-section', 'about')}>
+          <div className="hidden sm:flex items-center gap-2 cursor-pointer select-none" onClick={() => scrollToSection('header-section', 'about')}>
             <div className="w-7 h-7 rounded-lg bg-[#801428] dark:bg-[#7DE2C5] flex items-center justify-center text-white dark:text-zinc-900 shadow-xs text-xs font-bold font-sans">
               {renderWebsiteIcon()}
             </div>
@@ -226,40 +227,36 @@ export default function App() {
           </div>
 
           <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
-            {/* Quick Scroll Links */}
-            <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-3 sm:gap-5 text-[11px] font-bold uppercase tracking-wider select-none">
-              <button
-                onClick={() => scrollToSection('header-section', 'about')}
-                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer active:scale-95 ${
-                  activeTab === 'about' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
-                }`}
-              >
-                Biography
-              </button>
-              <button
-                onClick={() => scrollToSection('interests-section', 'focus')}
-                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer active:scale-95 ${
-                  activeTab === 'focus' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
-                }`}
-              >
-                Research
-              </button>
-              <button
-                onClick={() => scrollToSection('publications-section', 'pubs')}
-                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer active:scale-95 ${
-                  activeTab === 'pubs' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
-                }`}
-              >
-                Publications
-              </button>
-              <button
-                onClick={() => scrollToSection('cv-section', 'cv')}
-                className={`pb-1 border-b-2 transition-all duration-200 cursor-pointer active:scale-95 ${
-                  activeTab === 'cv' ? 'border-[#801428] dark:border-[#7DE2C5] text-[#2A2D34] dark:text-zinc-100' : 'border-transparent text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
-                }`}
-              >
-                Timeline
-              </button>
+            {/* Quick Scroll Links with Sliding Active Pill */}
+            <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-1 sm:gap-1.5 text-[11px] font-bold uppercase tracking-wider select-none relative">
+              {[
+                { id: 'header-section', key: 'about' as const, label: 'Biography' },
+                { id: 'interests-section', key: 'focus' as const, label: 'Research' },
+                { id: 'publications-section', key: 'pubs' as const, label: 'Publications' },
+                { id: 'cv-section', key: 'cv' as const, label: 'Timeline' },
+              ].map((item) => {
+                const isActive = activeTab === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    onClick={() => scrollToSection(item.id, item.key)}
+                    className={`relative px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-[color,transform] duration-160 cursor-pointer active:scale-95 ${
+                      isActive
+                        ? 'text-[#801428] dark:text-[#7DE2C5]'
+                        : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="nav-active-pill"
+                        className="absolute inset-0 bg-[#801428]/10 dark:bg-teal-950/60 rounded-lg border border-[#801428]/25 dark:border-teal-700/60 shadow-2xs"
+                        transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </button>
+                );
+              })}
             </nav>
           </div>
         </div>
@@ -311,33 +308,40 @@ export default function App() {
 
       {/* Floating Action Buttons Stack (Bottom Right) */}
       <div className="fixed bottom-6 right-6 z-40 flex flex-col gap-2.5 items-center">
-        {showBackToTop && (
-          <button
-            onClick={(e) => {
-              e.currentTarget.blur();
-              scrollToTop();
-            }}
-            className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center animate-fadeIn group border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
-            title="Back to Top"
-            aria-label="Back to Top"
-          >
-            <ArrowUp className="w-4 h-4 transition-transform sm:group-hover:-translate-y-0.5 text-[#2A2D34]" />
-          </button>
-        )}
+        <AnimatePresence>
+          {showBackToTop && (
+            <motion.button
+              key="back-to-top"
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 8 }}
+              transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
+              onClick={(e) => {
+                e.currentTarget.blur();
+                scrollToTop();
+              }}
+              className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-[transform,background-color,border-color] duration-160 active:scale-95 sm:hover:scale-105 flex items-center justify-center group border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+              title="Back to Top"
+              aria-label="Back to Top"
+            >
+              <ArrowUp className="w-4 h-4 transition-transform duration-160 sm:group-hover:-translate-y-0.5 text-[#2A2D34]" />
+            </motion.button>
+          )}
+        </AnimatePresence>
 
         <button
           onClick={(e) => {
             e.currentTarget.blur();
             toggleDarkMode();
           }}
-          className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-all active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
+          className="bg-white dark:bg-white hover:bg-zinc-100 dark:hover:bg-zinc-100 text-[#2A2D34] dark:text-[#2A2D34] p-2.5 rounded-full shadow-lg cursor-pointer transition-[transform,background-color,border-color] duration-160 active:scale-95 sm:hover:scale-105 flex items-center justify-center border border-[#E2D5BE] dark:border-zinc-300 backdrop-blur-xs select-none touch-manipulation focus:outline-none"
           title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
           aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
         >
           {isDarkMode ? (
-            <Sun className="w-4 h-4 text-amber-500 fill-amber-400 transition-transform sm:hover:rotate-45" />
+            <Sun className="w-4 h-4 text-amber-500 fill-amber-400 transition-transform duration-200 sm:hover:rotate-45" />
           ) : (
-            <Moon className="w-4 h-4 text-[#2A2D34] fill-[#2A2D34] transition-transform sm:hover:-rotate-12" />
+            <Moon className="w-4 h-4 text-[#2A2D34] fill-[#2A2D34] transition-transform duration-200 sm:hover:-rotate-12" />
           )}
         </button>
       </div>

@@ -59,7 +59,7 @@ export function BibtexViewer({ bibtex, isCopied, onCopy, onDownload }: BibtexVie
         <button
           type="button"
           onClick={onDownload}
-          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-95 shrink-0"
+          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-[transform,background-color,border-color,color] duration-160 flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-[0.97] shrink-0"
           title="Download .bib file"
         >
           <Download className="w-3.5 h-3.5 text-zinc-800 shrink-0" />
@@ -68,7 +68,7 @@ export function BibtexViewer({ bibtex, isCopied, onCopy, onDownload }: BibtexVie
         <button
           type="button"
           onClick={onCopy}
-          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-95 shrink-0"
+          className="bg-white/80 hover:bg-white/95 text-zinc-900 hover:text-black px-2 py-1 sm:px-2.5 sm:py-1 rounded-lg border border-white/40 hover:border-white shadow-xs backdrop-blur-xs transition-[transform,background-color,border-color,color] duration-160 flex items-center gap-1 sm:gap-1.5 cursor-pointer text-xs font-sans font-semibold active:scale-[0.97] shrink-0"
           title="Copy BibTeX citation"
         >
           {isCopied ? (

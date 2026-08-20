@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Search, Filter, BookOpen, FileText, ChevronDown, Star, Trash2, Plus, ExternalLink, Edit3, X, Github } from 'lucide-react';
 import { Paper, Profile } from '../types';
 import { OptimizedImage } from './OptimizedImage';
@@ -672,7 +672,7 @@ export default function PublicationsSection({
               placeholder="Search papers by keywords, titles, co-authors, venues..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-xs bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-xl outline-none focus:bg-[#FAF5EB] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-all text-[#2A2D34] dark:text-zinc-100"
+              className="w-full pl-9 pr-3 py-2 text-xs bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded-xl outline-none focus:bg-[#FAF5EB] dark:focus:bg-zinc-900 focus:border-[#801428] dark:focus:border-[#7DE2C5] transition-[background-color,border-color] duration-160 text-[#2A2D34] dark:text-zinc-100"
             />
           </div>
 
@@ -684,23 +684,17 @@ export default function PublicationsSection({
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`group relative px-2.5 py-1 rounded-lg text-xs font-semibold capitalize transition-all duration-200 cursor-pointer select-none active:scale-95 ${
+                  className={`group relative px-2.5 py-1 rounded-lg text-xs font-semibold capitalize transition-[color,transform] duration-160 cursor-pointer select-none active:scale-95 ${
                     isActive
                       ? 'text-[#801428] dark:text-[#7DE2C5] font-bold'
                       : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                   }`}
                 >
-                  {isActive ? (
+                  {isActive && (
                     <motion.div
                       layoutId="publications-filter-active-pill"
                       className="absolute inset-[1px] bg-white dark:bg-zinc-900 rounded-[7px] border border-[#E2D5BE]/60 dark:border-zinc-700 shadow-xs"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  ) : (
-                    /* Bright, compact soft blurry spotlight glow directly behind text */
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-0 m-auto w-3/4 h-3/4 rounded-full bg-white dark:bg-zinc-600/90 blur-[5px] opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-[0_0_10px_2px_rgba(255,255,255,1)] dark:shadow-[0_0_10px_2px_rgba(125,226,197,0.4)]"
+                      transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
                     />
                   )}
                   <span className="relative z-10">
@@ -721,36 +715,24 @@ export default function PublicationsSection({
             </span>
             <button
               onClick={() => setSelectedTag(null)}
-              className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded-lg font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
+              className={`px-2.5 py-0.5 text-xs rounded-lg font-medium transition-[transform,background-color,border-color,color] duration-160 active:scale-95 cursor-pointer font-['Inter',sans-serif] ${
                 !selectedTag
                   ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
                   : 'bg-[#F7F1E6] dark:bg-zinc-800/90 text-[#525660] dark:text-zinc-300 border border-[#E5DAC5] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
               }`}
             >
-              {selectedTag && (
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
-                />
-              )}
               <span className="relative z-10">All Topics</span>
             </button>
             {allTags.map(tag => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className={`group relative overflow-hidden px-2.5 py-0.5 text-xs rounded-lg font-medium transition-all duration-200 cursor-pointer font-['Inter',sans-serif] ${
+                className={`px-2.5 py-0.5 text-xs rounded-lg font-medium transition-[transform,background-color,border-color,color] duration-160 active:scale-95 cursor-pointer font-['Inter',sans-serif] ${
                   selectedTag === tag
                     ? 'bg-[#801428]/10 text-[#801428] border border-[#801428]/30 dark:bg-teal-950/60 dark:text-[#7DE2C5] dark:border-teal-800 shadow-xs'
                     : 'bg-[#F7F1E6] dark:bg-zinc-800/90 text-[#525660] dark:text-zinc-300 border border-[#E5DAC5] dark:border-zinc-700 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
                 }`}
               >
-                {selectedTag !== tag && (
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
-                  />
-                )}
                 <span className="relative z-10">{tag}</span>
               </button>
             ))}
@@ -848,7 +830,7 @@ export default function PublicationsSection({
                     paper.featured
                       ? 'border-[#801428]/50 dark:border-teal-800/80 bg-[#F3E8D3]/60 hover:bg-[#F3E8D3]/85 dark:bg-teal-950/20 dark:hover:bg-teal-950/35 hover:border-[#801428]/70 dark:hover:border-teal-700'
                       : 'bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700'
-                  } border rounded-2xl hover:shadow-xs transition-all duration-300 relative overflow-visible`}
+                  } border rounded-2xl hover:shadow-xs transition-[background-color,border-color,box-shadow] duration-200 relative overflow-visible`}
                 >
                   {editingPaperId === paper.id ? (
                     <form onSubmit={handleSaveEditPaper} className="space-y-3 animate-fadeIn p-4">
@@ -1243,14 +1225,14 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="Paper"
                                 aria-label="View Paper"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-[transform,background-color,border-color,color] duration-160 active:scale-[0.97] flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
-                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-160 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                                 />
                                 <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                  <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors shrink-0" />
+                                  <FileText className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors duration-160 shrink-0" />
                                   <span className="btn-text">Paper</span>
                                 </span>
                               </a>
@@ -1263,14 +1245,14 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="GitHub"
                                 aria-label="View GitHub Repository"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-[transform,background-color,border-color,color] duration-160 active:scale-[0.97] flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
-                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-160 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                                 />
                                 <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
-                                  <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors shrink-0" />
+                                  <Github className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-400 group-hover/btn:text-[#801428] dark:group-hover/btn:text-[#7DE2C5] transition-colors duration-160 shrink-0" />
                                   <span className="btn-text">GitHub</span>
                                 </span>
                               </a>
@@ -1283,11 +1265,11 @@ export default function PublicationsSection({
                                 rel="noopener noreferrer"
                                 title="Hugging Face"
                                 aria-label="View Hugging Face Page"
-                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-all active:scale-95 flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
+                                className="group/btn relative overflow-hidden shrink-0 px-2 py-1 sm:px-2.5 sm:py-1 text-xs font-semibold text-[#2A2D34] dark:text-zinc-300 hover:text-[#801428] dark:hover:text-[#7DE2C5] bg-[#F7F1E6] active:bg-[#EBDDC3] dark:bg-zinc-800/90 dark:active:bg-zinc-700 border border-[#E5DAC5] dark:border-zinc-700/80 rounded-lg shadow-xs transition-[transform,background-color,border-color,color] duration-160 active:scale-[0.97] flex items-center gap-1 sm:gap-1.5 cursor-pointer min-h-[30px] sm:min-h-0 select-none"
                               >
                                 <span
                                   aria-hidden="true"
-                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-200 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
+                                  className="absolute inset-0 rounded-[inherit] bg-white/90 dark:bg-zinc-700/80 blur-[2px] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-160 pointer-events-none shadow-[inset_0_0_4px_rgba(255,255,255,0.8),0_0_8px_rgba(255,255,255,0.95)] dark:shadow-[inset_0_0_4px_rgba(125,226,197,0.3),0_0_8px_rgba(125,226,197,0.35)]"
                                 />
                                 <span className="relative z-10 flex items-center gap-1 sm:gap-1.5">
                                   <img
@@ -1308,7 +1290,7 @@ export default function PublicationsSection({
                                 setExpandedAbstractId(isAbstractExpanded ? null : paper.id);
                                 setExpandedBibtexId(null);
                               }}
-                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-95 flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-all min-h-[30px] sm:min-h-0 select-none"
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-[0.97] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-[color,transform] duration-160 min-h-[30px] sm:min-h-0 select-none"
                             >
                               <span>TL;DR</span>
                               <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isAbstractExpanded ? 'rotate-180' : ''}`} />
@@ -1320,7 +1302,7 @@ export default function PublicationsSection({
                                 setExpandedBibtexId(isBibtexExpanded ? null : paper.id);
                                 setExpandedAbstractId(null);
                               }}
-                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-95 flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-all min-h-[30px] sm:min-h-0 select-none"
+                              className="text-xs font-bold shrink-0 text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5] active:text-[#801428] dark:active:text-[#7DE2C5] active:scale-[0.97] flex items-center gap-1 py-1 px-1.5 sm:py-0.5 sm:px-1 cursor-pointer whitespace-nowrap transition-[color,transform] duration-160 min-h-[30px] sm:min-h-0 select-none"
                             >
                               <span>BibTeX</span>
                               <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${isBibtexExpanded ? 'rotate-180' : ''}`} />
@@ -1333,7 +1315,7 @@ export default function PublicationsSection({
                       {paper.teaserImage && (
                         <div className="hidden sm:flex p-4 pl-0 items-center justify-center shrink-0">
                           <div
-                            className="w-44 md:w-52 shrink-0 rounded-xl overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-all duration-300 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-98"
+                            className="w-44 md:w-52 shrink-0 rounded-xl overflow-hidden border border-[#E2D5BE] dark:border-zinc-700/80 bg-white dark:bg-zinc-800 flex items-center justify-center p-2 shadow-xs hover:shadow-md hover:border-[#801428]/40 dark:hover:border-zinc-600 transition-[border-color,box-shadow,transform] duration-200 cursor-pointer group/image transform hover:-translate-y-0.5 active:scale-[0.97]"
                             onClick={() => setSelectedZoomImage(paper.teaserImage || null)}
                             title="Click to zoom preview"
                           >
@@ -1342,35 +1324,39 @@ export default function PublicationsSection({
                               alt={`Teaser for ${paper.title}`}
                               loading="lazy"
                               decoding="async"
-                              className="max-h-28 sm:max-h-32 md:max-h-36 w-full h-auto object-contain transition-transform duration-300 group-hover/image:scale-[1.04] rounded-lg"
+                              className="max-h-28 sm:max-h-32 md:max-h-36 w-full h-auto object-contain transition-transform duration-200 group-hover/image:scale-[1.03] rounded-lg"
                             />
                           </div>
                         </div>
                       )}
                     </div>
 
-                    {/* Collapsible Abstract Content */}
-                    {isAbstractExpanded && (
-                      <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-xl p-3 sm:p-4 mt-2 animate-fadeIn mx-3 sm:mx-4 mb-4">
-                        <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
-                          {paper.abstract.split('\n\n').map((paragraph, index) => (
-                            <p key={index}>{paragraph}</p>
-                          ))}
+                    {/* Collapsible Abstract Content (CSS Grid Accordion) */}
+                    <div className={`accordion-wrapper ${isAbstractExpanded ? 'is-expanded' : ''}`}>
+                      <div className="accordion-content">
+                        <div className="bg-[#F7F1E6] dark:bg-zinc-800/80 border border-[#E5DAC5] dark:border-zinc-700 rounded-xl p-3 sm:p-4 mt-2 mx-3 sm:mx-4 mb-4">
+                          <div className="space-y-3 text-[#2A2D34] dark:text-zinc-300 text-xs sm:text-sm leading-relaxed font-['Fast_Sans','Fast_Sans_Fallback',sans-serif]">
+                            {paper.abstract.split('\n\n').map((paragraph, index) => (
+                              <p key={index}>{paragraph}</p>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    )}
+                    </div>
 
-                    {/* Collapsible BibTeX Citation Content */}
-                    {isBibtexExpanded && (
-                      <BibtexViewer
-                        paperId={paper.id}
-                        title={paper.title}
-                        bibtex={paper.bibtex}
-                        isCopied={isCopied}
-                        onCopy={() => copyBibtex(paper.id, paper.bibtex)}
-                        onDownload={() => downloadBibtex(paper.title, paper.bibtex)}
-                      />
-                    )}
+                    {/* Collapsible BibTeX Citation Content (CSS Grid Accordion) */}
+                    <div className={`accordion-wrapper ${isBibtexExpanded ? 'is-expanded' : ''}`}>
+                      <div className="accordion-content">
+                        <BibtexViewer
+                          paperId={paper.id}
+                          title={paper.title}
+                          bibtex={paper.bibtex}
+                          isCopied={isCopied}
+                          onCopy={() => copyBibtex(paper.id, paper.bibtex)}
+                          onDownload={() => downloadBibtex(paper.title, paper.bibtex)}
+                        />
+                      </div>
+                    </div>
                   </>
                 )}
                 </div>
@@ -1380,34 +1366,46 @@ export default function PublicationsSection({
         )}
       </div>
 
-      {/* Zoomed-in Image Modal (Lightbox) */}
-      {selectedZoomImage && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-xs animate-fadeIn"
-          onClick={() => setSelectedZoomImage(null)}
-        >
-          <div
-            className="relative max-w-4xl max-h-[85vh] bg-white dark:bg-zinc-900 rounded-2xl p-2 shadow-2xl flex flex-col items-center border border-zinc-200 dark:border-zinc-800 mt-6"
-            onClick={(e) => e.stopPropagation()}
+      {/* Zoomed-in Image Modal (Lightbox with AnimatePresence & Spring Physics) */}
+      <AnimatePresence>
+        {selectedZoomImage && (
+          <motion.div
+            key="lightbox-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/80 backdrop-blur-xs"
+            onClick={() => setSelectedZoomImage(null)}
           >
-            {/* Close button positioned outside of the image container */}
-            <button
-              type="button"
-              onClick={() => setSelectedZoomImage(null)}
-              className="absolute -top-11 right-0 p-2 bg-white/90 hover:bg-white text-black rounded-full transition-all shadow-lg cursor-pointer flex items-center justify-center w-9 h-9 border border-zinc-200/80 backdrop-blur-xs hover:scale-105 active:scale-95"
-              title="Close image view"
-              aria-label="Close image view"
+            <motion.div
+              key="lightbox-modal-content"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
+              className="relative max-w-4xl max-h-[85vh] bg-white dark:bg-zinc-900 rounded-2xl p-2 shadow-2xl flex flex-col items-center border border-zinc-200 dark:border-zinc-800 mt-6"
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-5 h-5 text-black" />
-            </button>
-            <OptimizedImage
-              src={selectedZoomImage}
-              alt="Teaser full preview"
-              className="max-w-full max-h-[78vh] object-contain rounded-xl"
-            />
-          </div>
-        </div>
-      )}
+              {/* Close button positioned outside of the image container */}
+              <button
+                type="button"
+                onClick={() => setSelectedZoomImage(null)}
+                className="absolute -top-11 right-0 p-2 bg-white/90 hover:bg-white text-black rounded-full transition-[transform,background-color] duration-160 shadow-lg cursor-pointer flex items-center justify-center w-9 h-9 border border-zinc-200/80 backdrop-blur-xs hover:scale-105 active:scale-95"
+                title="Close image view"
+                aria-label="Close image view"
+              >
+                <X className="w-5 h-5 text-black" />
+              </button>
+              <OptimizedImage
+                src={selectedZoomImage}
+                alt="Teaser full preview"
+                className="max-w-full max-h-[78vh] object-contain rounded-xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
