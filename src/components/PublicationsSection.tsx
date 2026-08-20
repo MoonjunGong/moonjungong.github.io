@@ -285,12 +285,11 @@ export default function PublicationsSection({
   return (
     <div id="publications-section" className="mb-8">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-        <div>
-          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100">Publications</h2>
-          <p className="text-xs text-[#525660] dark:text-zinc-400">Selected peer-reviewed papers and preprints.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div className="w-full text-center sm:w-auto sm:text-left">
+          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 text-center sm:text-left">Publications</h2>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 justify-center sm:justify-end">
           {isEditing && (
             <button
               onClick={() => {

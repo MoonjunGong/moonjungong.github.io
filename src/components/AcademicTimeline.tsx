@@ -114,13 +114,21 @@ export default function AcademicTimeline({
   return (
     <div id="cv-section" className="mb-8">
       {/* Timeline Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 mb-4">
-        <div>
-          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100">Academic Timeline</h2>
-          <p className="text-xs text-[#525660] dark:text-zinc-400">Chronological history of educational milestones, faculty positions, and academic honors</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+        <div className="w-full text-center sm:w-auto sm:text-left flex items-center justify-center sm:justify-start relative">
+          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 text-center sm:text-left">Academic Timeline</h2>
+          {isEditing && (
+            <button
+              onClick={() => setShowAddForm(prev => !prev)}
+              className="sm:hidden absolute right-0 px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-[transform,background-color] duration-160 active:scale-95 flex items-center gap-1.5 cursor-pointer"
+            >
+              <Plus className="w-3.5 h-3.5" />
+              <span>{showAddForm ? "Cancel" : "Add Item"}</span>
+            </button>
+          )}
         </div>
 
-        <div className="flex flex-wrap gap-2 items-center">
+        <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
           {/* Quick Category Filters */}
           <div className="flex bg-[#F7F1E6] dark:bg-zinc-800/90 p-1 rounded-xl gap-1 border border-[#E5DAC5] dark:border-zinc-700/80 relative">
             {availableFilters.map(type => {
@@ -153,7 +161,7 @@ export default function AcademicTimeline({
           {isEditing && (
             <button
               onClick={() => setShowAddForm(prev => !prev)}
-              className="px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-[transform,background-color] duration-160 active:scale-95 flex items-center gap-1.5 cursor-pointer"
+              className="hidden sm:flex px-2.5 py-1.5 bg-[#801428] hover:bg-[#5F0E1D] text-white dark:bg-[#7DE2C5] dark:hover:bg-[#68d0b3] dark:text-zinc-950 rounded-lg text-xs font-semibold shadow-xs transition-[transform,background-color] duration-160 active:scale-95 items-center gap-1.5 cursor-pointer"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>{showAddForm ? "Cancel" : "Add Item"}</span>

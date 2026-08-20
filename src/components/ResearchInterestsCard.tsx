@@ -74,10 +74,9 @@ export default function ResearchInterestsCard({
 
   return (
     <div id="interests-section" className="mb-8">
-      <div className="flex justify-between items-center mb-4">
-        <div>
-          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100">Research Focus Areas</h2>
-          <p className="text-xs text-[#525660] dark:text-zinc-400">Major domains of ongoing exploration</p>
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-2 sm:gap-0">
+        <div className="w-full text-center sm:w-auto sm:text-left">
+          <h2 className="text-lg font-bold tracking-tight text-[#2A2D34] dark:text-zinc-100 text-center sm:text-left">Research Focus Areas</h2>
         </div>
         {isEditing && (
           <button

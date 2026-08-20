@@ -207,9 +207,9 @@ export default function App() {
     <div className="min-h-screen bg-[#F3E8D3] dark:bg-zinc-950 text-[#2A2D34] dark:text-zinc-100 flex flex-col pb-12 selection:bg-[#801428]/20 selection:text-[#801428] dark:selection:bg-teal-900 dark:selection:text-teal-100 transition-colors duration-300">
       
       {/* Fixed Floating Navigation Bar */}
-      <header className="fixed top-3 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-4 md:px-6 flex justify-center pointer-events-none transition-[top,transform] duration-200">
+      <header className="fixed top-2.5 sm:top-4 left-0 right-0 z-50 w-full max-w-5xl mx-auto px-3 sm:px-4 md:px-6 flex justify-center pointer-events-none transition-[top,transform] duration-200">
         <div 
-          className="pointer-events-auto w-[calc(100%+10px)] -mx-[5px] bg-[#FAF5EB]/50 hover:bg-[#FAF5EB]/85 dark:bg-zinc-900/50 dark:hover:bg-zinc-900/85 backdrop-blur-md hover:backdrop-blur-lg backdrop-saturate-150 border border-[#E2D5BE]/70 hover:border-[#E2D5BE] dark:border-zinc-800/70 dark:hover:border-zinc-700 shadow-xs hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-5 h-12 sm:h-14 flex items-center justify-between transition-[background-color,border-color,box-shadow] duration-200 group/nav"
+          className="pointer-events-auto w-full bg-[#FAF5EB]/80 hover:bg-[#FAF5EB]/95 dark:bg-zinc-900/80 dark:hover:bg-zinc-900/95 backdrop-blur-md hover:backdrop-blur-lg backdrop-saturate-150 border border-[#E2D5BE]/80 hover:border-[#E2D5BE] dark:border-zinc-800/80 dark:hover:border-zinc-700 shadow-xs hover:shadow-md hover:shadow-black/5 dark:hover:shadow-black/30 rounded-xl sm:rounded-2xl px-2 xs:px-3 sm:px-4 md:px-5 h-11 sm:h-14 flex items-center justify-between transition-[background-color,border-color,box-shadow] duration-200 group/nav"
           style={{
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)'
@@ -226,21 +226,21 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+          <div className="flex items-center justify-between sm:justify-end w-full sm:w-auto">
             {/* Quick Scroll Links with Sliding Active Pill */}
-            <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-1 sm:gap-1.5 text-[11px] font-bold uppercase tracking-wider select-none relative">
+            <nav className="flex items-center justify-between sm:justify-start w-full sm:w-auto gap-0.5 sm:gap-1.5 text-[11px] font-bold uppercase tracking-wider select-none relative">
               {[
-                { id: 'header-section', key: 'about' as const, label: 'Biography' },
-                { id: 'interests-section', key: 'focus' as const, label: 'Research' },
-                { id: 'publications-section', key: 'pubs' as const, label: 'Publications' },
-                { id: 'cv-section', key: 'cv' as const, label: 'Timeline' },
+                { id: 'header-section', key: 'about' as const, label: 'Biography', shortLabel: 'Bio' },
+                { id: 'interests-section', key: 'focus' as const, label: 'Research', shortLabel: 'Research' },
+                { id: 'publications-section', key: 'pubs' as const, label: 'Publications', shortLabel: 'Papers' },
+                { id: 'cv-section', key: 'cv' as const, label: 'Timeline', shortLabel: 'Timeline' },
               ].map((item) => {
                 const isActive = activeTab === item.key;
                 return (
                   <button
                     key={item.key}
                     onClick={() => scrollToSection(item.id, item.key)}
-                    className={`relative px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-xs font-bold tracking-wider uppercase transition-[color,transform] duration-160 cursor-pointer active:scale-95 ${
+                    className={`relative flex-1 sm:flex-initial text-center px-2 xs:px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-bold tracking-tight sm:tracking-wider uppercase transition-[color,transform] duration-160 cursor-pointer active:scale-95 whitespace-nowrap ${
                       isActive
                         ? 'text-[#801428] dark:text-[#7DE2C5]'
                         : 'text-[#525660] dark:text-zinc-400 hover:text-[#801428] dark:hover:text-[#7DE2C5]'
@@ -253,7 +253,8 @@ export default function App() {
                         transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
                       />
                     )}
-                    <span className="relative z-10">{item.label}</span>
+                    <span className="relative z-10 hidden sm:inline">{item.label}</span>
+                    <span className="relative z-10 sm:hidden inline">{item.shortLabel}</span>
                   </button>
                 );
               })}
