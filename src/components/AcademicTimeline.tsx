@@ -85,6 +85,11 @@ export default function AcademicTimeline({
     return experiences.filter(exp => activeFilter === 'all' || exp.type === activeFilter);
   }, [experiences, activeFilter]);
 
+  // Motion easing tokens
+  const easeOut = [0.23, 1, 0.32, 1] as const;
+  const easeInOut = [0.77, 0, 0.175, 1] as const;
+  const easeDrawer = [0.32, 0.72, 0, 1] as const;
+
   const getTypeStyles = (type: AcademicExperience['type']) => {
     switch (type) {
       case 'education':
@@ -255,31 +260,45 @@ export default function AcademicTimeline({
       )}
 
       {/* Main Timeline Graphic & Items */}
-      <div className="relative border-l-2 border-[#E2D5BE] dark:border-zinc-800 ml-4 pl-6 md:pl-8 space-y-4 py-1 min-h-[260px] sm:min-h-[280px]">
+      <div className="relative ml-4 pl-6 md:pl-8 space-y-4 py-1 min-h-[260px] sm:min-h-[280px]">
         <AnimatePresence mode="popLayout" initial={false}>
           {filteredExperiences.length === 0 ? (
             <motion.p
               key="empty-state"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, filter: 'blur(4px)' }}
+              transition={{ duration: 0.18, ease: easeInOut }}
               className="text-[#525660] dark:text-zinc-400 text-xs ml-2"
             >
               No CV items listed for this category.
             </motion.p>
           ) : (
-            filteredExperiences.map((exp) => {
+            filteredExperiences.map((exp, index) => {
               const styles = getTypeStyles(exp.type);
               return (
                 <motion.div
                   layout
                   key={exp.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.97 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  initial={{ opacity: 0, y: 15, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: 6, filter: 'blur(4px)' }}
+                  transition={{
+                    duration: 0.18,
+                    ease: easeInOut,
+                    delay: index * 0.025,
+                    layout: { duration: 0.2, ease: easeInOut }
+                  }}
                   className="relative group"
                 >
+                  {/* Segmented connector line to the next icon node */}
+                  {index < filteredExperiences.length - 1 && (
+                    <div
+                      aria-hidden="true"
+                      className="absolute -left-[24px] md:-left-[32px] top-[32px] -bottom-5 w-0.5 bg-[#E2D5BE] dark:bg-zinc-800 pointer-events-none"
+                    />
+                  )}
+
                   {/* Timeline Bullet Node */}
                   <div className={`absolute -left-[37px] md:-left-[45px] top-1 p-1 rounded-full border-2 shadow-xs transition-colors ${styles.bullet}`}>
                     {styles.icon}
