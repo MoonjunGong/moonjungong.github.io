@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { GraduationCap, Briefcase, Award, Plus, Trash2, Calendar } from 'lucide-react';
 import { AcademicExperience } from '../types';
 
@@ -255,105 +255,123 @@ export default function AcademicTimeline({
       )}
 
       {/* Main Timeline Graphic & Items */}
-      <div className="relative border-l-2 border-[#E2D5BE] dark:border-zinc-800 ml-4 pl-6 md:pl-8 space-y-4 py-1">
-        {filteredExperiences.length === 0 ? (
-          <p className="text-[#525660] dark:text-zinc-400 text-xs ml-2">No CV items listed for this category.</p>
-        ) : (
-          filteredExperiences.map((exp) => {
-            const styles = getTypeStyles(exp.type);
-            return (
-              <div key={exp.id} className="relative group">
-                {/* Timeline Bullet Node */}
-                <div className={`absolute -left-[37px] md:-left-[45px] top-1 p-1 rounded-full border-2 shadow-xs transition-colors ${styles.bullet}`}>
-                  {styles.icon}
-                </div>
+      <div className="relative border-l-2 border-[#E2D5BE] dark:border-zinc-800 ml-4 pl-6 md:pl-8 space-y-4 py-1 min-h-[260px] sm:min-h-[280px]">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {filteredExperiences.length === 0 ? (
+            <motion.p
+              key="empty-state"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-[#525660] dark:text-zinc-400 text-xs ml-2"
+            >
+              No CV items listed for this category.
+            </motion.p>
+          ) : (
+            filteredExperiences.map((exp) => {
+              const styles = getTypeStyles(exp.type);
+              return (
+                <motion.div
+                  layout
+                  key={exp.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="relative group"
+                >
+                  {/* Timeline Bullet Node */}
+                  <div className={`absolute -left-[37px] md:-left-[45px] top-1 p-1 rounded-full border-2 shadow-xs transition-colors ${styles.bullet}`}>
+                    {styles.icon}
+                  </div>
 
-                {/* CV Item Card */}
-                <div className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-xl p-4 hover:shadow-xs transition-[background-color,border-color,box-shadow] duration-200">
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                  {/* CV Item Card */}
+                  <div className="bg-[#FAF5EB] hover:bg-[#FDFBF7] dark:bg-zinc-900 dark:hover:bg-[#1f1f23] border border-[#E2D5BE] dark:border-zinc-800 hover:border-[#801428]/40 dark:hover:border-zinc-700 rounded-xl p-4 hover:shadow-xs transition-[background-color,border-color,box-shadow] duration-200">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
+                      <div>
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          {isEditing ? (
+                            <input
+                              type="text"
+                              value={exp.role}
+                              onChange={(e) => handleUpdateExperience(exp.id, 'role', e.target.value)}
+                              className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none flex-1 min-w-[200px] bg-transparent"
+                            />
+                          ) : (
+                            <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug">
+                              {exp.role}
+                            </h3>
+                          )}
+                          {exp.type !== 'education' && exp.type !== 'position' && (
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border uppercase tracking-wider ${styles.badge}`}>
+                              {styles.label}
+                            </span>
+                          )}
+                        </div>
+
                         {isEditing ? (
                           <input
                             type="text"
-                            value={exp.role}
-                            onChange={(e) => handleUpdateExperience(exp.id, 'role', e.target.value)}
-                            className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none flex-1 min-w-[200px] bg-transparent"
+                            value={exp.institution}
+                            onChange={(e) => handleUpdateExperience(exp.id, 'institution', e.target.value)}
+                            className="text-[#2A2D34] dark:text-zinc-300 text-xs border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full bg-transparent"
                           />
                         ) : (
-                          <h3 className="text-sm font-bold text-[#2A2D34] dark:text-zinc-100 leading-snug">
-                            {exp.role}
-                          </h3>
-                        )}
-                        {exp.type !== 'education' && exp.type !== 'position' && (
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border uppercase tracking-wider ${styles.badge}`}>
-                            {styles.label}
-                          </span>
+                          <p className="text-[#2A2D34] dark:text-zinc-300 text-xs font-semibold">
+                            {exp.institution}
+                          </p>
                         )}
                       </div>
 
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          value={exp.institution}
-                          onChange={(e) => handleUpdateExperience(exp.id, 'institution', e.target.value)}
-                          className="text-[#2A2D34] dark:text-zinc-300 text-xs border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-full bg-transparent"
-                        />
-                      ) : (
-                        <p className="text-[#2A2D34] dark:text-zinc-300 text-xs font-semibold">
-                          {exp.institution}
-                        </p>
+                    {/* Date & Action buttons */}
+                    <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-2 shrink-0">
+                      <div className="flex items-center gap-1 text-xs text-[#525660] dark:text-zinc-400 font-medium font-mono">
+                        <Calendar className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-500" />
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            value={exp.duration}
+                            onChange={(e) => handleUpdateExperience(exp.id, 'duration', e.target.value)}
+                            className="border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-16 py-0.5 text-xs font-mono text-right text-[#2A2D34] dark:text-zinc-300 bg-transparent"
+                          />
+                        ) : (
+                          <span className="select-text whitespace-nowrap notranslate" x-apple-data-detectors="false">{exp.duration}</span>
+                        )}
+                      </div>
+
+                      {isEditing && (
+                        <button
+                          onClick={() => handleDeleteExperience(exp.id)}
+                          className="p-1 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-[#E2D5BE] dark:border-zinc-700 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors cursor-pointer"
+                          title="Delete CV item"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
                       )}
                     </div>
-
-                  {/* Date & Action buttons */}
-                  <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-2 shrink-0">
-                    <div className="flex items-center gap-1 text-xs text-[#525660] dark:text-zinc-400 font-medium font-mono">
-                      <Calendar className="w-3.5 h-3.5 text-[#801428] dark:text-zinc-500" />
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          value={exp.duration}
-                          onChange={(e) => handleUpdateExperience(exp.id, 'duration', e.target.value)}
-                          className="border-b border-[#E2D5BE] dark:border-zinc-700 focus:border-[#801428] dark:focus:border-[#7DE2C5] outline-none w-16 py-0.5 text-xs font-mono text-right text-[#2A2D34] dark:text-zinc-300 bg-transparent"
-                        />
-                      ) : (
-                        <span className="select-text whitespace-nowrap notranslate" x-apple-data-detectors="false">{exp.duration}</span>
-                      )}
-                    </div>
-
-                    {isEditing && (
-                      <button
-                        onClick={() => handleDeleteExperience(exp.id)}
-                        className="p-1 bg-[#F3E8D3] dark:bg-zinc-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-[#E2D5BE] dark:border-zinc-700 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 rounded-lg transition-colors cursor-pointer"
-                        title="Delete CV item"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    )}
                   </div>
-                </div>
 
-                {/* Details Description */}
-                {isEditing ? (
-                  <textarea
-                    value={exp.description}
-                    onChange={(e) => handleUpdateExperience(exp.id, 'description', e.target.value)}
-                    rows={2}
-                    className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs text-[#2A2D34] dark:text-zinc-300 outline-none mt-1"
-                  />
-                ) : (
-                  exp.description ? (
-                    <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-normal text-justify mt-1.5 pt-1.5 border-t border-[#E2D5BE] dark:border-zinc-800">
-                      {exp.description}
-                    </p>
-                  ) : null
-                )}
-              </div>
-            </div>
-          );
-        })
-        )}
+                  {/* Details Description */}
+                  {isEditing ? (
+                    <textarea
+                      value={exp.description}
+                      onChange={(e) => handleUpdateExperience(exp.id, 'description', e.target.value)}
+                      rows={2}
+                      className="w-full bg-[#F3E8D3] dark:bg-zinc-800 border border-[#E2D5BE] dark:border-zinc-700 rounded p-2 text-xs text-[#2A2D34] dark:text-zinc-300 outline-none mt-1"
+                    />
+                  ) : (
+                    exp.description ? (
+                      <p className="text-[#4E5158] dark:text-zinc-400 text-xs leading-normal text-justify mt-1.5 pt-1.5 border-t border-[#E2D5BE] dark:border-zinc-800">
+                        {exp.description}
+                      </p>
+                    ) : null
+                  )}
+                </div>
+              </motion.div>
+            );
+          })
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
